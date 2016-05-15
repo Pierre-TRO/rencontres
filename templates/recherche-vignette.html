@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Bienvenue Pierrot04!</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/site-rencontre.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Mon site de rencontre</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">accueil</a></li>
+        <li><a href="#">rencontres<span class="sr-only">(current)</span></a></li>
+        <li><a href="#">favoris</a></li>
+        <li><a href="#">mon profil</a></li>
+        <li><a href="#">mes messages <span class="badge">5</span></a></li>
+        <li><a href="#">mes contacts <span class="badge">11</span></a></li>
+        <li><a href="#">&agrave; propos</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="padding:0px;height:50px">
+			<div  class="image" style="background-image:url('Spongebob_without_hat_stock_image.png')" alt=""></div><span class="login-user">Pierrot04 <span class="caret"></span></span>
+		  </a>
+          <ul class="dropdown-menu" style="width:100%">
+            <li><a href="#" class="red">Deconnexion</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<!-- Page Content -->
+    <div class="container-fluid">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3 conteneur_principal conteneur_principal_recherche bottom">
+				<h3 class="center bottom20">Recherche de profil</h3>
+				<form class="form-horizontal">
+					<div class="form-group">
+						<label for="inputGenre" class="col-sm-2 control-label">Genre</label>
+    					<div class="col-sm-10">
+							<select class="form-control" id="inputGenre">
+								<option></option>
+								<option>Homme</option>
+								<option>Femme</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputAgeDeb" class="col-sm-2 control-label">de</label>
+    					<div class="col-sm-10">
+							<select class="form-control" id="inputAgeDeb">
+								<option>18</option>
+								<option>19</option>
+								<option>20</option>
+								<option>21</option>
+								<option>22</option>
+								<option>23</option>
+								<option>24</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputAgeFin" class="col-sm-2 control-label">à</label>
+    					<div class="col-sm-10">
+							<select class="form-control" id="inputAgeFin">
+								<option>18</option>
+								<option>19</option>
+								<option>20</option>
+								<option>21</option>
+								<option>22</option>
+								<option>23</option>
+								<option>24</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputPseudo" class="col-sm-2 control-label">Pseudo</label>
+    					<div class="col-sm-10">
+							<input class="form-control" id="inputPseudo" type="text" size="10">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputAgeFin" class="col-sm-2 control-label">Région</label>
+    					<div class="col-sm-10">
+							<select class="form-control" id="inputAgeFin">
+								<option>Ile de France</option>
+								<option>Paca</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputAgeFin" class="col-sm-2 control-label">Département</label>
+    					<div class="col-sm-10">
+							<select class="form-control" id="inputAgeFin">
+								<option>Seine et Marne</option>
+								<option>Essonne</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+	    				<div class="col-sm-offset-2 col-sm-10">
+							<button type="submit" class="btn btn-default">Rechercher</button>
+						</div>
+					</div>
+				</form>
+			</div>
+        </div>
+		<div class="row center" style="">
+			<div class="col-xs-12">
+				<div class="bottom2" data-toggle="buttons">
+					<label class="btn btn-default active">
+						<input type="radio" name="vignette" value="Oui" checked>
+					Vue vignette </label>
+					<label class="btn btn-default">
+						<input type="radio" name="detail" value="Non">
+					Vue détaillée </label>
+				</div>
+			</div>
+		</div>
+		<div class="row ">
+			<div class="col-md-1">
+			</div>
+			<div class="col-md-10 conteneur_principal conteneur_principal_recherche">
+				<div class="row">
+		            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+		                <a class="thumbnail" href="#">
+		                    <img class="img-responsive" src="http://placehold.it/300x230" alt="">
+							<div class="caption post-content resize">
+								Pierrot04, 31 ans<br>
+								Cesson, Ile de France<br> 
+								3 photos
+							</div>
+		                </a>
+		            </div>
+		            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+		                <a class="thumbnail" href="#">
+		                    <img class="img-responsive" src="http://placehold.it/300x230" alt="">
+							<div class="caption post-content resize">
+								Pierrot04, 31 ans<br>
+								Cesson, Ile de France<br> 
+								3 photos
+							</div>
+		                </a>
+		            </div>
+		            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+		                <a class="thumbnail" href="#">
+		                    <img class="img-responsive" src="http://placehold.it/300x230" alt="">
+		                </a>
+		            </div>
+		            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+		                <a class="thumbnail" href="#">
+		                    <img class="img-responsive" src="http://placehold.it/300x230" alt="">
+		                </a>
+		            </div>
+		            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+		                <a class="thumbnail" href="#">
+		                    <img class="img-responsive" src="http://placehold.it/300x230" alt="">
+		                </a>
+		            </div>
+		            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+		                <a class="thumbnail" href="#">
+		                    <img class="img-responsive" src="http://placehold.it/300x230" alt="">
+		                </a>
+		            </div>
+		            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+		                <a class="thumbnail" href="#">
+		                    <img class="img-responsive" src="http://placehold.it/300x230" alt="">
+		                </a>
+		            </div>
+		            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+		                <a class="thumbnail" href="#">
+		                    <img class="img-responsive" src="http://placehold.it/300x230" alt="">
+		                </a>
+		            </div>
+		            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+		                <a class="thumbnail" href="#">
+		                    <img class="img-responsive" src="http://placehold.it/300x230" alt="">
+		                </a>
+		            </div>
+		            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+		                <a class="thumbnail" href="#">
+		                    <img class="img-responsive" src="http://placehold.it/300x230" alt="">
+		                </a>
+		            </div>
+		            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+		                <a class="thumbnail" href="#">
+		                    <img class="img-responsive" src="http://placehold.it/300x230" alt="">
+		                </a>
+		            </div>
+		            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+		                <a class="thumbnail" href="#">
+		                    <img class="img-responsive" src="http://placehold.it/300x230" alt="">
+		                </a>
+		            </div>
+		        </div>
+			</div>
+			<div class="col-md-1"></div>
+		<nav class="center">
+		  <ul class="pagination pagination-md">
+			<li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+			<li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+			<li><a href="#">2 </a></li>
+			<li class="disabled"><a href="#">... </a></li>
+			<li><a href="#">52 </a></li>
+			<li><a href="#">53 </a></li>
+			<li><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+		  </ul>
+		</nav>
+		<br>
+        <!-- Footer -->
+        <footer>
+            <div class="">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Mon Site De Rencontre 2015</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+    <!-- /.container -->
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>

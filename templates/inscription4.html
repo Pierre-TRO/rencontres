@@ -1,0 +1,130 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Mon site de rencontre</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/site-rencontre.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Mon site de rencontre</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="#">accueil</a></li>
+        <li class="active"><a href="#">rencontres<span class="sr-only">(current)</span></a></li>
+        <li><a href="#">&agrave; propos</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+		<li><a href="#" class="btn-primary inscription">inscrivez-vous!</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="padding:0px;height:50px">
+			<span class="login-user">Se connecter <span class="caret"></span></span>
+		  </a>
+          <ul class="dropdown-menu style-ul">
+			<form class="form-horizontal style-form">
+			  <div class="center red height"></div>
+			  <div class="form-group">
+				<label for="InputLogin" class="gris">Login</label>
+				<input type="text" class="form-control" id="InputLogin" placeholder="Login" required>
+			  </div>
+			  <div class="form-group">
+				<label for="exampleInputPassword1" class="gris">Password</label>
+				<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required>
+			  </div>
+			  <div class="checkbox">
+				<label class="gris">
+				  <input type="checkbox"> se souvenir de moi
+				</label>
+			  </div>
+			  <br>
+			  <button type="submit" class="btn btn-primary">Connexion</button>
+			</form>
+            <li><a href="#" class="center gris">Vous avez oublié votre password?</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<div class="container-fluid">
+  <div class="row">
+	<div class="col-md-8 col-md-offset-2 conteneur">
+		<h1 class="center">Inscription - étape 4/4</h1>
+		<h3 class="center">Présentez-vous:</h3>
+		<form class="form-horizontal">
+		  <div class="form-group">
+			<label for="inputTitre" class="col-sm-3 control-label">Titre du profil</label>
+			<div class="col-sm-9">
+			  <input type="text" id="inputTitre" class="form-control">
+			</div>
+		  </div>
+		  <div class="form-group">
+			<label for="inputDescription" class="col-sm-3 control-label">Description</label>
+			<div class="col-sm-9">
+			  <textarea type="text" id="inputDescription" class="form-control" rows="7" style="resize:none"></textarea>
+			</div>
+		  </div>
+		  <div class="form-group">
+			<div class="col-sm-12 center">
+			  <a type="submit" class="btn btn-default bottom3">Revenir à l'étape 3</a>
+			  <button type="submit" class="btn btn-primary bottom3">Valider l'inscription</button>
+			</div>
+		  </div>
+		</form>
+	</div>
+  </div>
+		<br>
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Mon Site De Rencontre 2015</p>
+                </div>
+            </div>
+        </footer>
+</div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+	<script>
+		$('#inputTaille, #inputPoids').keypress(function(e) {
+			var a = [];
+			var k = e.which;
+			
+			a.push(8);
+			a.push(9);
+			for (i = 48; i < 58; i++)
+				a.push(i);
+
+			if (!($.inArray(k,a)>=0))
+				e.preventDefault();
+		});
+	</script>
+  </body>
+</html>

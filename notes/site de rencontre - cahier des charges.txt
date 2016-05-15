@@ -1,0 +1,70 @@
+-----------------------------------------------------------------------
+------------- Cahier des charges de mon site de rencontre -------------
+-----------------------------------------------------------------------
+
+- Le site est gratuit, il me rapporte de l'argent grâce à la publicité
+- Barre haute de menus: affiche sur la droite une petite carré avec la photo + pseudo du user, une croix qui permet de se déconnecter et à gauche des liens "rencontres", "favoris", "mon profil", "mes messages", "mes contacts", "à propos". Si le user n'est pas connecté, on affiche deux champs (login/mdp + bouton de soumission), un lien inscription et un lien mot de passe oublié. Si il est connecté: photo + login et lien "se déconnecter"
+- La page "inscription":
+	- Grand formulaire avec les inputs suivants:
+		- Informations générales:
+			- login
+			- password (x2)
+			- genre (homme/femme)
+			- relation souhaitée (sérieuse/éphermère/amicale/indécis)
+			- orientation (hetero/homo/bi)
+			- Etat civil (celib/concubinage/marié)
+			- Date anniversaire
+			- emploi
+			- nationalité
+			- pays/région/département/ville
+		- Informations physique:
+			- Type de physique (mince/normal/athlétique/musclé/enrobé/taille forte)
+			- taille
+			- poids
+			- ethnicité
+			- couleur des yeux
+			- couleur des cheveux
+		- Style de vie
+			- hobbies
+			- sports pratiqués
+			- qualités
+			- défauts
+			- Fumez-vous
+			- alcool?
+		- Présentez-vous:
+			- Titre du profil
+			- Description
+- La page d'accueil:
+	- affiche au centre les photos, pseudos et slogans des 10 premiers membres (1 par ligne) aléatoires du sexe que la personne cherche (nouveaux inscrits, près de chez vous, les plus visités) (affichage détaillé)
+	- lien pour n'avoir que les photos + pseudos (4 par lignes) (affichage vignette)
+	- Ajout d'une pagination
+	- Les photos sont cliquables et amènent vers la page "détail profil"
+- la page rencontre:
+	- Barre de recherche rapide au dessus des photos (sexe, âge, région, département, pseudo)
+	- lien "autre vue" pour n'avoir que les photos + pseudos (3-4 par lignes)
+	- Les photos sont cliquables et amènent vers la page "détail profil"
+- La page "détail profil":
+	- Visualisation du profil d'un membre: ses infos, ses photos (caroussel), options: "ajouter/enlever des favoris", "envoyer un message" (pas plus de deux messages avant réponse du correspondant, pas plus de trois profil/jour), "envoyer un poke" (pas plus de 3 reçu /profil/jour), "Bloquer/débloquer" (un utilisateur bloqué ne peut plus voir le profil du user qui l'a bloqué mais pas l'inverse), "signaler"
+	- Mettre un message en rouge "Pour envoyer des messages vous devez être inscrit et connecté!"
+	- Mettre un message en rouge "Pour envoyer des messages ou des pokes il vous faut au moins une photo sur votre profil!"
+- La page "favoris": 
+	- Visualisation de tout les profils marqués comme "favori" par le user en mode "vue détaillée"
+- La page "mon profil":
+	- Visualisation de toutes les infos de l'utilisateur
+	- Bouton "éditer votre profil" pour modifier les infos
+	- Ajouter/supprimer des photos (5 maximum), deux exemplaires des photos gardées: taille normale (pas plus de 500ko) et petite (300x300) les photos sont modifiées pour répondre à ces critères au moment de l'upload.
+	- Vérifier au moment de l'upload que la photo n'est pas déjà présente pour le meme profil
+- La page "mes messages": 
+	- affiche tout les users avec qui l'utilisateur a échangé des messages, l'objet du dernier message et la date du dernier message (triés par date) avec la possibilité de supprimer des conversations
+	- petit onglet "messages supprimés" avec tout les conversations supprimées (on peut les supprimper définitivement ou on les garde encore un an après la date de suppression et plus après).
+- La page "Détail d'une conversation":
+	- affiche la conversation par ordre inversement chronologique avec un un bouton "répondre" qui permet d'afficher une popup modale avec un formulaire objet + message pour alimenter la conversation.
+- La pages "mes contacts":
+	- affiche l'historique du profil avec la date + l'heure (qui a visité le profil de l'utilisateur, quels profils a visité l'utilisateur, les messages reçus/envoyés, les pokes reçus/envoyés, les favoris ajoutés des deux cotés, les bloqués).
+- La page "A propos":
+	- Détail le comment du pourquoi de ce site + page de contact pour me parler.
+
+- enlever dans les pages html le lien web jquery et télécharger jquery
+- quand on est bloqué, on ne peut plus voir le profil de la personne qui nous a bloqué (les échanges deviennent invisibles, les contacts aussi, pareil pour le chat)
+- Si le user n'est pas connecté il ne peut que voir les pages "rencontre" et "détail profil"
+- faire un chat à la facebook si possible, n'affiche les personnes du sexe choisit qui sont connectées
