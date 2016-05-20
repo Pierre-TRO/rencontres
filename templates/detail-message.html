@@ -66,8 +66,34 @@
 			<div class="col-md-1">
 			</div>
 			<div class="col-md-10 conteneur_principal2 conteneur_principal_recherche top10">
-				<div class="bottom3">
-					<a href="#" class="btn btn-default"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> Retour aux messages</a>
+				<div class="row bottom3 left10">
+					<a href="#" class="btn btn-default pull-left bottom3"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> Retour aux messages</a>&nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="#" class="btn btn-default" id="bouton_reponse"> Répondre à cette conversation </a>
+				</div>
+				<div class="left10" id="div_reponse">
+					<form class="form-horizontal">
+						<div class="form-group">
+							<label for="Objet" class="col-sm-2 control-label">Objet</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control" id="Objet">
+							</div>
+							<div class="col-sm-1">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="Message" class="col-sm-2 control-label">Message</label>
+							<div class="col-sm-9">
+								<textarea class="form-control" id="Message" rows="3"></textarea>
+							</div>
+							<div class="col-sm-1">
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+								<button type="submit" class="btn btn-info">Envoyer la réponse</button>
+							</div>
+						</div>
+					</form>
 				</div>
 				<div class="row clearfix bottom20 left10">
 					<div class="img_10 pull-left">
@@ -164,6 +190,15 @@
 		$(function () {
 		  $('[data-toggle="tooltip"]').tooltip()
 		})
+	</script>
+	<script type="text/javascript">
+    	$( document ).ready(function() {
+    		$( "#div_reponse" ).css("display", "none");
+		});
+		$( "#bouton_reponse" ).click(function(e) {
+			e.preventDefault();
+  			$( "#div_reponse" ).slideToggle( "slow" );
+		});
 	</script>
   </body>
 </html>
