@@ -143,7 +143,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="row ">
+		<div class="row " id="debut_profils">
 			<div class="col-md-1">
 			</div>
 			<div class="col-md-10 conteneur_principal2 conteneur_principal_recherche top10 bottom10">
@@ -213,5 +213,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+    	$( document ).ready(function() {
+		    var offset = $("#debut_profils").offset().top 
+		    $('html, body').animate({scrollTop: offset}, 'slow');
+		});
+    </script>
   </body>
 </html>
