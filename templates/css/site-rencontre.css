@@ -375,3 +375,11 @@ input[readonly] {
   padding-left: 10px;
   padding-right: 10px;
 }
+
+/*Mes contacts*/
+.margin0{
+  margin: 0px !important;
+}
+.color_image {
+    color: #333;
+}
