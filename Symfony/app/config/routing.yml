@@ -1,0 +1,8 @@
+ptro_rencontres:
+    resource: "@PTRORencontresBundle/Resources/config/routing.yml"
+    prefix:   /rencontres
+
+oc_platform:
+    resource: "@OCPlatformBundle/Resources/config/routing.yml"
+    prefix:   /platform
+

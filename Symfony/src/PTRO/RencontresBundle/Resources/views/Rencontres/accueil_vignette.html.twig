@@ -1,0 +1,53 @@
+{% extends "PTRORencontresBundle::layout.html.twig" %}
+
+{% block contenu %}
+		<div class="row center bottom3">
+			<div class="" data-toggle="buttons">
+				<label class="btn btn-default active">
+					<input type="radio" name="vue" value="vignette" checked>
+				Vue vignette </label>
+				<label class="btn btn-default">
+					<input type="radio" name="vue" value="detail">
+				Vue détaillée </label>
+			</div>
+		</div>
+        <div class="row" >
+            <div class="col-md-offset-1 col-md-10">
+    			<ul class="nav nav-tabs gris_decale onglets">
+    					<li role="presentation" class="{% if tri == 'nouveau' %}active{% endif %}"><a href="{{ path('ptro_rencontres_homepage', { 'tri': 'nouveau' }) }}">Les nouveaux</a></li>
+    					<li role="presentation" class="{% if tri == 'pres_vous' %}active{% endif %}"><a href="{{ path('ptro_rencontres_homepage', { 'tri': 'pres_vous' }) }}">Près de vous</a></li>
+    					<li role="presentation" class="{% if tri == 'visite' %}active{% endif %}"><a href="{{ path('ptro_rencontres_homepage', { 'tri': 'visite' }) }}">Les + visités</a></li>
+    			</ul>
+            </div>
+		</div>
+		<div class="row center">
+            <div class="col-md-offset-1 col-md-10 conteneur_principal">
+                <div class="row">
+					{% for profil in profils %}
+                    <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                        <a class="thumbnail inline-block" href="#">
+                            <img class="img-responsive" src="{{profil.image}}" alt="">
+        					<div class="caption post-content resize left">
+        						{{profil.pseudo}}, {{profil.age}} ans<br>
+        						{{profil.ville}}, {{profil.region}}<br> 
+        						{{profil.nb_photo}} photo(s)
+        					</div>
+                        </a>
+                    </div>
+					{% endfor %}
+                </div>
+            </div>
+        </div>
+		<nav class="center">
+		  <ul class="pagination pagination-md">
+			<li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+			<li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+			<li><a href="#">2 </a></li>
+			<li class="disabled"><a href="#">... </a></li>
+			<li><a href="#">52 </a></li>
+			<li><a href="#">53 </a></li>
+			<li><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+		  </ul>
+		</nav>
+		<br>
+{% endblock %}
