@@ -1,0 +1,21 @@
+{% extends "PTRORencontresBundle::layout_recherche.html.twig" %}
+{% block vue %}
+<div class="col-md-10 conteneur_principal2 conteneur_principal_recherche top10 bottom10">
+	{% for profil in profils %}
+	<div class="row top-bottom{% if loop.last == false %}border-bottom{% endif %}">
+		<div class="col-md-3 center">
+			<a class="inline-block" href="#" style="">
+				<img class="img-responsive" src="{{profil.image}}" alt="">
+			</a>
+		</div>
+		<div class="col-lg-9 col-md-9" style="">
+			<p style="text-align:left;">
+				<b>{{profil.pseudo}}, {{profil.age}} ans, {{profil.orientation}} {{profil.relation}} </b>
+				{{profil.description}}<br>
+				{{profil.ville}}, {{profil.region}} 
+			</p>
+		</div>
+	</div>
+	{% endfor %}
+</div>
+{% endblock %}

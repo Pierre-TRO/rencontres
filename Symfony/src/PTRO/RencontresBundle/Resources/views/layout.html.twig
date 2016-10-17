@@ -33,7 +33,11 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">accueil</a></li>
+		{% if app.request.attributes.get('_route') == 'ptro_rencontres_homepage' %}
+			<li class="active" ><a>accueil</a></li>
+		{% else %}
+			<li><a href="{{ path('ptro_rencontres_homepage', { 'affichage': app.request.session.get('affichage') }) }}">accueil</a></li>
+		{% endif %}
         <li><a href="#">rencontres<span class="sr-only">(current)</span></a></li>
         <li><a href="#">favoris</a></li>
         <li><a href="#">mon profil</a></li>
@@ -44,7 +48,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
           <a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="padding:0px;height:50px">
-			<div  class="image" style="background-image:url('{{ asset('@PTRORencontresBundle/Resources/public/images/Spongebob_without_hat_stock_image.png') }}')" alt=""></div><span class="login-user">Pierrot04 <span class="caret"></span></span>
+			<div  class="image" style="background-image:url('{{ asset('images/Spongebob_without_hat_stock_image_.png') }}')" alt=""></div><span class="login-user">Pierrot04 <span class="caret"></span></span>
 		  </a>
           <ul class="dropdown-menu" style="width:100%">
             <li><a href="#" class="red">Deconnexion</a></li>
@@ -73,6 +77,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script src="{{ asset('js/bootstrap.min.js') }}"></script>
-
+	{% block javascript %}{% endblock %}
   </body>
 </html>

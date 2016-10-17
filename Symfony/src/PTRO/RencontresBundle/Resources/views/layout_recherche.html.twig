@@ -1,0 +1,108 @@
+{% extends "PTRORencontresBundle::layout.html.twig" %}
+
+{% block contenu %}
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3 conteneur_principal conteneur_principal_recherche bottom">
+				<h3 class="center bottom20">Recherche de profil</h3>
+				<form class="form-horizontal">
+					<div class="form-group">
+						<label for="inputGenre" class="col-sm-2 control-label">Genre</label>
+    					<div class="col-sm-10">
+							<select class="form-control" id="inputGenre">
+								<option></option>
+								<option>Homme</option>
+								<option>Femme</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputAgeDeb" class="col-sm-2 control-label">de</label>
+    					<div class="col-sm-10">
+							<select class="form-control" id="inputAgeDeb">
+								<option>18</option>
+								<option>19</option>
+								<option>20</option>
+								<option>21</option>
+								<option>22</option>
+								<option>23</option>
+								<option>24</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputAgeFin" class="col-sm-2 control-label">à</label>
+    					<div class="col-sm-10">
+							<select class="form-control" id="inputAgeFin">
+								<option>18</option>
+								<option>19</option>
+								<option>20</option>
+								<option>21</option>
+								<option>22</option>
+								<option>23</option>
+								<option>24</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputPseudo" class="col-sm-2 control-label">Pseudo</label>
+    					<div class="col-sm-10">
+							<input class="form-control" id="inputPseudo" type="text" size="10">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputAgeFin" class="col-sm-2 control-label">Région</label>
+    					<div class="col-sm-10">
+							<select class="form-control" id="inputAgeFin">
+								<option>Ile de France</option>
+								<option>Paca</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputAgeFin" class="col-sm-2 control-label">Département</label>
+    					<div class="col-sm-10">
+							<select class="form-control" id="inputAgeFin">
+								<option>Seine et Marne</option>
+								<option>Essonne</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+	    				<div class="col-sm-offset-2 col-sm-10">
+							<button type="submit" class="btn btn-default">Rechercher</button>
+						</div>
+					</div>
+				</form>
+			</div>
+        </div>
+		<div class="row center" style="">
+			<div class="col-xs-12">
+				<div class="bottom2" data-toggle="buttons">
+					<label class="btn btn-default active">
+						<input type="radio" name="vignette" value="Oui" checked>
+					Vue vignette </label>
+					<label class="btn btn-default">
+						<input type="radio" name="detail" value="Non">
+					Vue détaillée </label>
+				</div>
+			</div>
+		</div>
+		<div class="row " id="debut_profils">
+			<div class="col-md-1">
+			</div>
+			{% block vue %}
+			{% endblock %}
+			<div class="col-md-1"></div>
+		<nav class="center">
+		  <ul class="pagination pagination-md">
+			<li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+			<li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+			<li><a href="#">2 </a></li>
+			<li class="disabled"><a href="#">... </a></li>
+			<li><a href="#">52 </a></li>
+			<li><a href="#">53 </a></li>
+			<li><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+		  </ul>
+		</nav>
+		<br>
+{% endblock %}
