@@ -2,8 +2,8 @@
 
 {% block contenu %}
 		<div class="row center bottom3">
-					<button class="btn btn-default {% if app.session.get('affichage') == 'vignette' %} active {% endif %}" value="vignette" id="vignette">Vue vignette</button>
-					<button class="btn btn-default {% if app.session.get('affichage') == 'detail' %} active {% endif %}" value="detail" id="detail">Vue detail</button>
+					<button class="btn btn-default {% if app.session.get('affichage') == 'vignette' %} active no-click {% endif %}" value="vignette" id="vignette">Vue vignette</button>
+					<button class="btn btn-default {% if app.session.get('affichage') == 'detail' %} active no-click {% endif %}" value="detail" id="detail">Vue detail</button>
 		</div>
         <div class="row" >
             <div class="col-md-offset-1 col-md-10">
@@ -84,8 +84,8 @@
 		$(document).ready(function() {   
 		  $('button').click( 
 		  function(){
-				$('button').removeClass('active');
-				$('#'+(this.value)).addClass('active');
+				$('button').removeClass('active no-click');
+				$('#'+(this.value)).addClass('active no-click');
 				if(this.value == 'detail'){
 					$('#vignette_vue').hide();
 					$('#detail_vue').show();

@@ -383,3 +383,8 @@ input[readonly] {
 .color_image {
     color: #333;
 }
+
+/* Rendre le bouton d'affichage actif non clicable*/
+.no-click {
+    pointer-events: none;
+}
