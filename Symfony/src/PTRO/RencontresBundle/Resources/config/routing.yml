@@ -1,9 +1,12 @@
 ptro_rencontres_homepage:
-    path:     /accueil/{tri}/{affichage}
+    path:     /accueil/{tri}
     defaults:
         _controller: 	PTRORencontresBundle:Main:accueil
         tri:    nouveau
-        affichage:    vignette
     requirements:
         tri: nouveau|pres_vous|visite
-        affichage: detail|vignette
+
+ptro_maj_affichage:
+    path:     /accueil-modif-affichage
+    defaults:
+        _controller: 	PTRORencontresBundle:Main:affichage

@@ -4,13 +4,18 @@ namespace PTRO\RencontresBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class MainController extends Controller
 {
-    public function accueilAction($tri,$affichage)
+    public function accueilAction($tri)
     {
 		$session = new Session();
-
+		if(!$session->has('affichage') || $session->get('affichage') == null){
+			$session->set('affichage', 'vignette');
+		}
+		
 		$profils = array();
 		switch ($tri) {
 			case "nouveau":
@@ -366,21 +371,23 @@ class MainController extends Controller
 				break;
 		}
 		
-		if($session->has('affichage')){
-			if($session->get('affichage') != $affichage){
-				$session->set('affichage', $affichage);
-			}
-		}else{
-			$session->set('affichage', $affichage);
-		}
 		
-		
-		if($session->get('affichage') == "detail"){
-			return $this->render('PTRORencontresBundle:Rencontres:accueil_detail.html.twig', array("tri" => $tri, "profils" => $profils));
-		}
-		else{
-			return $this->render('PTRORencontresBundle:Rencontres:accueil_vignette.html.twig', array("tri" => $tri, "profils" => $profils));
-		}
+		return $this->render('PTRORencontresBundle:Rencontres:layout_accueil.html.twig', array("tri" => $tri, "profils" => $profils));
 			
     }
+	
+
+    public function affichageAction(Request $request)
+	{
+		$session = new Session();
+		$affichage = $request->get('affichage_vue');
+		
+		$session->set('affichage', $affichage);
+		
+		//prepare the response, e.g.
+		$response = array("code" => 100, "success" => true);
+		//you can return result as JSON
+		return new JsonResponse($response);
+	}
+	
 }

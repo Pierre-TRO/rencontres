@@ -1,0 +1,100 @@
+{% extends "PTRORencontresBundle::layout.html.twig" %}
+
+{% block contenu %}
+		<div class="row center bottom3">
+					<button class="btn btn-default {% if app.session.get('affichage') == 'vignette' %} active {% endif %}" value="vignette" id="vignette">Vue vignette</button>
+					<button class="btn btn-default {% if app.session.get('affichage') == 'detail' %} active {% endif %}" value="detail" id="detail">Vue detail</button>
+		</div>
+        <div class="row" >
+            <div class="col-md-offset-1 col-md-10">
+    			<ul class="nav nav-tabs gris_decale onglets">
+    					<li role="presentation" class="{% if tri == 'nouveau' %}active{% endif %}"><a href="{{ path('ptro_rencontres_homepage', { 'tri': 'nouveau' }) }}">Les nouveaux</a></li>
+    					<li role="presentation" class="{% if tri == 'pres_vous' %}active{% endif %}"><a href="{{ path('ptro_rencontres_homepage', { 'tri': 'pres_vous'}) }}">Près de vous</a></li>
+    					<li role="presentation" class="{% if tri == 'visite' %}active{% endif %}"><a href="{{ path('ptro_rencontres_homepage', { 'tri': 'visite'}) }}">Les + visités</a></li>
+    			</ul>
+            </div>
+		</div>
+		<div class="row center" id="vignette_vue" {% if app.session.get('affichage') == 'detail' %} style="display:none" {% endif %}>
+            <div class="col-md-offset-1 col-md-10 conteneur_principal">
+                <div class="row">
+					{% for profil in profils %}
+                    <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                        <a class="thumbnail inline-block" href="#">
+                            <img class="img-responsive" src="{{profil.image}}" alt="">
+        					<div class="caption post-content resize left">
+        						{{profil.pseudo}}, {{profil.age}} ans<br>
+        						{{profil.ville}}, {{profil.region}}<br> 
+        						{{profil.nb_photo}} photo(s)
+        					</div>
+                        </a>
+                    </div>
+					{% endfor %}
+                </div>
+            </div>
+        </div>
+		<div class="row" id="detail_vue" {% if app.session.get('affichage') == 'vignette' %} style="display:none" {% endif %}>
+			<div class="col-md-1">
+			</div>
+			<div class="col-md-10 conteneur_principal2 top10 bottom10">
+				{% for profil in profils %}
+				<div class="row top-bottom {% if loop.last == false %}border-bottom{% endif %}">
+					<div class="col-md-3 center">
+						<a class="inline-block" href="#" style="">
+							<img class="img-responsive" src="{{profil.image}}" alt="">
+						</a>
+					</div>
+					<div class="col-lg-9 col-md-9" style="">
+						<p style="text-align:left;">
+							<b>{{profil.pseudo}}, {{profil.age}} ans, {{profil.orientation}} {{profil.relation}} </b>
+							{{profil.description}}<br>
+							{{profil.ville}}, {{profil.region}} 
+						</p>
+					</div>
+				</div>
+				{% endfor %}
+				<div class="col-md-1"></div>
+			</div>
+			<div class="col-md-1"></div>
+		</div>
+		<nav class="center">
+		  <ul class="pagination pagination-md">
+			<li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+			<li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+			<li><a href="#">2 </a></li>
+			<li class="disabled"><a href="#">... </a></li>
+			<li><a href="#">52 </a></li>
+			<li><a href="#">53 </a></li>
+			<li><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+		  </ul>
+		</nav>
+		<br>
+{% endblock %}	
+{% block javascript %}
+	<script>
+		function aButtonPressed(affichage){
+			$.post("{{path('ptro_maj_affichage')}}",               
+						{affichage_vue: affichage}, 
+					function(response){
+							if(response.code == 100 && response.success){
+							//Aucune action particulière à executer
+							}
+
+			}, "json");  
+		}
+		$(document).ready(function() {   
+		  $('button').click( 
+		  function(){
+				$('button').removeClass('active');
+				$('#'+(this.value)).addClass('active');
+				if(this.value == 'detail'){
+					$('#vignette_vue').hide();
+					$('#detail_vue').show();
+				}
+				if(this.value == 'vignette'){
+					$('#vignette_vue').show();
+					$('#detail_vue').hide();
+				}
+		  aButtonPressed(this.value);});
+		});
+	</script>
+{% endblock %}
