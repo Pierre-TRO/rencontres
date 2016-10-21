@@ -10,3 +10,10 @@ ptro_maj_affichage:
     path:     /accueil-modif-affichage
     defaults:
         _controller: 	PTRORencontresBundle:Main:affichage
+
+ptro_rencontres_profil:
+    path:     /profil/{id}
+    defaults:
+        _controller: 	PTRORencontresBundle:Main:profil
+    requirements:
+        id: \d+

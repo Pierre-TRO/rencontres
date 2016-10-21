@@ -36,7 +36,7 @@
 		{% if app.request.attributes.get('_route') == 'ptro_rencontres_homepage' %}
 			<li class="active" ><a>accueil</a></li>
 		{% else %}
-			<li><a href="{{ path('ptro_rencontres_homepage', { 'affichage': app.request.session.get('affichage') }) }}">accueil</a></li>
+			<li><a href="{{ path('ptro_rencontres_homepage') }}">accueil</a></li>
 		{% endif %}
         <li><a href="#">rencontres<span class="sr-only">(current)</span></a></li>
         <li><a href="#">favoris</a></li>

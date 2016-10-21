@@ -22,6 +22,7 @@ class MainController extends Controller
 				$profils = array
 					(
 						array(
+							"id" => 1,
 							"pseudo" => "Ammalia",
 							"genre" => "femme",
 							"age" => "40",
@@ -36,6 +37,7 @@ class MainController extends Controller
 							"nb_photo" => 3
 							),
 						array(
+							"id" => 1,
 							"pseudo" => "Ammalia",
 							"genre" => "femme",
 							"age" => "40",
@@ -50,6 +52,7 @@ class MainController extends Controller
 							"nb_photo" => 3
 							),
 						array(
+							"id" => 1,
 							"pseudo" => "Ammalia",
 							"genre" => "femme",
 							"age" => "40",
@@ -64,6 +67,7 @@ class MainController extends Controller
 							"nb_photo" => 3
 							),
 						array(
+							"id" => 1,
 							"pseudo" => "Ammalia",
 							"genre" => "femme",
 							"age" => "40",
@@ -78,6 +82,7 @@ class MainController extends Controller
 							"nb_photo" => 3
 							),
 						array(
+							"id" => 1,
 							"pseudo" => "Ammalia",
 							"genre" => "femme",
 							"age" => "40",
@@ -92,6 +97,7 @@ class MainController extends Controller
 							"nb_photo" => 3
 							),
 						array(
+							"id" => 1,
 							"pseudo" => "Ammalia",
 							"genre" => "femme",
 							"age" => "40",
@@ -106,6 +112,7 @@ class MainController extends Controller
 							"nb_photo" => 3
 							),
 						array(
+							"id" => 1,
 							"pseudo" => "Ammalia",
 							"genre" => "femme",
 							"age" => "40",
@@ -120,6 +127,7 @@ class MainController extends Controller
 							"nb_photo" => 3
 							),
 						array(
+							"id" => 1,
 							"pseudo" => "Ammalia",
 							"genre" => "femme",
 							"age" => "40",
@@ -139,6 +147,7 @@ class MainController extends Controller
 				$profils = array
 					(
 						array(
+							"id" => 2,
 							"pseudo" => "Jenifer",
 							"genre" => "femme",
 							"age" => "25",
@@ -153,6 +162,7 @@ class MainController extends Controller
 							"nb_photo" => 3
 							),
 						array(
+							"id" => 2,							
 							"pseudo" => "Jenifer",
 							"genre" => "femme",
 							"age" => "25",
@@ -167,6 +177,7 @@ class MainController extends Controller
 							"nb_photo" => 3
 							),
 						array(
+							"id" => 2,
 							"pseudo" => "Jenifer",
 							"genre" => "femme",
 							"age" => "25",
@@ -181,6 +192,7 @@ class MainController extends Controller
 							"nb_photo" => 3
 							),
 						array(
+							"id" => 2,
 							"pseudo" => "Jenifer",
 							"genre" => "femme",
 							"age" => "25",
@@ -195,6 +207,7 @@ class MainController extends Controller
 							"nb_photo" => 3
 							),
 						array(
+							"id" => 2,
 							"pseudo" => "Jenifer",
 							"genre" => "femme",
 							"age" => "25",
@@ -209,6 +222,7 @@ class MainController extends Controller
 							"nb_photo" => 3
 							),
 						array(
+							"id" => 2,
 							"pseudo" => "Jenifer",
 							"genre" => "femme",
 							"age" => "25",
@@ -223,6 +237,7 @@ class MainController extends Controller
 							"nb_photo" => 3
 							),
 						array(
+							"id" => 2,
 							"pseudo" => "Jenifer",
 							"genre" => "femme",
 							"age" => "25",
@@ -237,6 +252,7 @@ class MainController extends Controller
 							"nb_photo" => 3
 							),
 						array(
+							"id" => 2,
 							"pseudo" => "Jenifer",
 							"genre" => "femme",
 							"age" => "25",
@@ -256,6 +272,7 @@ class MainController extends Controller
 				$profils = array
 					(
 						array(
+							"id" => 3,
 							"pseudo" => "Charlotte",
 							"genre" => "femme",
 							"age" => "35",
@@ -270,6 +287,7 @@ class MainController extends Controller
 							"nb_photo" => 3
 							),
 						array(
+							"id" => 3,
 							"pseudo" => "Charlotte",
 							"genre" => "femme",
 							"age" => "35",
@@ -284,6 +302,7 @@ class MainController extends Controller
 							"nb_photo" => 3
 							),
 						array(
+							"id" => 3,
 							"pseudo" => "Charlotte",
 							"genre" => "femme",
 							"age" => "35",
@@ -298,6 +317,7 @@ class MainController extends Controller
 							"nb_photo" => 3
 							),
 						array(
+							"id" => 3,
 							"pseudo" => "Charlotte",
 							"genre" => "femme",
 							"age" => "35",
@@ -312,6 +332,7 @@ class MainController extends Controller
 							"nb_photo" => 3
 							),
 						array(
+							"id" => 3,
 							"pseudo" => "Charlotte",
 							"genre" => "femme",
 							"age" => "35",
@@ -326,6 +347,7 @@ class MainController extends Controller
 							"nb_photo" => 3
 							),
 						array(
+							"id" => 3,
 							"pseudo" => "Charlotte",
 							"genre" => "femme",
 							"age" => "35",
@@ -340,6 +362,7 @@ class MainController extends Controller
 							"nb_photo" => 3
 							),
 						array(
+							"id" => 3,
 							"pseudo" => "Charlotte",
 							"genre" => "femme",
 							"age" => "35",
@@ -354,6 +377,7 @@ class MainController extends Controller
 							"nb_photo" => 3
 							),
 						array(
+							"id" => 3,
 							"pseudo" => "Charlotte",
 							"genre" => "femme",
 							"age" => "35",
@@ -388,6 +412,45 @@ class MainController extends Controller
 		$response = array("code" => 100, "success" => true);
 		//you can return result as JSON
 		return new JsonResponse($response);
+	}
+
+    public function profilAction($id)
+	{
+		$profil = array(
+			"pseudo" => "Charlotte",
+			"titre" => "Je cherche à me faire des amis....................",
+			"description" => "Respect et hônnèteté , deux valeurs indispensables pour faire une belle rencontre , faire connaissance et laisser le destin décider........je suis une personne calme et réservée, j'aime la marche , la nature, les animaux, ne suis pas sportive, je suis ici comme beaucoup de personne , rompre la solitude , partager des moments à deux , apprendre à se connaitre , je n'aime pas la foule d..",
+			"genre" => "femme",
+			"age" => "35",
+			"taille" => "1m77",
+			"poids" => "70",
+			"silhouette" => "mince",
+			"yeux" => "vert",
+			"cheveux" => "châtain",
+			"etat_civil" => "célibataire",
+			"relation" => "amicale",
+			"orientation" => "hétérosexuelle",
+			"emploi" => "coiffeuse",
+			"nationalite" => "française",
+			"region" => "Ile de France",
+			"ville" => "Melun",
+			"departement" => "Seine et Marne",
+			"date_inscription" => "10/2015",
+			"vues" => 102,
+			"ethnie" => "blanc",
+			"date_derniere_visite" => "En ligne",
+			"hobbies" => "Jeux vidéos, informatique, cinéma",
+			"sports" => "natation, vtt, course à pied",
+			"qualites" => "calme, généreux",
+			"defauts" => "indécis",
+			"cigarette" => "Oui",
+			"alcool" => "occasionnelement",
+			"image_principale" => "http://placehold.it/300x300/555/000&text=One",
+			"images_autres" => array("http://placehold.it/300x300/fffccc/000&text=Two","http://placehold.it/300x300/fffccc/000&text=Three","http://placehold.it/300x300/fffccc/000&text=Four","http://placehold.it/300x300/fffccc/000&text=Five"),
+			
+		);
+		
+		return $this->render('PTRORencontresBundle:Rencontres:layout_profil.html.twig', array("profil" => $profil));
 	}
 	
 }

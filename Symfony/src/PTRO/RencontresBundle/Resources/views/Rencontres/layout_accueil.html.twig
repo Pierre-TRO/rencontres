@@ -14,12 +14,23 @@
     			</ul>
             </div>
 		</div>
+		{% if profils is empty %}
+		<div class="row center">
+            <div class="col-md-offset-1 col-md-10 conteneur_principal2 top10 bottom10">
+                <div class="row">
+                    <div class="center">
+						Pas encore d'annnonce pour ce critère!
+                    </div>
+                </div>
+            </div>
+        </div>
+		{% else %}
 		<div class="row center" id="vignette_vue" {% if app.session.get('affichage') == 'detail' %} style="display:none" {% endif %}>
             <div class="col-md-offset-1 col-md-10 conteneur_principal">
                 <div class="row">
 					{% for profil in profils %}
                     <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                        <a class="thumbnail inline-block" href="#">
+                        <a class="thumbnail inline-block" href="{{ path('ptro_rencontres_profil', {'id' : profil.id} )}}">
                             <img class="img-responsive" src="{{profil.image}}" alt="">
         					<div class="caption post-content resize left">
         						{{profil.pseudo}}, {{profil.age}} ans<br>
@@ -39,7 +50,7 @@
 				{% for profil in profils %}
 				<div class="row top-bottom {% if loop.last == false %}border-bottom{% endif %}">
 					<div class="col-md-3 center">
-						<a class="inline-block" href="#" style="">
+						<a class="inline-block" href="{{ path('ptro_rencontres_profil', {'id' : profil.id} )}}" style="">
 							<img class="img-responsive" src="{{profil.image}}" alt="">
 						</a>
 					</div>
@@ -67,6 +78,7 @@
 			<li><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
 		  </ul>
 		</nav>
+		{% endif %}
 		<br>
 {% endblock %}	
 {% block javascript %}
