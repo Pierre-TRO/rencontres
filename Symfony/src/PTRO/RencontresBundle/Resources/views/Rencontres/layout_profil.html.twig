@@ -15,14 +15,9 @@
 						<!-- Large modal -->
 						<!-- <button class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-lg">Large modal</button> -->
 						<div class="row">
-							<div class="col-xs-4 col-md-12">
-								<a href="#" class="thumbnail inline-block" data-toggle="modal" data-target=".bs-example-modal-lg" onclick="$('.carousel-inner > div').removeClass('active');$('#photo1').addClass('active');">
-									<img src="{{ profil.image_principale }}" alt="...">
-								</a>
-							</div>
-							{% for image in profil.images_autres%}
-							<div class="col-xs-4 col-md-6">
-								<a href="#" class="thumbnail inline-block" data-toggle="modal" data-target=".bs-example-modal-lg" onclick="$('.carousel-inner > div').removeClass('active');$('#photo{{ loop.index + 1 }}').addClass('active');">
+							{% for image in profil.images%}
+							<div class="col-xs-4 {% if loop.index == 1%} col-md-12 {% else %} col-md-6 {% endif %}">
+								<a href="#" class="thumbnail inline-block" data-toggle="modal" data-target=".bs-example-modal-lg" onclick="$('.carousel-inner > div').removeClass('active');$('#photo{{ loop.index }}').addClass('active');">
 									<img src="{{image}}" alt="...">
 								</a>
 							</div>
@@ -45,7 +40,7 @@
 						</div>
 						
 						<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-							<div class="modal-dialog modal-xs">
+							<div class="modal-dialog modal-lg">
 								<div class="modal-content">
 									<div id="carousel-example-generic" class="carousel" data-ride="carousel">
 										
@@ -53,11 +48,8 @@
 										
 										<!-- Wrapper for slides -->
 										<div class="carousel-inner">
-											<div class="item" id="photo1">
-												<img class="img-responsive" src="{{ profil.image_principale }}" alt="...">
-											</div>
-											{% for image in profil.images_autres%}
-											<div class="item" id="photo{{ loop.index + 1 }}">
+											{% for image in profil.images_lg%}
+											<div class="item" id="photo{{ loop.index }}">
 												<img class="img-responsive" src="{{image}}" alt="...">
 											</div>
 											{% endfor %}
@@ -290,7 +282,3 @@
 	</div>
 	<!-- /.container -->
 {% endblock %}	
-{% block javascript %}
-	<script>
-	</script>
-{% endblock %}

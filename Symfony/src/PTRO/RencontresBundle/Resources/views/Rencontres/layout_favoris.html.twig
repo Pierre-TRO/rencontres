@@ -1,0 +1,105 @@
+{% extends "PTRORencontresBundle::layout.html.twig" %}
+
+{% block contenu %}
+<div class="row">
+	<div class="col-md-4 col-md-offset-4 conteneur_principal conteneur_principal_recherche bottom center">
+		<h3>Vos profils favoris</h3>
+	</div>
+</div>
+{% if profils is empty %}
+<div class="row center">
+    <div class="col-md-offset-1 col-md-10 conteneur_principal2 conteneur_principal_recherche top10 bottom10">
+        <div class="row">
+            <div class="center">
+				Vous n'avez pas encore de profil favori
+            </div>
+        </div>
+    </div>
+</div>
+{% else %}
+<div class="row center bottom3">
+	<button class="btn btn-default {% if app.session.get('affichage') == 'vignette' %} active no-click {% endif %}" value="vignette" id="vignette">Vue vignette</button>
+	<button class="btn btn-default {% if app.session.get('affichage') == 'detail' %} active no-click {% endif %}" value="detail" id="detail">Vue detail</button>
+</div>
+<div class="row ">
+	<div class="col-md-1">
+	</div>
+	<div id="detail_vue" class="col-md-10 conteneur_principal2 conteneur_principal_recherche top10 bottom10"  {% if app.session.get('affichage') == 'vignette' %} style="display:none" {% endif %}>
+		{% for profil in profils %}
+		<div class="row top-bottom border-bottom">
+			<div class="col-md-3 center">
+				<a class="inline-block" href="{{ path('ptro_rencontres_profil', {'id' : profil.id} )}}" style="">
+					<img class="img-responsive" src="{{profil.image}}" alt="">
+				</a>
+			</div>					
+			<div class="col-lg-9 col-md-9" style="">
+				<p style="text-align:left;">
+					<b>{{profil.pseudo}}, {{profil.age}} ans, {{profil.orientation}} {{profil.relation}} </b>
+					{{profil.description}}<br>
+					{{profil.ville}}, {{profil.region}} 
+				</p>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+	<div id="vignette_vue" class="col-md-10 conteneur_principal conteneur_principal_recherche"  {% if app.session.get('affichage') == 'detail' %} style="display:none" {% endif %}>
+		<div class="row">
+			{% for profil in profils %}
+            <div class="col-lg-3 col-md-4 col-xs-6 thumb center">
+                <a class="thumbnail inline-block" href="{{ path('ptro_rencontres_profil', {'id' : profil.id} )}}">
+                    <img class="img-responsive" src="{{profil.image}}" alt="">
+					<div class="caption post-content resize left">
+						{{profil.pseudo}}, {{profil.age}} ans<br>
+						{{profil.ville}}, {{profil.region}}<br> 
+						{{profil.nb_photo}} photo(s)
+					</div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+	</div>
+	<div class="col-md-1"></div>
+</div>
+<nav class="center">
+  <ul class="pagination pagination-md">
+	<li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+	<li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+	<li><a href="#">2 </a></li>
+	<li class="disabled"><a href="#">... </a></li>
+	<li><a href="#">52 </a></li>
+	<li><a href="#">53 </a></li>
+	<li><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+  </ul>
+</nav>
+{% endif %}
+<br>
+{% endblock %}
+{% block javascript %}
+	<script>
+		function aButtonPressed(affichage){
+			$.post("{{path('ptro_maj_affichage')}}",               
+						{affichage_vue: affichage}, 
+					function(response){
+							if(response.code == 100 && response.success){
+							//Aucune action particulière à executer
+							}
+
+			}, "json");  
+		}
+		$(document).ready(function() {   
+			$('button').click( 
+			function(){
+				$('button').removeClass('active no-click');
+				$('#'+(this.value)).addClass('active no-click');
+				if(this.value == 'detail'){
+					$('#vignette_vue').hide();
+					$('#detail_vue').show();
+				}
+				if(this.value == 'vignette'){
+					$('#vignette_vue').show();
+					$('#detail_vue').hide();
+				}
+		  aButtonPressed(this.value);});
+		});
+	</script>
+{% endblock %}

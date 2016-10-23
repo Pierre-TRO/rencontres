@@ -38,9 +38,21 @@
 		{% else %}
 			<li><a href="{{ path('ptro_rencontres_homepage') }}">accueil</a></li>
 		{% endif %}
-        <li><a href="#">rencontres<span class="sr-only">(current)</span></a></li>
-        <li><a href="#">favoris</a></li>
-        <li><a href="#">mon profil</a></li>
+    {% if app.request.attributes.get('_route') == 'ptro_rencontres_recherche' %}
+      <li class="active" ><a>rencontres</a></li>
+    {% else %}
+      <li><a href="{{ path('ptro_rencontres_recherche') }}">rencontres</a></li>
+    {% endif %}
+    {% if app.request.attributes.get('_route') == 'ptro_rencontres_favoris' %}
+      <li class="active" ><a>favoris</a></li>
+    {% else %}
+      <li><a href="{{ path('ptro_rencontres_favoris') }}">favoris</a></li>
+    {% endif %}
+    {% if app.request.attributes.get('_route') == 'ptro_rencontres_mon_profil' %}
+      <li class="active" ><a>mon profil</a></li>
+    {% else %}
+      <li><a href="{{ path('ptro_rencontres_mon_profil') }}">mon profil</a></li>
+    {% endif %}
         <li><a href="#">mes messages <span class="badge">5</span></a></li>
         <li><a href="#">mes contacts <span class="badge">11</span></a></li>
         <li><a href="#">&agrave; propos</a></li>

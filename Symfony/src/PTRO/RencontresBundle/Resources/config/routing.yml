@@ -17,3 +17,18 @@ ptro_rencontres_profil:
         _controller: 	PTRORencontresBundle:Main:profil
     requirements:
         id: \d+
+
+ptro_rencontres_recherche:
+    path:     /recherche
+    defaults:
+        _controller:    PTRORencontresBundle:Main:recherche
+
+ptro_rencontres_favoris:
+    path:     /favoris
+    defaults:
+        _controller:    PTRORencontresBundle:Main:favoris
+
+ptro_rencontres_mon_profil:
+    path:     /mon_profil
+    defaults:
+        _controller:    PTRORencontresBundle:Main:monProfil
