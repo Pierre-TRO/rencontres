@@ -38,10 +38,16 @@
 								</form>
 							</div>
 							<div class="col-xs-12 bottom3">
-								<button class="btn btn-danger width100"> <span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span> Bloquer </button>
+								<button class="btn btn-danger width100" onclick="bloquerConfirm()"> <span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span> Bloquer </button>
+								<form id="form_bloquer" action="bloquer.php">
+									<input type="hidden" name="bloquer" value="bloquer">
+								</form>
 							</div>
 							<div class="col-xs-12 bottom3">
-								<button class="btn btn-danger width100"> <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> Signaler </button>
+								<button class="btn btn-danger width100" onclick="signalerConfirm()"> <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> Signaler </button>
+								<form id="form_signaler" action="signaler.php">
+									<input type="hidden" name="signaler" value="signaler">
+								</form>
 							</div>
 						</div><!-- Button trigger modal -->
 
@@ -55,18 +61,18 @@
 									</div>
 									<div class="modal-body left10">
 										<form class="form-horizontal" id="form_message" action="test.php">
-											<div class="form-group">
-												<label for="Objet" class="col-sm-2 control-label">Objet</label>
+											<div class="form-group" id="objet_form_group">
+												<label for="Objet" class="col-sm-2 control-label">Objet *</label>
 												<div class="col-sm-9">
-													<input type="text" class="form-control" id="Objet">
+													<input type="text" class="form-control" id="Objet" onkeypress="$('#objet_form_group').removeClass('has-error')" >
 												</div>
 												<div class="col-sm-1">
 												</div>
 											</div>
-											<div class="form-group">
-												<label for="Message" class="col-sm-2 control-label">Message</label>
+											<div class="form-group" id="message_form_group">
+												<label for="Message" class="col-sm-2 control-label">Message *</label>
 												<div class="col-sm-9">
-													<textarea class="form-control" id="Message" rows="3"></textarea>
+													<textarea class="form-control" id="Message" rows="3" onkeypress="$('#message_form_group').removeClass('has-error')"></textarea>
 												</div>
 												<div class="col-sm-1">
 												</div>
@@ -87,6 +93,8 @@
 									<div class="modal-header">
 										<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 										<h4 class="modal-title" id="confirmLabel">Vous êtes sûr?</h4>
+									</div>
+									<div class="modal-body" id="confirmMessage">
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-default" data-dismiss="modal">Non</button>
@@ -345,19 +353,38 @@
 		var form = "";
 	}); 
 	function messageConfirm(){
+		if($('#Message').val().trim() == ""){
+			$('#message_form_group').addClass('has-error');
+		}
+		if($('#Objet').val().trim() == ""){
+			$('#objet_form_group').addClass('has-error');
+		}
 		if($('#Objet').val().trim() != "" && $('#Message').val().trim() != "" ){
+			$('#confirmMessage').text('Voulez-vous envoyer ce message à {{profil.pseudo}}?');
 			$('#confirmModal').modal('show');
 			form = "message";
 		}
 	}
 	function pokeConfirm(){
+		$('#confirmMessage').text('Voulez-vous envoyer un poke à {{profil.pseudo}}?');
 		$('#confirmModal').modal('show');
 		form = "poke";
 	}
 	function favoriConfirm(){
+		$('#confirmMessage').text('Voulez-vous ajouter {{profil.pseudo}} dans vos favoris?');
 		$('#confirmModal').modal('show');
 		form = "favori";
-	};
+	}
+	function signalerConfirm(){
+		$('#confirmMessage').text('Voulez-vous signaler ce profil comme inapproprié au webmaster?');
+		$('#confirmModal').modal('show');
+		form = "signaler";
+	}
+	function bloquerConfirm(){
+		$('#confirmMessage').text('Voulez-vous bloquer ce profil? Il ne pourra plus vous voir.');
+		$('#confirmModal').modal('show');
+		form = "bloquer";
+	}
 	function confirm(){
 		if (form == "message") {
 			$('#form_message').submit();
@@ -367,6 +394,12 @@
 		}
 		if (form == "favori") {
 			$('#form_favori').submit();
+		}
+		if (form == "signaler") {
+			$('#form_signaler').submit();
+		}
+		if (form == "bloquer") {
+			$('#form_bloquer').submit();
 		}
 	}
 </script>
