@@ -88,7 +88,7 @@
 			</div>
 			<div id="detail_vue" class="col-md-10 conteneur_principal2 conteneur_principal_recherche top10 bottom10" {% if app.session.get('affichage') == 'vignette' %} style="display:none" {% endif %}>
 				{% for profil in profils %}
-				<div class="row top-bottom{% if loop.last == false %}border-bottom{% endif %}">
+				<div class="row top-bottom {% if loop.last == false %}border-bottom{% endif %}">
 					<div class="col-md-3 center">
 						<a class="inline-block" href="#" style="">
 							<img class="img-responsive" src="{{profil.image}}" alt="">
