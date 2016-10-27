@@ -53,7 +53,11 @@
     {% else %}
       <li><a href="{{ path('ptro_rencontres_mon_profil') }}">mon profil</a></li>
     {% endif %}
-        <li><a href="#">mes messages <span class="badge">5</span></a></li>
+    {% if app.request.attributes.get('_route') == 'ptro_rencontres_mes_messages' %}
+      <li class="active" ><a>mes messages <span class="badge">5</span></a></li>
+    {% else %}
+      <li><a href="{{ path('ptro_rencontres_mes_messages') }}">mes messages <span class="badge">5</span></a></li>
+    {% endif %}
         <li><a href="#">mes contacts <span class="badge">11</span></a></li>
         <li><a href="#">&agrave; propos</a></li>
       </ul>

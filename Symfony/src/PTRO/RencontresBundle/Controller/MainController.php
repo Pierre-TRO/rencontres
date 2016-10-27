@@ -757,5 +757,27 @@ class MainController extends Controller
 
 		return $this->render('PTRORencontresBundle:Rencontres:layout_mon_profil.html.twig', array("profil" => $profil));
 	}
+
+	public function mesMessagesAction(){
+
+		$messages = array(
+			array(
+				"id" => "1",
+				"pseudo" => "Coralie",
+				"date_message" => "26 fev. 2016 à 06:17",
+				"sujet" => "Salut toi!",
+				"photo" => "http://placehold.it/100x100"
+				),
+			array(
+				"id" => "2",
+				"pseudo" => "Jessica",
+				"date_message" => "27fev. 2016 à 06:17",
+				"sujet" => "Bonjour",
+				"photo" => "http://placehold.it/100x100"
+				),
+		);
+
+		return $this->render('PTRORencontresBundle:Rencontres:layout_mes_messages.html.twig', array("messages" => $messages));
+	}
 	
 }

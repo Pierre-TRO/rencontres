@@ -32,3 +32,8 @@ ptro_rencontres_mon_profil:
     path:     /mon_profil
     defaults:
         _controller:    PTRORencontresBundle:Main:monProfil
+
+ptro_rencontres_mes_messages:
+    path:     /mes_messages
+    defaults:
+        _controller:    PTRORencontresBundle:Main:mesMessages
