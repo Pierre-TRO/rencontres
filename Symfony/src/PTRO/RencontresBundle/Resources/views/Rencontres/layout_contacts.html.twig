@@ -1,0 +1,60 @@
+{% extends "PTRORencontresBundle::layout.html.twig" %}
+
+{% block contenu %}			
+	<div class="row">
+		<div class="col-md-4 col-md-offset-4 conteneur_principal conteneur_principal_recherche bottom center">
+			<h3>Mes contacts</h3>
+		</div>
+    </div>
+	<div class="row ">
+		<div class="col-md-1">
+		</div>
+		<div class="col-md-10 conteneur_principal2 conteneur_principal_recherche top10 bottom10">
+			<div class="row top-bottom border-bottom vertical-align">
+				<div class="col-md-2 center">
+					<a class="thumbnail inline-block margin0" href="#">
+						<img class="img-responsive" src="http://placehold.it/100x100" alt="">
+						<div class="color_image post-content">
+							Coralie04
+						</div>
+					</a>
+				</div>
+				<div class="col-md-10 vcenter">
+					<p style="text-align:left;">
+						<span style="color:#337ab7">Nouveau!</span> Coralie04 vous a envoyé un message
+					</p>
+				</div>
+			</div>
+			<div class="row top-bottom vertical-align">
+				<div class="col-md-2 center">
+					<a class="thumbnail inline-block margin0" href="#">
+						<img class="img-responsive" src="http://placehold.it/100x100" alt="">
+						<div class="color_image post-content">
+							Coralie04
+						</div>
+					</a>
+				</div>
+				<div class="col-md-10 vcenter">
+					<p style="text-align:left;">
+          <span style="color:#337ab7">Nouveau!</span> Vous avez envoyé un poke à Coralie04
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-1"></div>
+		<nav class="center">
+		  <ul class="pagination pagination-md">
+			<li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+			<li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+			<li><a href="#">2 </a></li>
+			<li class="disabled"><a href="#">... </a></li>
+			<li><a href="#">52 </a></li>
+			<li><a href="#">53 </a></li>
+			<li><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+		  </ul>
+		</nav>
+		<br>
+	</div>
+{% endblock %}	
+{% block javascript %}
+{% endblock %}

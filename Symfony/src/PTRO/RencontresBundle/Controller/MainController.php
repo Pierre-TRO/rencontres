@@ -779,5 +779,94 @@ class MainController extends Controller
 
 		return $this->render('PTRORencontresBundle:Rencontres:layout_mes_messages.html.twig', array("messages" => $messages));
 	}
+
+	public function discussionAction($idProfil){
+
+		//On récupère les infos du profil ayant pour id idProfil
+
+		$profil = array(
+				"id" => $idProfil,
+				"pseudo" => "Coralie04",
+				"photo" => "http://placehold.it/100x100");
+
+		//On récupère les messages entre le user et le profil ayant pour id idProfil
+		
+		$messages = array(
+			array(
+				"id" => "1",
+				"date_message" => "26 fev. 2016 à 06:17",
+				"sujet" => "Salut toi!",
+				"contenu" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lorem quam, interdum pretium erat at, rhoncus condimentum sapien. Praesent mollis consequat felis, vitae lobortis ante mollis in. Morbi volutpat pretium magna, non scelerisque felis sagittis et. Nam semper luctus risus. Proin consectetur lacus lacus, eu ultricies orci sodales vel. Pellentesque nec lorem pulvinar lectus semper mattis faucibus eget nulla. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce et odio felis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ornare commodo metus ac dictum. Donec nec viverra felis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce id odio porttitor, bibendum elit in, sagittis velit. Vestibulum accumsan lobortis dui. Morbi sit amet vulputate est. "
+				),
+			array(
+				"id" => "1",
+				"date_message" => "26 fev. 2016 à 06:17",
+				"sujet" => "Salut toi!",
+				"contenu" => "Praesent eget mauris tellus. In imperdiet lorem sed turpis dapibus, sit amet facilisis nisi faucibus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis tristique, enim viverra fringilla venenatis, est ipsum pretium erat, vel sodales turpis dui eu nisl. Nullam luctus finibus odio, nec pretium felis ultricies in. Ut at tincidunt metus, nec consectetur felis. Sed at tortor pulvinar, tristique augue quis, placerat enim. Pellentesque ullamcorper nec erat in fringilla. Nullam vitae metus et massa consequat fringilla. Vivamus ac mi in urna efficitur dictum in ac felis. Cras vel dui tempor, varius est sed, hendrerit libero. Vivamus sed finibus dui. Donec viverra, justo id semper luctus, orci nunc pharetra leo, ut semper libero est feugiat ex. Ut quis sem eget erat auctor tincidunt.  "
+				),
+			array(
+				"id" => "1",
+				"date_message" => "26 fev. 2016 à 06:17",
+				"sujet" => "Salut toi!",
+				"contenu" => "Salut ça va?"
+				),
+			array(
+				"id" => "1",
+				"date_message" => "26 fev. 2016 à 06:17",
+				"sujet" => "Salut toi!",
+				"contenu" => "Bien et toi?"
+				),
+		);
+
+		return $this->render('PTRORencontresBundle:Rencontres:layout_discussion.html.twig', array("profil" => $profil, "messages" => $messages));
+	}
+
+	public function messagesSupprAction(){
+
+		//On récupère les messages entre le user et le profil ayant pour id idProfil
+
+		$messages = array(
+			array(
+				"id" => "1",
+				"pseudo" => "Coralie",
+				"date_message" => "26 fev. 2016 à 06:17",
+				"sujet" => "Salut toi! Est ce que tu vas bien? ça fait longtemps. Est ce que tu vas bien? ça fait longtemps.",
+				"photo" => "http://placehold.it/100x100"
+				),
+			array(
+				"id" => "2",
+				"pseudo" => "Jessica",
+				"date_message" => "27fev. 2016 à 06:17",
+				"sujet" => "Bonjour",
+				"photo" => "http://placehold.it/100x100"
+				),
+		);
+
+		return $this->render('PTRORencontresBundle:Rencontres:layout_messages_suppr.html.twig', array("messages" => $messages));
+	}
+
+	public function mesContactsAction(){
+
+		//On récupère les messages entre le user et le profil ayant pour id idProfil
+
+		$contacts = array(
+			array(
+				"id" => "1",
+				"pseudo" => "Coralie",
+				"date_message" => "26 fev. 2016 à 06:17",
+				"sujet" => "Salut toi! Est ce que tu vas bien? ça fait longtemps. Est ce que tu vas bien? ça fait longtemps.",
+				"photo" => "http://placehold.it/100x100"
+				),
+			array(
+				"id" => "2",
+				"pseudo" => "Jessica",
+				"date_message" => "27fev. 2016 à 06:17",
+				"sujet" => "Bonjour",
+				"photo" => "http://placehold.it/100x100"
+				),
+		);
+
+		return $this->render('PTRORencontresBundle:Rencontres:layout_contacts.html.twig', array("contacts" => $contacts));
+	}
 	
 }

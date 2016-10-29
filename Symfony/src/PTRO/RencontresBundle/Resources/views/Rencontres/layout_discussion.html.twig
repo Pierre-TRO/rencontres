@@ -1,0 +1,108 @@
+{% extends "PTRORencontresBundle::layout.html.twig" %}
+
+{% block contenu %}
+	<div class="row">
+		<div class="col-md-4 col-md-offset-4 conteneur_principal conteneur_principal_recherche bottom center">
+			<h3>{{profil.pseudo}}</h3>
+		</div>
+    </div>
+	<div class="row ">
+		<div class="col-md-1">
+		</div>
+		<div class="col-md-10 conteneur_principal2 conteneur_principal_recherche top10">
+			<div class="row bottom3 left10">
+				<a href="{{ path('ptro_rencontres_mes_messages') }}" class="btn btn-default pull-left bottom3"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> Retour aux messages</a>&nbsp;&nbsp;&nbsp;&nbsp;
+				<a href="#" class="btn btn-default" id="bouton_reponse"> Répondre à cette conversation </a>
+			</div>
+			<div class="left10" id="div_reponse">
+				<form class="form-horizontal" id="form_message">
+					<div class="form-group" id="objet_form_group">
+						<label for="Objet" class="col-sm-2 control-label">Objet *</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" id="Objet" onkeypress="$('#objet_form_group').removeClass('has-error')">
+						</div>
+						<div class="col-sm-1">
+						</div>
+					</div>
+					<div class="form-group" id="message_form_group">
+						<label for="Message" class="col-sm-2 control-label">Message *</label>
+						<div class="col-sm-9">
+							<textarea class="form-control" id="Message" rows="3" onkeypress="$('#message_form_group').removeClass('has-error')"></textarea>
+						</div>
+						<div class="col-sm-1">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10">
+							<button type="button" onclick="messageConfirm()" class="btn btn-primary">Envoyer la réponse</button>
+						</div>
+					</div>
+				</form>
+			</div>
+			<!-- confirmation envoi message -->
+			<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmLabel">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title" id="confirmLabel">Vous êtes sûr?</h4>
+						</div>
+						<div class="modal-body">Voulez-vous envoyer ce message à {{profil.pseudo}}?
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Non</button>
+							<button type="button" class="btn btn-primary" onclick="confirm()">Oui</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			{% for message in messages %}
+			<div class="row clearfix bottom20 left10">
+				<div class="img_10 pull-left">
+					<a class="thumbnail_message" href="{{ path('ptro_rencontres_profil', {'id' : profil.id} )}}">
+						<img class="img-responsive" src="{{profil.photo}}" alt="">
+						<div class="color_image post-content">
+							{{profil.pseudo}}
+						</div>
+					</a>
+				</div>
+				<span>
+					<b>{{message.date_message}}</b><br/>
+					Objet: <b>{{message.sujet}}</b><br/>
+					{{message.contenu}}
+				</span>
+			</div>
+			{% endfor %}
+		</div>
+		<div class="col-md-1">
+		</div>
+    </div>
+{% endblock %}	
+{% block javascript %}
+	<script>
+		$(function () {
+		  $('[data-toggle="tooltip"]').tooltip()
+		})
+    	$( document ).ready(function() {
+    		$( "#div_reponse" ).css("display", "none");
+		});
+		$( "#bouton_reponse" ).click(function(e) {
+			e.preventDefault();
+  			$( "#div_reponse" ).slideToggle( "slow" );
+		}); 
+	function messageConfirm(){
+		if($('#Message').val().trim() == ""){
+			$('#message_form_group').addClass('has-error');
+		}
+		if($('#Objet').val().trim() == ""){
+			$('#objet_form_group').addClass('has-error');
+		}
+		if($('#Objet').val().trim() != "" && $('#Message').val().trim() != "" ){
+			$('#confirmModal').modal('show');
+		}
+	}
+	function confirm(){
+		$('#form_message').submit();	
+	}
+	</script>
+{% endblock %}
