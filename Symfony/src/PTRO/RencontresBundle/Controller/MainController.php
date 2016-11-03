@@ -442,8 +442,8 @@ class MainController extends Controller
 			"defauts" => "indécis",
 			"cigarette" => "Oui",
 			"alcool" => "occasionnelement",
-			"images" => array("http://placehold.it/300x300/555/000&text=One", "http://placehold.it/300x300/fffccc/000&text=Two","http://placehold.it/300x300/fffccc/000&text=Three","http://placehold.it/300x300/fffccc/000&text=Four","http://placehold.it/300x300/fffccc/000&text=Five"),
-			"images_lg" => array("http://placehold.it/1200x600/555/000&text=One","http://placehold.it/1200x600/fffccc/000&text=Two","http://placehold.it/1200x600/fffccc/000&text=Three","http://placehold.it/1200x600/fffccc/000&text=Four","http://placehold.it/1200x600/fffccc/000&text=Five"),
+			"images" => array("http://placehold.it/300x230/555/000&text=One", "http://placehold.it/300x230/fffccc/000&text=Two","http://placehold.it/300x230/fffccc/000&text=Three","http://placehold.it/300x230/fffccc/000&text=Four","http://placehold.it/300x230/fffccc/000&text=Five"),
+			"images_lg" => array("http://placehold.it/1200x920/555/000&text=One","http://placehold.it/1200x920/fffccc/000&text=Two","http://placehold.it/1200x920/fffccc/000&text=Three","http://placehold.it/1200x920/fffccc/000&text=Four","http://placehold.it/1200x920/fffccc/000&text=Five"),
 			
 		);
 		
@@ -750,8 +750,8 @@ class MainController extends Controller
 			"defauts" => "indécis",
 			"cigarette" => "Oui",
 			"alcool" => "occasionnelement",
-			"images" => array("http://placehold.it/300x300/555/000&text=One", "http://placehold.it/300x300/fffccc/000&text=Two","http://placehold.it/300x300/fffccc/000&text=Three","http://placehold.it/300x300/fffccc/000&text=Four","http://placehold.it/300x300/fffccc/000&text=Five"),
-			"images_lg" => array("http://placehold.it/1200x600/555/000&text=One","http://placehold.it/1200x600/fffccc/000&text=Two","http://placehold.it/1200x600/fffccc/000&text=Three","http://placehold.it/1200x600/fffccc/000&text=Four","http://placehold.it/1200x600/fffccc/000&text=Five"),
+			"images" => array("http://placehold.it/300x230/555/000&text=One", "http://placehold.it/300x230/fffccc/000&text=Two","http://placehold.it/300x230/fffccc/000&text=Three","http://placehold.it/300x230/fffccc/000&text=Four","http://placehold.it/300x230/fffccc/000&text=Five"),
+			"images_lg" => array("http://placehold.it/1200x920/555/000&text=One","http://placehold.it/1200x920/fffccc/000&text=Two","http://placehold.it/1200x920/fffccc/000&text=Three","http://placehold.it/1200x920/fffccc/000&text=Four","http://placehold.it/1200x920/fffccc/000&text=Five"),
 			
 		);
 
@@ -766,14 +766,14 @@ class MainController extends Controller
 				"pseudo" => "Coralie",
 				"date_message" => "26 fev. 2016 à 06:17",
 				"sujet" => "Salut toi!",
-				"photo" => "http://placehold.it/100x100"
+				"photo" => "http://placehold.it/100x77"
 				),
 			array(
 				"id" => "2",
 				"pseudo" => "Jessica",
 				"date_message" => "27fev. 2016 à 06:17",
 				"sujet" => "Bonjour",
-				"photo" => "http://placehold.it/100x100"
+				"photo" => "http://placehold.it/100x77"
 				),
 		);
 
@@ -787,7 +787,7 @@ class MainController extends Controller
 		$profil = array(
 				"id" => $idProfil,
 				"pseudo" => "Coralie04",
-				"photo" => "http://placehold.it/100x100");
+				"photo" => "http://placehold.it/100x77");
 
 		//On récupère les messages entre le user et le profil ayant pour id idProfil
 		
@@ -831,14 +831,14 @@ class MainController extends Controller
 				"pseudo" => "Coralie",
 				"date_message" => "26 fev. 2016 à 06:17",
 				"sujet" => "Salut toi! Est ce que tu vas bien? ça fait longtemps. Est ce que tu vas bien? ça fait longtemps.",
-				"photo" => "http://placehold.it/100x100"
+				"photo" => "http://placehold.it/100x77"
 				),
 			array(
 				"id" => "2",
 				"pseudo" => "Jessica",
 				"date_message" => "27fev. 2016 à 06:17",
 				"sujet" => "Bonjour",
-				"photo" => "http://placehold.it/100x100"
+				"photo" => "http://placehold.it/100x77"
 				),
 		);
 
@@ -855,14 +855,14 @@ class MainController extends Controller
 				"pseudo" => "Coralie",
 				"date_message" => "26 fev. 2016 à 06:17",
 				"sujet" => "Salut toi! Est ce que tu vas bien? ça fait longtemps. Est ce que tu vas bien? ça fait longtemps.",
-				"photo" => "http://placehold.it/100x100"
+				"photo" => "http://placehold.it/100x77"
 				),
 			array(
 				"id" => "2",
 				"pseudo" => "Jessica",
 				"date_message" => "27fev. 2016 à 06:17",
 				"sujet" => "Bonjour",
-				"photo" => "http://placehold.it/100x100"
+				"photo" => "http://placehold.it/100x77"
 				),
 		);
 
