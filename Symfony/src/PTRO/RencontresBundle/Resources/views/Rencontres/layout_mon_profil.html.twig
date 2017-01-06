@@ -1,5 +1,10 @@
 {% extends "PTRORencontresBundle::layout.html.twig" %}
 
+{% block css %}
+<link rel="stylesheet" href="{{ asset('css/main.css') }}" />
+<link rel="stylesheet" href="{{ asset('css/cropper.min.css') }}" />
+{% endblock %}
+
 {% block contenu %}
 <div class="row">
 	<div class="col-md-1">
@@ -12,19 +17,22 @@
 			<div class="col-md-3 col-xs-12 center">
 				<!-- Large modal -->
 				<!-- <button class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-lg">Large modal</button> -->
-				<div class="row">
+				<div class="row" id="crop-avatar">
 					{% for image in profil.images%}
-					<div class="col-xs-4 {% if loop.index == 1%} col-md-12 {% else %} col-md-6 {% endif %}">
+					<div class="col-xs-6 {% if loop.index == 1%} col-md-12 {% else %} col-md-6 {% endif %}">
 						<span class="thumbnail inline-block">
-							<img src="{{image}}" alt="...">
+							<img src="{{image}}" alt="..." id="img{{loop.index}}">
 							{% if loop.index > 1%}
-							<a class="caption post-content" style="width:30px;height:30px;" href="#" data-toggle="tooltip" data-placement="top" title="Faire de cette photo la photo principale">
+							<a class="caption post-content3" style="width:30px;height:30px;line-height:30px;padding:0" href="#" data-toggle="tooltip" data-placement="top" title="Faire de cette photo la photo principale">
 								<span class="glyphicon glyphicon-home"></span>
 							</a>
-							<a class="caption post-content2" style="width:30px;height:30px;" href="#" data-toggle="tooltip" data-placement="top" title="Supprimer cette photo">
+							{% endif %}
+							<a class="caption post-content modifier" style="width:30px;height:30px;line-height:30px;padding:0" href="#" data-toggle="tooltip" data-placement="top" title="Modifier la miniature de la photo">
+								<span class="glyphicon glyphicon-pencil"></span>
+							</a>
+							<a class="caption post-content2" style="width:30px;height:30px;line-height:30px;padding:0" href="#" data-toggle="tooltip" data-placement="top" title="Supprimer cette photo">
 								<span class="glyphicon glyphicon-remove"></span>
 							</a>
-							{% endif %}
 						</span>
 					</div>
 					{% endfor %}
@@ -74,6 +82,52 @@
 						</div>
 					</div>
 				</div>
+				<!-- Cropping modal -->
+				<div class="modal fade" id="avatar-modal" aria-hidden="true" aria-labelledby="avatar-modal-label" role="dialog" tabindex="-1">
+					<div class="" style="margin: 15px">
+						<div class="modal-content">
+							<form class="avatar-form" action="crop.php" enctype="multipart/form-data" method="post">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<h4 class="modal-title center" id="avatar-modal-label">Redimmensionner la miniature</h4>
+							</div>
+							<div class="modal-body">
+								<div class="avatar-body">
+
+									<!-- Upload image and data -->
+									<div class="avatar-upload">
+										<input type="hidden" class="avatar-src" name="avatar_src">
+										<input type="hidden" class="avatar-data" name="avatar_data">
+										<input type="file" class="avatar-input" id="avatarInput" name="avatar_file">
+										<input type="hidden" id="id_img" value=""/>
+									</div>
+
+									<!-- Crop and preview -->
+									<div class="row">
+										<div class="col-md-9 col-xs-12">
+											<div class="avatar-wrapper"></div>
+										</div>
+										<div class="col-md-3 col-xs-12">
+											<div class="avatar-preview preview-lg" style="width:182px;height:140px"></div>
+										</div>
+									</div>
+
+									<div class="row avatar-btns">
+										<div class="col-md-12">
+											<button class="btn btn-default" type="button" data-dismiss="modal">Annuler</button>
+											<button type="submit" class="btn btn-primary">Redimensionner</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- <div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							</div> -->
+							</form>
+						</div>
+					</div>
+				</div><!-- /.modal -->
+				<div id="loading" class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
 			</div>
 				<div class="col-md-9 col-xs-12">
 					A propos de {{ profil.pseudo }}:<br>
@@ -290,9 +344,20 @@
 </div>
 {% endblock %}
 {% block javascript %}
+	<script src="{{ asset('js/cropper.min.js') }}"></script>
+	<script src="{{ asset('js/main.js') }}"></script>
 	<script>
+	var array_image = new Array();
+	array_image.push('#img1');
+	array_image.push('#img2');
+	array_image.push('#img3');
+	array_image.push('#img4');
+	array_image.push('#img5');
 	$(function () {
-  		$('[data-toggle="tooltip"]').tooltip()
+		return new CropAvatar($('#crop-avatar'), array_image);
+	});
+	$(function () {
+  		$('[data-toggle="tooltip"]').tooltip({ trigger: "hover" })
 	});
 	</script>
 {% endblock %}

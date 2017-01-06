@@ -68,3 +68,5 @@
 - quand on est bloqué, on ne peut plus voir le profil de la personne qui nous a bloqué (les échanges deviennent invisibles, les contacts aussi, pareil pour le chat)
 - Si le user n'est pas connecté il ne peut que voir les pages "rencontre" et "détail profil"
 - faire un chat à la facebook si possible, n'affiche les personnes du sexe choisit qui sont connectées
+- vérifier avec ajax si le pseudonyme de l'utilisateur n'existe pas déjà lors de l'inscriptiion
+-ajouter un email à l'objet Utilisateur

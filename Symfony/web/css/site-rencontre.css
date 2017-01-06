@@ -301,11 +301,18 @@ input[readonly] {
   cursor: text !important;
 }
 .post-content2 {
-	background: none repeat scroll 0 0 #FFFFFF;
-	opacity: 0.5;
-	bottom:0;
-	right:0;
-	position: absolute;
+  background: none repeat scroll 0 0 #FFFFFF;
+  opacity: 0.5;
+  bottom:0;
+  right:0;
+  position: absolute;
+}
+.post-content3 {
+  background: none repeat scroll 0 0 #FFFFFF;
+  opacity: 0.5;
+  top:0;
+  left:0;
+  position: absolute;
 }
 
 /**** Mes messages ****/

@@ -54,3 +54,8 @@ ptro_rencontres_mes_contacts:
     path:     /mes_contacts
     defaults:
         _controller:    PTRORencontresBundle:Main:mesContacts
+
+ptro_rencontres_inscription:
+    path:     /inscription
+    defaults:
+        _controller:    PTRORencontresBundle:Main:inscription

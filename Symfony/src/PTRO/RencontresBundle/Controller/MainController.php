@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use PTRO\RencontresBundle\Entity\Utilisateur;
+use PTRO\RencontresBundle\Form\UtilisateurInscription1Type;
 
 class MainController extends Controller
 {
@@ -867,6 +869,30 @@ class MainController extends Controller
 		);
 
 		return $this->render('PTRORencontresBundle:Rencontres:layout_contacts.html.twig', array("contacts" => $contacts));
+	}
+
+	public function inscriptionAction(){
+
+		//Si l'utilisateur arrive par GET et que la variable de session utilisateur_inscription n'existe pas
+		//On le redirige vers layout_inscription_1.html.twig
+		//Si l'utilisateur arrive par GET et que la variable de session utilisateur_inscription existe
+		//On le redirige vers le layout inscription en cours grâce au champ caché etape_inscription 
+		//Si l'utilisateur arrive par GET et que la variable de session utilisateur_inscription existe
+		//et que la variable GET etape_precedente == 1 On le redirige vers le layout inscription en cours -1
+		//grâce au champ caché etape_inscription 
+		//Si l'utilisateur arrive par POST on alimente la variable de session utilisateur_inscription
+		//puis on redirige vers layout_inscription en cours + 1 grâce au champ caché etape_inscription 
+		//Si l'utilisateur arrive par POST et que l'étape en cours == 4 on persiste + flush l'utilisateur
+
+		$utilisateur = new Utilisateur();
+		$form = $this->get('form.factory')->create(UtilisateurInscription1Type::class, $utilisateur);
+
+
+		if($request->isMethod('POST')){
+
+		}
+
+		return $this->render('PTRORencontresBundle:Rencontres:layout_inscription_1.html.twig', array("form" => $form->createView()));
 	}
 	
 }
