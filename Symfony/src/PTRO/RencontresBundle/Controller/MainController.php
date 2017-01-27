@@ -871,7 +871,7 @@ class MainController extends Controller
 		return $this->render('PTRORencontresBundle:Rencontres:layout_contacts.html.twig', array("contacts" => $contacts));
 	}
 
-	public function inscriptionAction(){
+	public function inscriptionAction(Request $request){
 
 		//Si l'utilisateur arrive par GET et que la variable de session utilisateur_inscription n'existe pas
 		//On le redirige vers layout_inscription_1.html.twig

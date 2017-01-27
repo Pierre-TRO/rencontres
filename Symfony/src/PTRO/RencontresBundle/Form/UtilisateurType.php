@@ -14,7 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
 
-class UtilisateurInscription1Type extends AbstractType
+class UtilisateurType extends AbstractType
 {
     /**
      * {@inheritdoc}
