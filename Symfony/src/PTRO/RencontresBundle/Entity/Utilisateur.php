@@ -27,8 +27,13 @@ class Utilisateur
      * @var string
      *
      * @ORM\Column(name="pseudo", type="string", length=255, unique=true)
-     * @Assert\NotBlank(groups={"inscription_etape_1"})
-     * @Assert\MinLength(limit=3, groups={"inscription_etape_1"})
+     * @Assert\NotBlank()
+     * @Assert\Length(
+     *      min = 5,
+     *      max = 50,
+     *      minMessage = "{{ limit }} charactères minimum",
+     *      maxMessage = "{{ limit }} charactères maximum"
+     * )
      */
     private $pseudo;
 
@@ -36,8 +41,13 @@ class Utilisateur
      * @var string
      *
      * @ORM\Column(name="password", type="string", length=255)
-     * @Assert\NotBlank(groups={"inscription_etape_1"})
-     * @Assert\MinLength(limit=7, groups={"inscription_etape_1"})
+     * @Assert\NotBlank()
+     * @Assert\Length(
+     *      min = 7,
+     *      max = 50,
+     *      minMessage = "{{ limit }} charactères minimum",
+     *      maxMessage = "{{ limit }} charactères maximum"
+     * )
      */
     private $password;
 
