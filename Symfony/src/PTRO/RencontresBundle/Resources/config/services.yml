@@ -6,3 +6,6 @@ services:
         class: PTRO\RencontresBundle\EventListener\CreationEvenement
         tags:
             - { name: doctrine.event_listener, event: prePersist }
+    PTRO.form.flow.createUtilisateur:
+        class: PTRO\RencontresBundle\Form\CreateUtilisateurFlow
+        parent: craue.form.flow

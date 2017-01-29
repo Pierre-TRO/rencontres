@@ -883,7 +883,36 @@ class MainController extends Controller
 		//Si l'utilisateur arrive par POST on alimente la variable de session utilisateur_inscription
 		//puis on redirige vers layout_inscription en cours + 1 grâce au champ caché etape_inscription 
 		//Si l'utilisateur arrive par POST et que l'étape en cours == 4 on persiste + flush l'utilisateur
+	    $formData = new Utilisateur(); // Your form data class. Has to be an object, won't work properly with an array.
 
+	    $flow = $this->get('PTRO.form.flow.createUtilisateur'); // must match the flow's service id
+	    $flow->bind($formData);
+
+	    // form of the current step
+	    $form = $flow->createForm();
+	    if ($flow->isValid($form)) {
+	        $flow->saveCurrentStepData($form);
+
+	        if ($flow->nextStep()) {
+	            // form for the next step
+	            $form = $flow->createForm();
+	        } else {
+	            // flow finished
+	            $em = $this->getDoctrine()->getManager();
+	            $em->persist($formData);
+	            $em->flush();
+
+	            $flow->reset(); // remove step data from the session
+
+	            return $this->redirect($this->generateUrl('ptro_rencontres_homepage')); // redirect when done
+	        }
+		}
+
+	    return $this->render('PTRORencontresBundle:Rencontres:layout_inscription.html.twig', array(
+	        'form' => $form->createView(),
+	        'flow' => $flow,
+    		));
+	    /*
 		$utilisateur = new Utilisateur();
 		$form = $this->get('form.factory')->create(UtilisateurType::class, $utilisateur);
 
@@ -893,6 +922,7 @@ class MainController extends Controller
 		}
 
 		return $this->render('PTRORencontresBundle:Rencontres:layout_inscription_1.html.twig', array("form" => $form->createView()));
+	*/
 	}
 	
 }

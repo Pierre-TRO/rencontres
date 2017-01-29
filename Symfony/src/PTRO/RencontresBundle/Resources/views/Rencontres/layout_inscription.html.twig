@@ -1,0 +1,14 @@
+<div>
+    Steps:
+    {% include '@CraueFormFlow/FormFlow/stepList.html.twig' %}
+</div>
+{{ form_start(form) }}
+    {{ form_errors(form) }}
+
+    {% if flow.getCurrentStepNumber() == 1 %}
+    {% endif %}
+
+    {{ form_rest(form) }}
+
+    {% include '@CraueFormFlow/FormFlow/buttons.html.twig' %}
+{{ form_end(form) }}
