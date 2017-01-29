@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use PTRO\RencontresBundle\Entity\Utilisateur;
-use PTRO\RencontresBundle\Form\UtilisateurInscription1Type;
+use PTRO\RencontresBundle\Form\UtilisateurType;
 
 class MainController extends Controller
 {
@@ -885,7 +885,7 @@ class MainController extends Controller
 		//Si l'utilisateur arrive par POST et que l'étape en cours == 4 on persiste + flush l'utilisateur
 
 		$utilisateur = new Utilisateur();
-		$form = $this->get('form.factory')->create(UtilisateurInscription1Type::class, $utilisateur);
+		$form = $this->get('form.factory')->create(UtilisateurType::class, $utilisateur);
 
 
 		if($request->isMethod('POST')){

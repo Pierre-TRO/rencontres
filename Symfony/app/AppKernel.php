@@ -17,6 +17,7 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new OC\PlatformBundle\OCPlatformBundle(),
             new PTRO\RencontresBundle\PTRORencontresBundle(),
+            new Craue\FormFlowBundle\CraueFormFlowBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

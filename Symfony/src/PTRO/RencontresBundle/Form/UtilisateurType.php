@@ -2,7 +2,6 @@
 
 namespace PTRO\RencontresBundle\Form;
 
-//use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -12,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 
 class UtilisateurType extends AbstractType
@@ -34,16 +34,16 @@ class UtilisateurType extends AbstractType
             ->add('defauts', CollectionType::class)
             ->add('titre', TextType::class)
             ->add('description', TextType::class)
-            ->add('genre', 'Symfony\Bridge\Doctrine\Form\Type\EntityType', array('class' => 'PTRORencontresBundle:Genre', 'choice_label' => 'nom'))
-            ->add('etatCivil', 'Symfony\Bridge\Doctrine\Form\Type\EntityType', array('class' => 'PTRORencontresBundle:EtatCivil', 'choice_label' => 'nom'))
-            ->add('relation', 'Symfony\Bridge\Doctrine\Form\Type\EntityType', array('class' => 'PTRORencontresBundle:Relation', 'choice_label' => 'nom'))
-            ->add('departement', 'Symfony\Bridge\Doctrine\Form\Type\EntityType', array('class' => 'PTRORencontresBundle:Departement', 'choice_label' => 'nom'))
-            ->add('orientation', 'Symfony\Bridge\Doctrine\Form\Type\EntityType', array('class' => 'PTRORencontresBundle:Orientation', 'choice_label' => 'nom'))
-            ->add('physique', 'Symfony\Bridge\Doctrine\Form\Type\EntityType', array('class' => 'PTRORencontresBundle:Physique', 'choice_label' => 'nom'))
-            ->add('cigarette', 'Symfony\Bridge\Doctrine\Form\Type\EntityType', array('class' => 'PTRORencontresBundle:Cigarette', 'choice_label' => 'nom'))
-            ->add('couleurYeux', 'Symfony\Bridge\Doctrine\Form\Type\EntityType', array('class' => 'PTRORencontresBundle:CouleurYeux', 'choice_label' => 'nom'))
-            ->add('couleurCheveux', 'Symfony\Bridge\Doctrine\Form\Type\EntityType', array('class' => 'PTRORencontresBundle:CouleurCheveux', 'choice_label' => 'nom'))
-            ->add('alcool', 'Symfony\Bridge\Doctrine\Form\Type\EntityType', array('class' => 'PTRORencontresBundle:Alcool', 'choice_label' => 'nom'))
+            ->add('genre', EntityType::class, array('class' => 'PTRORencontresBundle:Genre', 'choice_label' => 'nom'))
+            ->add('etatCivil', EntityType::class, array('class' => 'PTRORencontresBundle:EtatCivil', 'choice_label' => 'nom'))
+            ->add('relation', EntityType::class, array('class' => 'PTRORencontresBundle:Relation', 'choice_label' => 'nom'))
+            ->add('departement', EntityType::class, array('class' => 'PTRORencontresBundle:Departement', 'choice_label' => 'nom'))
+            ->add('orientation', EntityType::class, array('class' => 'PTRORencontresBundle:Orientation', 'choice_label' => 'nom'))
+            ->add('physique', EntityType::class, array('class' => 'PTRORencontresBundle:Physique', 'choice_label' => 'nom'))
+            ->add('cigarette', EntityType::class, array('class' => 'PTRORencontresBundle:Cigarette', 'choice_label' => 'nom'))
+            ->add('couleurYeux', EntityType::class, array('class' => 'PTRORencontresBundle:CouleurYeux', 'choice_label' => 'nom'))
+            ->add('couleurCheveux', EntityType::class, array('class' => 'PTRORencontresBundle:CouleurCheveux', 'choice_label' => 'nom'))
+            ->add('alcool', EntityType::class, array('class' => 'PTRORencontresBundle:Alcool', 'choice_label' => 'nom'))
             ->add('save', SubmitType::class);
     }
     

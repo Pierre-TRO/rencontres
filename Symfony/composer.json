@@ -29,7 +29,8 @@
         "sensio/framework-extra-bundle": "^3.0.2",
         "incenteev/composer-parameter-handler": "^2.0",
         "doctrine/doctrine-fixtures-bundle": "^2.3",
-        "symfony/doctrine-bridge": "^3.2.1"
+        "symfony/doctrine-bridge": "^3.2.1",
+        "craue/formflow-bundle": "~3.0@dev"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
