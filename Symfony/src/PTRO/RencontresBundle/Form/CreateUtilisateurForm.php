@@ -20,22 +20,22 @@ class CreateUtilisateurForm extends AbstractType {
 		        $builder
 		            ->add('pseudo', TextType::class)
 		            ->add('password', PasswordType::class)
-		            ->add('genre', EntityType::class, array('class' => 'PTRORencontresBundle:Genre', 'choice_label' => 'nom'))
-		            ->add('relation', EntityType::class, array('class' => 'PTRORencontresBundle:Relation', 'choice_label' => 'nom'))
-		            ->add('orientation', EntityType::class, array('class' => 'PTRORencontresBundle:Orientation', 'choice_label' => 'nom'))
-					->add('etatCivil', EntityType::class, array('class' => 'PTRORencontresBundle:EtatCivil', 'choice_label' => 'nom'))
-		            ->add('dateNaissance', DateTimeType::class, array('widget' => 'single_text','format' => 'dd-MM-yyyy',))
-		            ->add('emploi', TextType::class)
-		            ->add('departement', EntityType::class, array('class' => 'PTRORencontresBundle:Departement', 'choice_label' => 'nom'))
+		            ->add('genre', EntityType::class, array('class' => 'PTRORencontresBundle:Genre', 'choice_label' => 'nom', 'placeholder' => ''))
+		            ->add('relation', EntityType::class, array('class' => 'PTRORencontresBundle:Relation', 'choice_label' => 'nom','required' => false, 'empty_data'  => null))
+		            ->add('orientation', EntityType::class, array('class' => 'PTRORencontresBundle:Orientation', 'choice_label' => 'nom','required' => true, 'empty_data'  => null, 'placeholder' => ''))
+					->add('etatCivil', EntityType::class, array('class' => 'PTRORencontresBundle:EtatCivil', 'choice_label' => 'nom','required' => false, 'empty_data'  => null))
+		            ->add('dateNaissance', DateTimeType::class, array('widget' => 'single_text','format' => 'dd-MM-yyyy','required' => false))
+		            ->add('emploi', TextType::class,array('required' => false, 'empty_data'  => null))
+		            ->add('departement', EntityType::class, array('class' => 'PTRORencontresBundle:Departement', 'choice_label' => 'nom','required' => true, 'empty_data'  => null, 'placeholder' => ''))
             		;
                 break;
             case 2:
 		        $builder
-		            ->add('physique', EntityType::class, array('class' => 'PTRORencontresBundle:Physique', 'choice_label' => 'nom'))
-		            ->add('taille', IntegerType::class)
-		            ->add('poids', IntegerType::class)
-		            ->add('couleurYeux', EntityType::class, array('class' => 'PTRORencontresBundle:CouleurYeux', 'choice_label' => 'nom'))
-            		->add('couleurCheveux', EntityType::class, array('class' => 'PTRORencontresBundle:CouleurCheveux', 'choice_label' => 'nom'))
+		            ->add('physique', EntityType::class, array('class' => 'PTRORencontresBundle:Physique', 'choice_label' => 'nom','required' => false, 'empty_data'  => null))
+		            ->add('taille', IntegerType::class,array('data' => 175, 'required' => false))
+		            ->add('poids', IntegerType::class,array('data' => 70, 'required' => false))
+		            ->add('couleurYeux', EntityType::class, array('class' => 'PTRORencontresBundle:CouleurYeux', 'choice_label' => 'nom','required' => false, 'empty_data'  => null))
+            		->add('couleurCheveux', EntityType::class, array('class' => 'PTRORencontresBundle:CouleurCheveux', 'choice_label' => 'nom','required' => false, 'empty_data'  => null))
 	            	;
 	            break;
             case 3:
@@ -44,8 +44,8 @@ class CreateUtilisateurForm extends AbstractType {
 		            ->add('sports', CollectionType::class)
 		            ->add('qualites', CollectionType::class)
 		            ->add('defauts', CollectionType::class)
-		            ->add('alcool', EntityType::class, array('class' => 'PTRORencontresBundle:Alcool', 'choice_label' => 'nom'))
-            		->add('cigarette', EntityType::class, array('class' => 'PTRORencontresBundle:Cigarette', 'choice_label' => 'nom'))
+		            ->add('alcool', EntityType::class, array('class' => 'PTRORencontresBundle:Alcool', 'choice_label' => 'nom', 'expanded' => true, 'multiple' =>false,'required' => false))
+            		->add('cigarette', EntityType::class, array('class' => 'PTRORencontresBundle:Cigarette', 'choice_label' => 'nom', 'expanded' => true, 'multiple' =>false,'required' => false))
             		;
                 break;
             case 4:

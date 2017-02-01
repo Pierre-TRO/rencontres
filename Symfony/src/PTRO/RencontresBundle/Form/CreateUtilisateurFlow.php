@@ -6,6 +6,8 @@ use Craue\FormFlowBundle\Form\FormFlowInterface;
 
 class CreateUtilisateurFlow extends FormFlow {
 
+    protected $allowDynamicStepNavigation = true;
+
     protected function loadStepsConfig() {
         return array(
             array(

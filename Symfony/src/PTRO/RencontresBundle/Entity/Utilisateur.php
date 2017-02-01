@@ -284,7 +284,7 @@ class Utilisateur
      *
      * @return Utilisateur
      */
-    public function setDateNaissance($dateNaissance)
+    public function setDateNaissance($dateNaissance = null)
     {
         $this->dateNaissance = $dateNaissance;
 
