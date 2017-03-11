@@ -300,8 +300,10 @@ class LoadInfos implements FixtureInterface
 
 
     $utilisateur = new Utilisateur();
-    $utilisateur->setPseudo('Pierrot_77');
-    $utilisateur->setPassword('12345');
+    $utilisateur->setUsername('Pierrot_77');
+    $utilisateur->setPlainPassword('12345');
+    $utilisateur->setEmail('pierrot@gmail.com');
+    $utilisateur->addRole('ROLE_USER');
     $utilisateur->setGenre($genre);
     $utilisateur->setRelation($relation);
     $utilisateur->setEtatCivil($etatcivil);
@@ -328,8 +330,10 @@ class LoadInfos implements FixtureInterface
     $manager->persist($utilisateur);
 
     $utilisateur2 = new Utilisateur();
-    $utilisateur2->setPseudo('Marjorie_78');
-    $utilisateur2->setPassword('54321');
+    $utilisateur2->setUsername('Marjorie_78');
+    $utilisateur2->setEmail('marge@gmail.com');
+    $utilisateur2->addRole('ROLE_USER');
+    $utilisateur2->setPlainPassword('54321');
     $utilisateur2->setGenre($genre2);
     $utilisateur2->setRelation($relation2);
     $utilisateur2->setEtatCivil($etatcivil);

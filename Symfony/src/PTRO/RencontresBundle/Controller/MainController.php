@@ -3,6 +3,7 @@
 namespace PTRO\RencontresBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -924,5 +925,31 @@ class MainController extends Controller
 		return $this->render('PTRORencontresBundle:Rencontres:layout_inscription_1.html.twig', array("form" => $form->createView()));
 	*/
 	}
+
+    public function mailAction()
+    {
+        $message = \Swift_Message::newInstance()
+            ->setSubject('Hello Email')
+            ->setFrom('send@example.com')
+            ->setTo('pierre.trochet.munoz@gmail.com')
+            ->setBody(
+                'Hello Pierre',
+                'text/html'
+            )
+            /*
+             * If you also want to include a plaintext version of the message
+            ->addPart(
+                $this->renderView(
+                    'Emails/registration.txt.twig',
+                    array('name' => $name)
+                ),
+                'text/plain'
+            )
+            */
+        ;
+        $this->get('mailer')->send($message);
+
+        return new Response('mail envoyé');
+    }
 	
 }

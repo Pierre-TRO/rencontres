@@ -11,20 +11,39 @@ class CreateUtilisateurFlow extends FormFlow {
     protected function loadStepsConfig() {
         return array(
             array(
+                'label' => 'Informations d\'authentification',
+                'form_type' => 'PTRO\RencontresBundle\Form\CreateUtilisateurForm',
+                'form_options' => array(
+                    'validation_groups' => array('Registration'),
+                )
+            ),
+            array(
                 'label' => 'Informations générales',
                 'form_type' => 'PTRO\RencontresBundle\Form\CreateUtilisateurForm',
+                'form_options' => array(
+                    'validation_groups' => array('Registration2'),
+                )
             ),
             array(
                 'label' => 'Informations physique',
                 'form_type' => 'PTRO\RencontresBundle\Form\CreateUtilisateurForm',
+                'form_options' => array(
+                    'validation_groups' => array('Registration3'),
+                )
             ),
             array(
                 'label' => 'Style de vie',
                 'form_type' => 'PTRO\RencontresBundle\Form\CreateUtilisateurForm',
+                //'form_options' => array(
+                //    'validation_groups' => array('Registration4'),
+                //)
             ),
             array(
                 'label' => 'Presentez-vous',
                 'form_type' => 'PTRO\RencontresBundle\Form\CreateUtilisateurForm',
+                'form_options' => array(
+                    'validation_groups' => array('Registration5'),
+                )
             ),
         );
     }

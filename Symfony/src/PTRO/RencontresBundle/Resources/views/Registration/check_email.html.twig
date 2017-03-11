@@ -1,0 +1,11 @@
+{% extends "PTRORencontresBundle::layout_global.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block contenu %}
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2 conteneur">
+            <h4>{{ 'registration.check_email'|trans({'%email%': user.email}) }}</h4>
+        </div>
+    </div>
+{% endblock contenu %}

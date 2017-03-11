@@ -1,0 +1,34 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<li><a href="#" class="btn-primary inscription">inscrivez-vous!</a></li>
+<li class="dropdown {% if error %}open{% endif %}">
+    <a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="{% if error %}true{% else %}false{% endif %}" style="padding:0px;height:50px">
+        <span class="login-user">Se connecter <span class="caret"></span></span>
+    </a>
+    <ul class="dropdown-menu style-ul">
+        <form class="form-horizontal style-form" action="{{ path("fos_user_security_check") }}" method="post">
+            <div class="center red height bold">{% if error %}{{ error.messageKey|trans(error.messageData, 'security') }}{% endif %}</div>
+            {% if csrf_token %}
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+            {% endif %}
+            <div class="form-group">
+                <label for="username" class="gris">{{ 'security.login.username'|trans }}</label>
+                <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}" />
+            </div>
+            <div class="form-group">
+                <label for="password" class="gris">{{ 'security.login.password'|trans }}</label>
+                <input class="form-control" type="password" id="password" name="_password"  />
+            </div>
+            <div class="checkbox">
+                <label for="remember_me" class="gris">
+                    <input type="checkbox" id="remember_me" name="_remember_me" value="on" /> {{ 'security.login.remember_me'|trans }}
+                </label>
+            </div>
+            <br>
+            <input type="hidden" name="_target_path" value="{{ app.session.get('current_route') }}" />
+            <input type="hidden" name="_failure_path" value="{{ app.session.get('current_route') }}" />
+            <input class="btn btn-primary" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+        </form>
+        <li><a href="#" class="center gris">Vous avez oublié votre password?</a></li>
+    </ul>
+</li>

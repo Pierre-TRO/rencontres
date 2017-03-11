@@ -1,3 +1,94 @@
+{% extends "PTRORencontresBundle::layout_global.html.twig" %}
+
+
+{% block css %}
+<link rel="stylesheet" href="{{ asset('css/bootstrap-datetimepicker.css') }}" />
+{% endblock %}  
+
+{% block contenu %}
+{% if flow.getCurrentStepNumber() == 1 %}
+<div class="row">
+    <div class="col-md-8 col-md-offset-2 conteneur">
+        <!--<h1 class="center">Inscription - étape 1/4</h1>-->
+        <h3 class="center">
+            {% include '@CraueFormFlow/FormFlow/stepList.html.twig' %}
+        </h3>
+        {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+        <!--<form class="form-horizontal">-->
+            {{ form_errors(form) }}
+            <div class="form-group">
+                <label for="inputPassword2" class="col-sm-3 control-label">Password à nouveau</label>
+                <div class="col-sm-9">
+                    <input type="password" class="form-control" id="inputPassword2" placeholder="Password">
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form_label(form.genre, "Genre", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+                {{ form_errors(form.genre) }}
+                <div class="col-sm-9">
+                    {{ form_widget(form.genre, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form_label(form.relation, "Relation souhaitée", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+                {{ form_errors(form.relation) }}
+                <div class="col-sm-9">
+                    {{ form_widget(form.relation, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form_label(form.orientation, "Orientation", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+                {{ form_errors(form.orientation) }}
+                <div class="col-sm-9">
+                    {{ form_widget(form.orientation, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form_label(form.etatCivil, "Etat civil", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+                {{ form_errors(form.etatCivil) }}
+                <div class="col-sm-9">
+                    {{ form_widget(form.etatCivil, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form_label(form.dateNaissance, "Date de naissance", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+                {{ form_errors(form.dateNaissance) }}
+                <div class="col-sm-9">
+                    <div class='input-group date'>
+                        {{ form_widget(form.dateNaissance, {'attr': {'class': 'form-control datetimepicker', 'placeholder': 'jj/mm/aaaa'}}) }}
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar">
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form_label(form.emploi, "Emploi", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+                {{ form_errors(form.emploi) }}
+                <div class="col-sm-9">
+                    {{ form_widget(form.emploi, {'attr': {'class': 'form-control','placeholder': 'Emploi'}}) }}
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form_label(form.departement, "Département", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+                {{ form_errors(form.departement) }}
+                <div class="col-sm-9">
+                    {{ form_widget(form.departement, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-3 col-sm-9">
+                    <button type="submit" class="btn btn-primary">Passer à la deuxième étape</button>
+                </div>
+            </div>
+            {% include '@CraueFormFlow/FormFlow/buttons.html.twig' %}
+            {{ form_rest(form) }}
+        {{ form_end(form) }}
+    </div>
+</div>
+
+{% else %}
 <div>
     Steps:
     {% include '@CraueFormFlow/FormFlow/stepList.html.twig' %}
@@ -5,10 +96,26 @@
 {{ form_start(form) }}
     {{ form_errors(form) }}
 
-    {% if flow.getCurrentStepNumber() == 1 %}
-    {% endif %}
 
     {{ form_rest(form) }}
 
     {% include '@CraueFormFlow/FormFlow/buttons.html.twig' %}
 {{ form_end(form) }}
+{% endif %}
+{% endblock %}  
+{% block javascript %}
+    <script type="text/javascript" src="{{ asset('js/moment-with-locales.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/transition.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/collapse.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/bootstrap-datetimepicker.js') }}"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('.datetimepicker').datetimepicker({
+                viewMode: 'years',
+                format: 'DD/MM/YYYY'
+            });
+        });
+    </script>
+{% endblock %}  
+
+

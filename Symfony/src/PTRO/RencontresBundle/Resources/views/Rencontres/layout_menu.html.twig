@@ -1,0 +1,65 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                Menu <span class="badge">7</span>
+            </button>
+            <a class="navbar-brand" href="#">Mon site de rencontre</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                {% if app.request.attributes.get('_route') == 'ptro_rencontres_homepage' %}
+                    <li class="active" ><a>accueil</a></li>
+                {% else %}
+                    <li><a href="{{ path('ptro_rencontres_homepage') }}">accueil</a></li>
+                {% endif %}
+                {% if app.request.attributes.get('_route') == 'ptro_rencontres_recherche' %}
+                    <li class="active" ><a>rencontres</a></li>
+                {% else %}
+                    <li><a href="{{ path('ptro_rencontres_recherche') }}">rencontres</a></li>
+                {% endif %}
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    {% if app.request.attributes.get('_route') == 'ptro_rencontres_favoris' %}
+                        <li class="active" ><a>favoris</a></li>
+                    {% else %}
+                        <li><a href="{{ path('ptro_rencontres_favoris') }}">favoris</a></li>
+                    {% endif %}
+                    {% if app.request.attributes.get('_route') == 'ptro_rencontres_mon_profil' %}
+                        <li class="active" ><a>mon profil</a></li>
+                    {% else %}
+                        <li><a href="{{ path('ptro_rencontres_mon_profil') }}">mon profil</a></li>
+                    {% endif %}
+                    {% if app.request.attributes.get('_route') == 'ptro_rencontres_mes_messages' %}
+                        <li class="active" ><a>mes messages <span class="badge">5</span></a></li>
+                    {% else %}
+                        <li><a href="{{ path('ptro_rencontres_mes_messages') }}">mes messages <span class="badge">5</span></a></li>
+                    {% endif %}
+                    {% if app.request.attributes.get('_route') == 'ptro_rencontres_mes_contacts' %}
+                        <li class="active" ><a>mes contacts <span class="badge">11</span></a></li>
+                    {% else %}
+                        <li><a href="{{ path('ptro_rencontres_mes_contacts') }}">mes contacts <span class="badge">11</span></a></li>
+                    {% endif %}
+                {% endif %}
+                <li><a href="#">&agrave; propos</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="padding:0px;height:50px">
+                            <div  class="image" style="background-image:url('{{ asset('images/Spongebob_without_hat_stock_image_.png') }}')" alt=""></div><span class="login-user">Pierrot04 <span class="caret"></span></span>
+                        </a>
+                        <ul class="dropdown-menu" style="width:100%">
+                            <li><a href="{{ path('fos_user_security_logout') }}" class="red">Deconnexion</a></li>
+                        </ul>
+                    </li>
+                {% else %}
+                            {{ app.session.set('current_route', app.request.attributes.get('_route')) }}
+                            {{ render(controller('FOSUserBundle:Security:login')) }}
+                {% endif %}
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>

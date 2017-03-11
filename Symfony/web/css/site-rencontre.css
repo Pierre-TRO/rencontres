@@ -16,6 +16,9 @@
 .red{
 	color:red !important;
 }
+.bold{
+    font-weight: bold;
+}
 .height{
 	height: 20px;
 }

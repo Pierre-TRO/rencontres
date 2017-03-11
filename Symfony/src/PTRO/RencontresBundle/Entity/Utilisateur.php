@@ -4,6 +4,7 @@ namespace PTRO\RencontresBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use FOS\UserBundle\Model\User as BaseUser;
 
 /**
  * Utilisateur
@@ -12,7 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity(repositoryClass="PTRO\RencontresBundle\Repository\UtilisateurRepository")
  * @ORM\HasLifecycleCallbacks()
  */
-class Utilisateur
+class Utilisateur extends BaseUser
 {
     /**
      * @var int
@@ -21,8 +22,9 @@ class Utilisateur
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
+    /*
     /**
      * @var string
      *
@@ -35,8 +37,9 @@ class Utilisateur
      *      maxMessage = "{{ limit }} charactères maximum"
      * )
      */
-    private $pseudo;
+    /*private $pseudo;*/
 
+    /*
     /**
      * @var string
      *
@@ -49,7 +52,7 @@ class Utilisateur
      *      maxMessage = "{{ limit }} charactères maximum"
      * )
      */
-    private $password;
+    /*private $password;*/
 
     /**
      * @var \DateTime
@@ -69,7 +72,13 @@ class Utilisateur
      * @var int
      *
      * @ORM\Column(name="taille", type="integer", nullable=true)
-     * @Assert\Range(min=130, max=250)
+     * @Assert\Range(
+     *      min = 130,
+     *      max = 250,
+     *      minMessage = "Votre taille doit être entre 130 cm et 250 cm",
+     *      maxMessage = "Votre taille doit être entre 130 cm et 250 cm",
+     *      groups={"Registration3"}
+     * )
      */
     private $taille;
 
@@ -77,7 +86,13 @@ class Utilisateur
      * @var int
      *
      * @ORM\Column(name="poids", type="integer", nullable=true)
-     * @Assert\Range(min=130, max=250)
+     * @Assert\Range(
+     *      min = 40,
+     *      max = 200,
+     *      minMessage = "Votre poids doit être entre 40 kg et 200 kg",
+     *      maxMessage = "Votre poids doit être entre 40 kg et 200 kg",
+     *      groups={"Registration3"}
+     * )
      */
     private $poids;
 
@@ -112,14 +127,20 @@ class Utilisateur
     /**
      * @var string
      *
-     * @ORM\Column(name="titre", type="string", length=255)
+     * @ORM\Column(name="titre", type="string", length=255, nullable=true)
+     *
+     * @Assert\NotBlank(message="Ce champ ne doit pas être vide.", groups={"Registration5"})
+     *
      */
     private $titre;
 
     /**
      * @var text
      *
-     * @ORM\Column(name="description", type="text")
+     * @ORM\Column(name="description", type="text", nullable=true)
+     *
+     * @Assert\NotBlank(message="Ce champ ne doit pas être vide.", groups={"Registration5"})
+     *
      */
     private $description;
 
@@ -146,6 +167,7 @@ class Utilisateur
 
     /**
     * @ORM\ManyToOne(targetEntity="PTRO\RencontresBundle\Entity\Genre")
+    * @Assert\NotNull(message="Ce champ est obligatoire", groups={"Registration2"})
     */
     private $genre;
 
@@ -161,11 +183,13 @@ class Utilisateur
 
     /**
     * @ORM\ManyToOne(targetEntity="PTRO\RencontresBundle\Entity\Departement")
+    * @Assert\NotNull(message="Ce champ est obligatoire", groups={"Registration2"})
     */
     private $departement;
 
     /**
     * @ORM\ManyToOne(targetEntity="PTRO\RencontresBundle\Entity\Orientation")
+    * @Assert\NotNull(message="Ce champ est obligatoire", groups={"Registration2"})
     */
     private $orientation;
 
@@ -204,11 +228,16 @@ class Utilisateur
 
     public function __construct()
     {
+        parent::__construct();
         //La date de creation de l'utilisateur est la date d'aujourd'hui
         $this->dateCreation = new \DateTime();
 
         //L'utilisateur est actif par défaut
         $this->desactive = false;
+
+        $this->enabled = true;
+
+        $this->vues = 0;
     }
 
     /**
@@ -229,6 +258,7 @@ class Utilisateur
         return $this->id;
     }
 
+    /*
     /**
      * Set pseudo
      *
@@ -236,23 +266,26 @@ class Utilisateur
      *
      * @return Utilisateur
      */
+    /*
     public function setPseudo($pseudo)
     {
         $this->pseudo = $pseudo;
 
         return $this;
-    }
+    }*/
 
+    /*
     /**
      * Get pseudo
      *
      * @return string
      */
-    public function getPseudo()
+    /*public function getPseudo()
     {
         return $this->pseudo;
-    }
+    }*/
 
+    /*
     /**
      * Set password
      *
@@ -260,22 +293,23 @@ class Utilisateur
      *
      * @return Utilisateur
      */
-    public function setPassword($password)
+    /*public function setPassword($password)
     {
         $this->password = $password;
 
         return $this;
-    }
+    }*/
 
+    /*
     /**
      * Get password
      *
      * @return string
      */
-    public function getPassword()
+    /*public function getPassword()
     {
         return $this->password;
-    }
+    }*/
 
     /**
      * Set dateNaissance

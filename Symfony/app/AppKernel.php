@@ -18,6 +18,8 @@ class AppKernel extends Kernel
             new OC\PlatformBundle\OCPlatformBundle(),
             new PTRO\RencontresBundle\PTRORencontresBundle(),
             new Craue\FormFlowBundle\CraueFormFlowBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
+            new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

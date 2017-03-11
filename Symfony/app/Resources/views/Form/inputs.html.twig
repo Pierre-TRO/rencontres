@@ -1,0 +1,8 @@
+{%- block form_widget_simple -%}
+    {%- set type = type|default('text') -%}
+    <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %} style="width: initial; display: inline" class="form-control" size="15"/>
+{%- endblock form_widget_simple -%}
+
+{%- block form_row -%}
+        {{- form_widget(form) -}}
+{%- endblock form_row -%}

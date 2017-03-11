@@ -59,3 +59,8 @@ ptro_rencontres_inscription:
     path:     /inscription
     defaults:
         _controller:    PTRORencontresBundle:Main:inscription
+
+ptro_rencontres_mail:
+    path:     /mail
+    defaults:
+        _controller:    PTRORencontresBundle:Main:mail
