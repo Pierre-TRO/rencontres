@@ -8,6 +8,10 @@ services:
         class: PTRO\RencontresBundle\Form\CreateUtilisateurForm
         tags:
             - { name: form.type, alias: app_user_registration }
+    app.form.edit:
+        class: PTRO\RencontresBundle\Form\EditUtilisateurForm
+        tags:
+            - { name: form.type, alias: app_user_edit }
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]

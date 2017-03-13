@@ -10,4 +10,13 @@ namespace PTRO\RencontresBundle\Repository;
  */
 class PhotoRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getPhotosProfile($user){
+        $queryBuilder = $this->createQueryBuilder('p');
+        $queryBuilder->where('p.utilisateur=:utilisateur')
+            ->setParameter('utilisateur', $user)
+            ->orderBy('p.ordre');
+        $query = $queryBuilder->getQuery();
+        $results = $query->getResult();
+        return $results;
+    }
 }

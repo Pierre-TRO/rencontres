@@ -9,3 +9,6 @@ services:
     PTRO.form.flow.createUtilisateur:
         class: PTRO\RencontresBundle\Form\CreateUtilisateurFlow
         parent: craue.form.flow
+    PTRO.form.flow.editUtilisateur:
+        class: PTRO\RencontresBundle\Form\EditUtilisateurFlow
+        parent: craue.form.flow

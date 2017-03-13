@@ -79,6 +79,9 @@ fos_user:
             type: PTRO\RencontresBundle\Form\CreateUtilisateurForm
         confirmation:
             enabled: true
+    profile:
+        form:
+            type: PTRO\RencontresBundle\Form\CreateUtilisateurForm
 
 ivory_ck_editor:
     configs:

@@ -268,11 +268,26 @@ a:focus, a:hover{
 }
 
 .conteneur_erreur{
-	background-color: #FFE1E1;
-	border:1px solid #FF0000 !important; 
-	padding-top:15px;
-	border-radius:  4px 4px 4px 4px !important;
+    background-color: #FFE1E1;
+    border:1px solid #FF0000 !important;
+    padding-top:15px;
+    border-radius:  4px 4px 4px 4px !important;
 }
+
+.conteneur_success{
+    background-color: #BEF781;
+    border:1px solid #216d15 !important;
+    padding-top:15px;
+    border-radius:  4px 4px 4px 4px !important;
+}
+
+.conteneur_warning{
+    background-color: #fffda5;
+    border:1px solid #FFFF00 !important;
+    padding-top:15px;
+    border-radius:  4px 4px 4px 4px !important;
+}
+
 .bottom3{
 	margin-bottom: 15px;
 }

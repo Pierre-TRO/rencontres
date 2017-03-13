@@ -18,7 +18,7 @@ use FOS\UserBundle\Form\Factory\FactoryInterface;
 use FOS\UserBundle\FOSUserEvents;
 use FOS\UserBundle\Model\UserInterface;
 use FOS\UserBundle\Model\UserManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use FOS\UserBundle\Controller\RegistrationController as BaseController;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -32,7 +32,7 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
  * @author Thibault Duplessis <thibault.duplessis@gmail.com>
  * @author Christophe Coevoet <stof@notk.org>
  */
-class RegistrationController extends Controller
+class RegistrationController extends BaseController
 {
     /**
      * @param Request $request
@@ -42,7 +42,7 @@ class RegistrationController extends Controller
     public function registerAction(Request $request)
     {
         /** @var $formFactory FactoryInterface */
-        $formFactory = $this->get('fos_user.registration.form.factory');
+        //$formFactory = $this->get('fos_user.registration.form.factory');
         /** @var $userManager UserManagerInterface */
         $userManager = $this->get('fos_user.user_manager');
         /** @var $dispatcher EventDispatcherInterface */
@@ -50,9 +50,6 @@ class RegistrationController extends Controller
 
         $user = $userManager->createUser();
         $user->setEnabled(true);
-
-        $flow = $this->get('PTRO.form.flow.createUtilisateur'); // must match the flow's service id
-        $flow->bind($user);
 
         $event = new GetResponseUserEvent($user, $request);
         $dispatcher->dispatch(FOSUserEvents::REGISTRATION_INITIALIZE, $event);
@@ -63,6 +60,9 @@ class RegistrationController extends Controller
 
         //$form = $formFactory->createForm();
         //$form->setData($user);
+
+        $flow = $this->get('PTRO.form.flow.createUtilisateur'); // must match the flow's service id
+        $flow->bind($user);
 
         //$form->handleRequest($request);
         $form = $flow->createForm();

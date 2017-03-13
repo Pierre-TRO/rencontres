@@ -5,8 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Bienvenue Pierrot04!</title>
 
+      {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+          <title>Bienvenue {{ app.user.username }}!</title>
+      {% else %}
+          <title>Bienvenue sur notre site de rencontre</title>
+      {% endif %}
     <!-- Bootstrap + css perso-->
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/site-rencontre.css') }}" />
@@ -24,6 +28,23 @@
     {{ include('PTRORencontresBundle:Rencontres:layout_menu.html.twig') }}
     <!-- Page Content -->
     <div class="container-fluid">
+        {% if app.request.hasPreviousSession %}
+            {% for type, messages in app.session.flashbag.all() %}
+                {% for message in messages %}
+                    <div class="row">
+                        <div class="col-md-1">
+                        </div>
+                        <div class="col-md-10">
+                            <div class="row conteneur_{{ type }} bottom center">
+                                {{ message }}
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        {% endif %}
 	{% block contenu %} Contenu de la page.{% endblock %}
         <!-- Footer -->
         <footer>
