@@ -44,7 +44,7 @@ class ProfileController extends BaseController
 
         $repositoryPhoto = $this->getDoctrine()->getManager()->getRepository('PTRORencontresBundle:Photo');
         $photos = $repositoryPhoto->getPhotosProfile($user) ;
-        var_dump($user);die();
+        //var_dump($user);die();
         return $this->render('@FOSUser/Profile/show.html.twig', array(
             'profil' => $user,
             'photos' => $photos,
@@ -102,7 +102,9 @@ class ProfileController extends BaseController
 
                 $event = new FormEvent($form, $request);
                 $dispatcher->dispatch(FOSUserEvents::PROFILE_EDIT_SUCCESS, $event);
-
+				
+				$user->setDateModification(new \Datetime());
+				
                 $userManager->updateUser($user);
 
                 if (null === $response = $event->getResponse()) {

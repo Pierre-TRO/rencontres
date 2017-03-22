@@ -885,5 +885,12 @@ class Utilisateur extends BaseUser
     public function getDesactive()
     {
         return $this->desactive;
+    }    
+	
+	public function getAge()
+    {
+        $dateInterval = $this->dateNaissance->diff(new \DateTime());
+ 
+        return $dateInterval->y;
     }
 }

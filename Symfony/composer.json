@@ -31,7 +31,8 @@
         "doctrine/doctrine-fixtures-bundle": "^2.3",
         "symfony/doctrine-bridge": "^3.2.1",
         "craue/formflow-bundle": "~3.0@dev",
-        "friendsofsymfony/user-bundle": "dev-master"
+        "friendsofsymfony/user-bundle": "dev-master",
+        "egeloen/ckeditor-bundle": "^5.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
