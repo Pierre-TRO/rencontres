@@ -64,3 +64,9 @@ ptro_rencontres_mail:
     path:     /mail
     defaults:
         _controller:    PTRORencontresBundle:Main:mail
+
+ptro_photo_submit:
+    path:     /photo_submit
+    defaults:
+        _controller:    PTRORencontresBundle:Profile:photoSubmit
+    methods:  [POST]

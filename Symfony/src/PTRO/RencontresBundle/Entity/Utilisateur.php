@@ -893,4 +893,8 @@ class Utilisateur extends BaseUser
  
         return $dateInterval->y;
     }
+
+    public function getProprietes() {
+        return get_object_vars($this);
+    }
 }

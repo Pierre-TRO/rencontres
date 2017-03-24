@@ -27,10 +27,10 @@
                     {% else %}
                         <li><a href="{{ path('ptro_rencontres_favoris') }}">favoris</a></li>
                     {% endif %}
-                    {% if app.request.attributes.get('_route') == 'ptro_rencontres_mon_profil' %}
+                    {% if app.request.attributes.get('_route') == 'fos_user_profile_show' %}
                         <li class="active" ><a>mon profil</a></li>
                     {% else %}
-                        <li><a href="{{ path('ptro_rencontres_mon_profil') }}">mon profil</a></li>
+                        <li><a href="{{ path('fos_user_profile_show') }}">mon profil</a></li>
                     {% endif %}
                     {% if app.request.attributes.get('_route') == 'ptro_rencontres_mes_messages' %}
                         <li class="active" ><a>mes messages <span class="badge">5</span></a></li>

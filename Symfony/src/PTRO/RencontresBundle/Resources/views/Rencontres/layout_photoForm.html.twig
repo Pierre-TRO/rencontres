@@ -1,0 +1,7 @@
+{{ form_start(formPhoto, {'action': path('ptro_photo_submit')}) }}
+<!--<span class="file-input btn btn-block btn-primary btn-file">
+    <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Ajouter une photo&hellip; <input type="file">
+</span>-->
+{{ form_row(formPhoto.file, {'attr': {'onchange': 'form.submit()'}}) }}
+{{ form_rest(formPhoto) }}
+{{ form_end(formPhoto) }}

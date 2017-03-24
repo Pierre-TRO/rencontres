@@ -19,6 +19,8 @@ use FOS\UserBundle\FOSUserEvents;
 use FOS\UserBundle\Model\UserInterface;
 use FOS\UserBundle\Model\UserManagerInterface;
 use FOS\UserBundle\Controller\ProfileController as BaseController;
+use PTRO\RencontresBundle\Entity\Photo;
+use PTRO\RencontresBundle\Form\PhotoType;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -32,6 +34,29 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
  */
 class ProfileController extends BaseController
 {
+    public function photoAction(Request $request){
+        $photo = new Photo();
+        $formPhoto   = $this->get('form.factory')->create(PhotoType::class, $photo);
+        return $this->render('PTRORencontresBundle:Rencontres:layout_photoForm.html.twig', array(
+            'formPhoto' => $formPhoto->createView(),
+        ));
+    }
+
+    public function photoSubmitAction(Request $request){
+        $photo = new Photo();
+        $formPhoto   = $this->get('form.factory')->create(PhotoType::class, $photo);
+
+        if ($request->isMethod('POST') && $formPhoto->handleRequest($request)->isValid()) {
+            $photo->setOrdre(1);
+            $photo->setUtilisateur($this->getUser());
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($photo);
+            $em->flush();
+            $request->getSession()->getFlashBag()->add('photo', 'Votre photo a bien été enregistrée.');
+        }
+        return $this->redirectToRoute('fos_user_profile_show');
+    }
+
     /**
      * Show the user.
      */
@@ -41,13 +66,36 @@ class ProfileController extends BaseController
         if (!is_object($user) || !$user instanceof UserInterface) {
             throw new AccessDeniedException('This user does not have access to this section.');
         }
+        //On  affiche dans la vue un warning
+        //Pour inciter l'utilisateur à remplir son profil au maximum
+        $properties_diff = array("id" => '', "username" => '', "usernameCanonical" => '', "email" => '', "emailCanonical" => '',
+            "enabled" => '', "salt" => '', "password" => '', "plainPassword" => '', "lastLogin" => '', "confirmationToken" => '',
+            "passwordRequestedAt" => '', "groups" => '', "roles" => '', 'dateCreation' => '', 'dateModification' => '', 'vues' => '',
+            "desactive" => '');
+        $properties = $user->getProprietes();
+        $properties = array_diff_key($properties, $properties_diff);
+
+        $i=0;
+        $j=0;
+        foreach ($properties as $value){
+            if(empty($value)){
+                $i++;
+            }
+            $j++;
+        }
+        if ($i != 0){
+            $percent = round($i/$j, 2) * 100;
+        }
+        else{
+            $percent = 100;
+        }
 
         $repositoryPhoto = $this->getDoctrine()->getManager()->getRepository('PTRORencontresBundle:Photo');
         $photos = $repositoryPhoto->getPhotosProfile($user) ;
-        //var_dump($user);die();
         return $this->render('@FOSUser/Profile/show.html.twig', array(
             'profil' => $user,
             'photos' => $photos,
+            'percent' => $percent,
         ));
     }
 
