@@ -47,8 +47,23 @@ class ProfileController extends BaseController
         $formPhoto   = $this->get('form.factory')->create(PhotoType::class, $photo);
 
         if ($request->isMethod('POST') && $formPhoto->handleRequest($request)->isValid()) {
-            $photo->setOrdre(1);
+
+
+
+            //On définit l'ordre de la photo
+            $repositoryPhoto = $this->getDoctrine()->getManager()->getRepository('PTRORencontresBundle:Photo');
+            $ordre = $repositoryPhoto->getOrdreMax($this->getUser());
+            if($ordre != null){
+                $ordre++;
+            }else{
+                $ordre = 1;
+            }
+            $photo->setOrdre($ordre);
+
+            //On définit le user de la photo
             $photo->setUtilisateur($this->getUser());
+
+            //On sauvegarde la photo
             $em = $this->getDoctrine()->getManager();
             $em->persist($photo);
             $em->flush();
