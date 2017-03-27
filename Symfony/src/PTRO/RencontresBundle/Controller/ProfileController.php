@@ -48,10 +48,22 @@ class ProfileController extends BaseController
 
         if ($request->isMethod('POST') && $formPhoto->handleRequest($request)->isValid()) {
 
+            //On vérifie qu'il s'agit d'une image sinon on sort
+            $type = exif_imagetype($photo->getFile());
+            if ($type != IMAGETYPE_GIF && $type != IMAGETYPE_JPEG && $type != IMAGETYPE_PNG) {
+                $request->getSession()->getFlashBag()->add('erreur', 'Votre photo doit être dans les formats suivants: JPEG, GIF, PNG.');
+                return $this->redirectToRoute('fos_user_profile_show');
+            }
 
+            $repositoryPhoto = $this->getDoctrine()->getManager()->getRepository('PTRORencontresBundle:Photo');
+
+            //On autorise que 5 photos maximum sinon on sort
+            if($repositoryPhoto->getNbPhoto($this->getUser()) == 5){
+                $request->getSession()->getFlashBag()->add('erreur', 'Vous ne pouvez mettre que 5 photos maximum dans votre profil.');
+                return $this->redirectToRoute('fos_user_profile_show');
+            }
 
             //On définit l'ordre de la photo
-            $repositoryPhoto = $this->getDoctrine()->getManager()->getRepository('PTRORencontresBundle:Photo');
             $ordre = $repositoryPhoto->getOrdreMax($this->getUser());
             if($ordre != null){
                 $ordre++;

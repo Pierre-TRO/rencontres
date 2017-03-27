@@ -72,9 +72,10 @@
 -ajouter un email à l'objet Utilisateur
 
 - Gérer les photos dans mon site de rencontres:
-	- 5 photos max par profil
 	- Au moment de l'ajout d'une nouvelle photo je crée un dossier dans web/ avec l'id de l'utilisateur
 	- dedans j'ajoute la photo uploadée (ordre_main.extension) + la meme "croppé" en 320*230 (ordre_medium.extension)
+	- 5 photos max par profil
+	- n'autoriser que des jpeg, jpg, png, gif
 	- quand l'utilisateur clique sur "faire de cette photo ma photo principale", il faut update le champ ordre dans la bdd et modifier le nom de la photo. On échange l'odre des photos
 	- quand l'utilisateur clique sur "modifier la photo", le cropper apparait, il soumet sa nouvelle photo, sa photo est modifié par ajax et la nouvelle photo s'affiche sans rechargement de la page.
 	- quand l'utilisateur supprime une photo, elle est supprimée de la bdd + suppression des fichiers main, medium et mini + si il y avait d'autres photos dont l'ordre est plus grand on décale d'un cran vers le bas l'ordre des photos.

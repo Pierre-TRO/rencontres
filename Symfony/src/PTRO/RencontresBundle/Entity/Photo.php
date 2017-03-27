@@ -233,9 +233,16 @@ class Photo
         //Création de l' image medium
         $src = $this->getUploadDir().'/'.$this->ordre.'_main.'.$this->extension;
 
+        //Calcul de la largeur et de la hauteur de la miniature (medium)
         $size = getimagesize($src);
-        $size_w = $size[0]; // width naturel
-        $size_h = round($size[0] * (230/320)); // height calculé
+
+        if((320/230) >= ($size[0]/$size[1])){
+            $size_w = $size[0]; // width naturel
+            $size_h = round($size[0] * (230/320)); // height calculé
+        }else{
+            $size_h = $size[1]; // width naturel
+            $size_w = round($size[1] * (320/230)); // height calculé
+        }
 
 
         $dst_medium = $this->getUploadDir().'/'.$this->ordre.'_medium.'.$this->extension;

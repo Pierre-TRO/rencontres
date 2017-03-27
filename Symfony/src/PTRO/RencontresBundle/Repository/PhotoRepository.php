@@ -10,6 +10,7 @@ namespace PTRO\RencontresBundle\Repository;
  */
 class PhotoRepository extends \Doctrine\ORM\EntityRepository
 {
+
     public function getPhotosProfile($user){
         $queryBuilder = $this->createQueryBuilder('p');
         $queryBuilder->where('p.utilisateur=:utilisateur')
@@ -19,6 +20,7 @@ class PhotoRepository extends \Doctrine\ORM\EntityRepository
         $results = $query->getResult();
         return $results;
     }
+
     public function getOrdreMax($user){
         $queryBuilder = $this->createQueryBuilder('p');
         $queryBuilder->select('MAX(p.ordre)');
@@ -28,4 +30,16 @@ class PhotoRepository extends \Doctrine\ORM\EntityRepository
         $result = $query->getSingleScalarResult();
         return $result;
     }
+
+    public function getNbPhoto($user){
+        $queryBuilder = $this->createQueryBuilder('p');
+        $queryBuilder->select('COUNT(p)');
+        $queryBuilder->where('p.utilisateur=:utilisateur')
+            ->setParameter('utilisateur', $user);
+        $query = $queryBuilder->getQuery();
+        $result = $query->getSingleScalarResult();
+        return $result;
+    }
+
+
 }
