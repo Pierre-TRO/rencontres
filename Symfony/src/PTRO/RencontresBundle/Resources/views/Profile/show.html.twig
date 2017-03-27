@@ -31,7 +31,7 @@
 					{% for photo in photos %}
 					<div class="col-xs-6 {% if loop.index == 1%} col-md-12 {% else %} col-md-6 {% endif %}">
 						<span class="thumbnail inline-block">
-							<img src="{{ asset(photo.webPath) }}" alt="{{ photo.nom }}" id="img{{loop.index}}">
+							<img src="{{ asset(photo.webPathMedium) }}" id="img{{loop.index}}">
 							{% if loop.index > 1%}
 							<a class="caption post-content3" style="width:30px;height:30px;line-height:30px;padding:0" href="#" data-toggle="tooltip" data-placement="top" title="Faire de cette photo la photo principale">
 								<span class="glyphicon glyphicon-home"></span>
@@ -63,7 +63,7 @@
 					</div>
 				</div>
                 {% if photos is not empty %}
-					<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+					<div id="diaporama" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 						<div class="modal-dialog modal-lg">
 							<div class="modal-content">
 								<div id="carousel-example-generic" class="carousel" data-ride="carousel">
@@ -74,11 +74,11 @@
 									<div class="carousel-inner">
 										{% for photo in photos%}
 										<div class="item" id="photo{{ loop.index }}">
-											<img class="img-responsive" src="{{ photo.nom }}" alt="...">
+											<img class="img-responsive" src="{{ asset(photo.webPathMain) }}" alt="..." style="display: inline">
 										</div>
 										{% endfor %}
 									</div>
-
+                                    {% if photos|length > 1 %}
 									<!-- Controls -->
 									<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
 										<span class="glyphicon glyphicon-chevron-left"></span>
@@ -86,6 +86,10 @@
 									<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
 										<span class="glyphicon glyphicon-chevron-right"></span>
 									</a>
+									<a data-toggle="modal" data-target=".bs-example-modal-lg" class="caption post-content4" style="width:80px;height:30px;line-height:30px;padding:0" href="#" data-toggle="tooltip" data-placement="top">
+										Fermer <span class="glyphicon glyphicon-remove"></span>
+									</a>
+									{% endif %}
 								</div>
 							</div>
 						</div>

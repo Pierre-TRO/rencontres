@@ -19,4 +19,13 @@ class PhotoRepository extends \Doctrine\ORM\EntityRepository
         $results = $query->getResult();
         return $results;
     }
+    public function getOrdreMax($user){
+        $queryBuilder = $this->createQueryBuilder('p');
+        $queryBuilder->select('MAX(p.ordre)');
+        $queryBuilder->where('p.utilisateur=:utilisateur')
+            ->setParameter('utilisateur', $user);
+        $query = $queryBuilder->getQuery();
+        $result = $query->getSingleScalarResult();
+        return $result;
+    }
 }
