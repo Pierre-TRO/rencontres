@@ -236,17 +236,22 @@ class Photo
         //Calcul de la largeur et de la hauteur de la miniature (medium)
         $size = getimagesize($src);
 
+        $x = 0;
+        $y = 0;
+
         if((320/230) >= ($size[0]/$size[1])){
             $size_w = $size[0]; // width naturel
             $size_h = round($size[0] * (230/320)); // height calculé
+            $y = ($size[1]/2) - ($size_h/2);
         }else{
-            $size_h = $size[1]; // width naturel
-            $size_w = round($size[1] * (320/230)); // height calculé
+            $size_h = $size[1]; // height naturel
+            $size_w = round($size[1] * (320/230)); // width calculé
+            $x = ($size[0]/2) - ($size_w/2);
         }
 
 
         $dst_medium = $this->getUploadDir().'/'.$this->ordre.'_medium.'.$this->extension;
-        $data_medium = array("width" => $size_w,"height" => $size_h, "x" => 0, "y" => 0, "rotate" => 0);
+        $data_medium = array("width" => $size_w,"height" => $size_h, "x" => $x, "y" => $y, "rotate" => 0);
 
         $this->crop($src, $dst_medium, $data_medium);
     }
@@ -259,7 +264,7 @@ class Photo
     {
         // On sauvegarde temporairement le nom du fichier, car il dépend de l'id
         $this->tempFilename = $this->getUploadDir().'/'.$this->ordre.'_main.'.$this->extension;
-        $this->tempFilenameMedium = $this->getUploadDir().'/'.$this->ordre.'_medium.png';
+        $this->tempFilenameMedium = $this->getUploadDir().'/'.$this->ordre.'_medium.'.$this->extension;
     }
 
     /**

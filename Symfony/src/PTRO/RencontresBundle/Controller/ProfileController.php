@@ -34,6 +34,42 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
  */
 class ProfileController extends BaseController
 {
+    public function supprPhotoAction(Request $request, $ordre){
+        $em = $this->getDoctrine()->getManager();
+        $user = $this->getUser();
+        $repositoryPhoto = $em->getRepository('PTRORencontresBundle:Photo');
+        $photo = $repositoryPhoto->getPhotoByOrdreAndUser($user, $ordre);
+        if($photo != null){
+            $em->remove($photo);
+            $em->flush();
+            //On décale d'un cran les photos qu'il reste
+            $nbPhotos = $repositoryPhoto->getOrdreMax($user);
+            if($nbPhotos > $ordre){
+                $photo_dir = $this->get('kernel')->getRootDir() . '/../web/uploads/img/'.$user->getId().'/';
+                for($i = $ordre+1;$i<=$nbPhotos;$i++){
+                    foreach (glob($photo_dir.$i."_*") as $photoName) {
+                        if(strpos($photoName, $i."_main", 0) != false){
+                            $photoARenommer = $repositoryPhoto->getPhotoByOrdreAndUser($user, $i);
+                            $photoARenommer->setOrdre($i - 1);
+                            $photoARenommer->setNom(($i - 1)."_main");
+                            $em->flush();
+                            $nouveauNomPhoto = str_replace($i."_main", ($i-1)."_main", $photoName);
+                            rename($photoName, $nouveauNomPhoto);
+                            //echo $nouveauNomPhoto."<br>";
+                        }
+                        if(strpos($photoName, $i."_medium", 0) != false){
+                            $nouveauNomPhoto = str_replace($i."_medium", ($i-1)."_medium", $photoName);
+                            rename($photoName, $nouveauNomPhoto);
+                            //echo $nouveauNomPhoto."<br><br>";
+                        }
+                    }
+                }
+            }
+            $request->getSession()->getFlashBag()->add('success', 'Votre photo a bien été supprimée.');
+        }
+        return $this->redirectToRoute('fos_user_profile_show');
+    }
+
     public function photoAction(Request $request){
         $photo = new Photo();
         $formPhoto   = $this->get('form.factory')->create(PhotoType::class, $photo);
@@ -79,7 +115,7 @@ class ProfileController extends BaseController
             $em = $this->getDoctrine()->getManager();
             $em->persist($photo);
             $em->flush();
-            $request->getSession()->getFlashBag()->add('photo', 'Votre photo a bien été enregistrée.');
+            $request->getSession()->getFlashBag()->add('success', 'Votre photo a bien été enregistrée.');
         }
         return $this->redirectToRoute('fos_user_profile_show');
     }

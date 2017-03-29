@@ -17,11 +17,12 @@
 
   var console = window.console || { log: function () {} };
 
-  function CropAvatar($element, array_image) {
+  function CropAvatar($element, array_avatar, array_image) {
     this.$container = $element;
     this.array_avatar = new Array();
-    for(var i= 0; i < array_image.length; i++){
-      this.array_avatar.push(this.$container.find(array_image[i]));
+    this.array_image = array_image;
+    for(var i= 0; i < array_avatar.length; i++){
+      this.array_avatar.push(this.$container.find(array_avatar[i]));
     }
     this.$avatarModal = $('#avatar-modal');
     this.$loading = $('#loading');
@@ -63,7 +64,7 @@
 
     addListener: function () {
       for(var i= 0; i < this.array_avatar.length; i++){
-        this.array_avatar[i].nextAll(".modifier").on('click', $.proxy(this.click, this, this.array_avatar[i]));
+        this.array_avatar[i].nextAll(".modifier").on('click', $.proxy(this.click, this, this.array_avatar[i], this.array_image[i]));
       }
       this.$avatarInput.on('change', $.proxy(this.change, this));
       this.$avatarForm.on('submit', $.proxy(this.submit, this));
@@ -131,9 +132,10 @@
       this.$avatarForm.attr('target', target).after($iframe.hide());
     },
 
-    click: function (id) {
+    click: function (id, image_path) {
       this.initPreview(id);
-      this.url = id.attr('src');
+      //this.url = id.attr('src');
+        this.url= image_path;
       this.startCropper();
       this.$avatarModal.modal('show');
     },
@@ -206,7 +208,7 @@
         this.$img = $('<img src="' + this.url + '">');
         this.$avatarWrapper.empty().html(this.$img);
         this.$img.cropper({
-          viewMode: 0,
+          viewMode: 1,
           zoomable: false,
           movable: false,
           aspectRatio: 1.3,

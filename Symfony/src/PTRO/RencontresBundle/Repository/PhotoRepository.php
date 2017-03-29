@@ -41,5 +41,15 @@ class PhotoRepository extends \Doctrine\ORM\EntityRepository
         return $result;
     }
 
+    public function getPhotoByOrdreAndUser($user, $ordre){
+        $queryBuilder = $this->createQueryBuilder('p');
+        $queryBuilder->where('p.utilisateur=:utilisateur')
+            ->andWhere('p.ordre=:ordre')
+            ->setParameters(array('utilisateur' => $user, 'ordre' => $ordre));
+        $query = $queryBuilder->getQuery();
+        $result = $query->getOneOrNullResult();
+        return $result;
+    }
+
 
 }

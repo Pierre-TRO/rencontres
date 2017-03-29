@@ -30,8 +30,8 @@
       <file leaf-file-name="ProfileController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/PTRO/RencontresBundle/Controller/ProfileController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="60" column="60" lean-forward="false" selection-start-line="60" selection-start-column="60" selection-end-line="60" selection-end-column="60" />
+            <state relative-caret-position="-1190">
+              <caret line="117" column="63" lean-forward="false" selection-start-line="117" selection-start-column="63" selection-end-line="117" selection-end-column="63" />
               <folding>
                 <element signature="e#306#355#0#PHP" expanded="true" />
               </folding>
@@ -39,11 +39,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Photo.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Photo.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/PTRO/RencontresBundle/Entity/Photo.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="641">
-              <caret line="243" column="45" lean-forward="false" selection-start-line="243" selection-start-column="45" selection-end-line="243" selection-end-column="45" />
+            <state relative-caret-position="2704">
+              <caret line="255" column="53" lean-forward="false" selection-start-line="255" selection-start-column="53" selection-end-line="255" selection-end-column="53" />
               <folding />
             </state>
           </provider>
@@ -52,19 +52,35 @@
       <file leaf-file-name="PhotoRepository.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/PTRO/RencontresBundle/Repository/PhotoRepository.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="595">
-              <caret line="35" column="38" lean-forward="false" selection-start-line="35" selection-start-column="38" selection-end-line="35" selection-end-column="38" />
+            <state relative-caret-position="743">
+              <caret line="49" column="47" lean-forward="false" selection-start-line="49" selection-start-column="47" selection-end-line="49" selection-end-column="47" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="show.html.twig" pinned="false" current-in-tab="false">
+      <file leaf-file-name="show.html.twig" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/PTRO/RencontresBundle/Resources/views/Profile/show.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1564">
-              <caret line="92" column="38" lean-forward="false" selection-start-line="92" selection-start-column="38" selection-end-line="94" selection-end-column="30" />
-              <folding />
+            <state relative-caret-position="272">
+              <caret line="134" column="40" lean-forward="false" selection-start-line="134" selection-start-column="40" selection-end-line="134" selection-end-column="40" />
+              <folding>
+                <element signature="e#2541#2598#0#HTML" expanded="true" />
+                <element signature="e#8461#8481#0#HTML" expanded="true" />
+                <element signature="e#10601#10633#0#HTML" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/js/main.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="210" column="21" lean-forward="false" selection-start-line="210" selection-start-column="21" selection-end-line="210" selection-end-column="21" />
+              <folding>
+                <marker date="1490798927460" expanded="true" signature="8559:8566" ph="×" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -72,18 +88,28 @@
       <file leaf-file-name="site-rencontre.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/css/site-rencontre.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="742">
-              <caret line="269" column="15" lean-forward="false" selection-start-line="269" selection-start-column="11" selection-end-line="269" selection-end-column="17" />
+            <state relative-caret-position="300">
+              <caret line="48" column="8" lean-forward="false" selection-start-line="48" selection-start-column="8" selection-end-line="48" selection-end-column="8" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="layout_global.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/PTRO/RencontresBundle/Resources/views/layout_global.html.twig">
+      <file leaf-file-name="main.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/css/main.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="25" column="9" lean-forward="false" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
+            <state relative-caret-position="46">
+              <caret line="139" column="1" lean-forward="false" selection-start-line="139" selection-start-column="1" selection-end-line="139" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="routing.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/PTRO/RencontresBundle/Resources/config/routing.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="811">
+              <caret line="76" column="63" lean-forward="false" selection-start-line="76" selection-start-column="53" selection-end-line="76" selection-end-column="63" />
               <folding />
             </state>
           </provider>
@@ -93,26 +119,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>bold</find>
-      <find>Assert</find>
-      <find>'required' =&gt; true</find>
-      <find>adresse e</find>
-      <find>'adresse e-mail est déjà u</find>
-      <find>already_used</find>
-      <find>Registration</find>
-      <find>getFormOptions</find>
-      <find>radio</find>
-      <find>choice</find>
-      <find>choice_widget</find>
-      <find>translation_domain</find>
-      <find>form_row</find>
-      <find>child</find>
-      <find>label_attr</find>
-      <find>{%- block form_label -%}</find>
-      <find>taille</find>
-      <find>checked</find>
-      <find>&lt;label</find>
-      <find>text_</find>
       <find>form_widget</find>
       <find>form_rows</find>
       <find>form_label</find>
@@ -123,15 +129,32 @@
       <find>post-</find>
       <find>modal</find>
       <find>conteneur</find>
+      <find>confirmMessage</find>
+      <find>form</find>
+      <find>form_signale</find>
+      <find>path</find>
+      <find>getWebPathMedium</find>
+      <find>supprPhotoConfirm</find>
+      <find>proxy</find>
+      <find>setordre</find>
+      <find>url</find>
+      <find>img</find>
+      <find>click</find>
+      <find>rotate</find>
+      <find>initPreview</find>
+      <find>array_image</find>
+      <find>array_avatar</find>
+      <find>id_img</find>
+      <find>this.url</find>
+      <find>avatar-wra</find>
+      <find>viewMode</find>
+      <find>avatar</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/PTRO/RencontresBundle/Resources/views/Rencontres/layout_mes_messages.html.twig" />
-        <option value="$PROJECT_DIR$/src/PTRO/RencontresBundle/Resources/views/Rencontres/layout_messages_suppr.html.twig" />
         <option value="$PROJECT_DIR$/src/PTRO/RencontresBundle/Resources/views/Rencontres/layout_mon_profil.html.twig" />
-        <option value="$PROJECT_DIR$/src/PTRO/RencontresBundle/Resources/views/Rencontres/layout_profil.html.twig" />
         <option value="$PROJECT_DIR$/src/PTRO/RencontresBundle/Resources/views/Rencontres/layout_recherche.html.twig" />
         <option value="$PROJECT_DIR$/src/PTRO/RencontresBundle/DataFixtures/ORM/LoadInfos.php" />
         <option value="$PROJECT_DIR$/src/PTRO/RencontresBundle/Resources/views/layout_global.html.twig" />
@@ -171,14 +194,17 @@
         <option value="$PROJECT_DIR$/src/PTRO/RencontresBundle/Resources/views/Rencontres/layout_menu.html.twig" />
         <option value="$PROJECT_DIR$/src/PTRO/RencontresBundle/Form/PhotoType.php" />
         <option value="$PROJECT_DIR$/src/PTRO/RencontresBundle/Resources/views/Registration/register.html.twig" />
-        <option value="$PROJECT_DIR$/src/PTRO/RencontresBundle/Resources/config/routing.yml" />
         <option value="$PROJECT_DIR$/app/Resources/views/Form/photo.html.twig" />
         <option value="$PROJECT_DIR$/src/PTRO/RencontresBundle/Resources/views/Rencontres/layout_photoForm.html.twig" />
         <option value="$PROJECT_DIR$/web/css/site-rencontre.css" />
-        <option value="$PROJECT_DIR$/src/PTRO/RencontresBundle/Resources/views/Profile/show.html.twig" />
-        <option value="$PROJECT_DIR$/src/PTRO/RencontresBundle/Controller/ProfileController.php" />
+        <option value="$PROJECT_DIR$/src/PTRO/RencontresBundle/Resources/views/Rencontres/layout_profil.html.twig" />
+        <option value="$PROJECT_DIR$/src/PTRO/RencontresBundle/Resources/config/routing.yml" />
         <option value="$PROJECT_DIR$/src/PTRO/RencontresBundle/Repository/PhotoRepository.php" />
         <option value="$PROJECT_DIR$/src/PTRO/RencontresBundle/Entity/Photo.php" />
+        <option value="$PROJECT_DIR$/src/PTRO/RencontresBundle/Controller/ProfileController.php" />
+        <option value="$PROJECT_DIR$/src/PTRO/RencontresBundle/Resources/views/Profile/show.html.twig" />
+        <option value="$PROJECT_DIR$/web/js/main.js" />
+        <option value="$PROJECT_DIR$/web/css/main.css" />
       </list>
     </option>
   </component>
@@ -210,7 +236,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -252,6 +277,56 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="uploads" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Symfony" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Symfony" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="web" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Symfony" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Symfony" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="web" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Symfony" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Symfony" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="var" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -318,6 +393,40 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Symfony" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Symfony" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PTRO" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RencontresBundle" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Resources" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Rencontres" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -380,35 +489,14 @@
               <option name="myItemId" value="Resources" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Symfony" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Symfony" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PTRO" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RencontresBundle" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Entity" />
+              <option name="myItemId" value="config" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -419,16 +507,16 @@
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/Resources/views/Form" />
+      <recent name="$PROJECT_DIR$/src/PTRO/RencontresBundle/Controller" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\wamp64\www\rencontres\Symfony\app\Resources\views\Form" />
       <recent name="$PROJECT_DIR$/src/PTRO/RencontresBundle/Resources/views/Registration" />
       <recent name="$PROJECT_DIR$/app/Resources/views/Form" />
       <recent name="$PROJECT_DIR$/src/PTRO/RencontresBundle/Resources/views/FormFlow" />
       <recent name="$PROJECT_DIR$/src/PTRO/RencontresBundle/Resources/views/Form" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/app/Resources/views/Form" />
-      <recent name="$PROJECT_DIR$/src/PTRO/RencontresBundle/Controller" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -537,12 +625,13 @@
       <workItem from="1490385897782" duration="1664000" />
       <workItem from="1490429287104" duration="282000" />
       <workItem from="1490520839261" duration="15619000" />
-      <workItem from="1490622631958" duration="3159000" />
+      <workItem from="1490622631958" duration="3739000" />
+      <workItem from="1490700632789" duration="28263000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="132776000" />
+    <option name="totallyTimeSpent" value="161619000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -555,8 +644,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1096" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17604166" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17604166" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -593,34 +683,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/PTRO/RencontresBundle/Form/CreateUtilisateurFlow.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="30" column="63" lean-forward="false" selection-start-line="30" selection-start-column="63" selection-end-line="30" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/PTRO/RencontresBundle/Resources/views/Security/login.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" column="46" lean-forward="false" selection-start-line="3" selection-start-column="46" selection-end-line="3" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/PTRO/RencontresBundle/DependencyInjection/Configuration.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/PTRO/RencontresBundle/EventListener/CreationEvenement.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/PTRO/RencontresBundle/DependencyInjection/PTRORencontresExtension.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -650,13 +712,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/PTRO/RencontresBundle/Entity/CouleurCheveux.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/PTRO/RencontresBundle/Resources/views/Rencontres/layout_accueil.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -748,13 +803,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/PTRO/RencontresBundle/Resources/views/Rencontres/layout_menu.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="29" column="88" lean-forward="false" selection-start-line="29" selection-start-column="88" selection-end-line="29" selection-end-column="88" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/PTRO/RencontresBundle/Form/RegistrationType.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -804,13 +852,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/PTRO/RencontresBundle/Resources/config/routing.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1675">
-          <caret line="67" column="17" lean-forward="false" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/Form/radio.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="524">
@@ -840,6 +881,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/web/uploads/img/1.png" />
+    <entry file="file://$PROJECT_DIR$/web/uploads/img/1/2_main.png" />
+    <entry file="file://$PROJECT_DIR$/web/uploads/img/1/3_main.jpeg" />
+    <entry file="file://$PROJECT_DIR$/web/uploads/img/1/1_mini.jpeg" />
+    <entry file="file://$PROJECT_DIR$/web/uploads/img/1/1_medium.jpeg" />
+    <entry file="file://$PROJECT_DIR$/web/uploads/img/1/1_main.jpeg" />
+    <entry file="file://$PROJECT_DIR$/web/uploads/img/1/1_medium.png" />
+    <entry file="file://$PROJECT_DIR$/web/uploads/img/1/1_main.png" />
     <entry file="file://$PROJECT_DIR$/src/PTRO/RencontresBundle/Resources/views/layout_global.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
@@ -848,57 +897,107 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/uploads/img/1.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/uploads/img/1/2_main.png" />
-    <entry file="file://$PROJECT_DIR$/web/uploads/img/1/3_main.jpeg" />
-    <entry file="file://$PROJECT_DIR$/web/uploads/img/1/1_mini.jpeg" />
-    <entry file="file://$PROJECT_DIR$/web/uploads/img/1/1_medium.jpeg" />
-    <entry file="file://$PROJECT_DIR$/web/uploads/img/1/1_main.jpeg" />
-    <entry file="file://$PROJECT_DIR$/web/uploads/img/1/1_medium.png" />
-    <entry file="file://$PROJECT_DIR$/web/uploads/img/1/1_main.png" />
-    <entry file="file://$PROJECT_DIR$/src/PTRO/RencontresBundle/Resources/views/Profile/show.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1564">
-          <caret line="92" column="38" lean-forward="false" selection-start-line="92" selection-start-column="38" selection-end-line="94" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/css/site-rencontre.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="742">
-          <caret line="269" column="15" lean-forward="false" selection-start-line="269" selection-start-column="11" selection-end-line="269" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/PTRO/RencontresBundle/Controller/ProfileController.php">
+    <entry file="file://$PROJECT_DIR$/src/PTRO/RencontresBundle/Resources/views/Rencontres/layout_menu.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="493">
-          <caret line="60" column="60" lean-forward="false" selection-start-line="60" selection-start-column="60" selection-end-line="60" selection-end-column="60" />
-          <folding>
-            <element signature="e#306#355#0#PHP" expanded="true" />
-          </folding>
+          <caret line="29" column="88" lean-forward="false" selection-start-line="29" selection-start-column="88" selection-end-line="29" selection-end-column="88" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PTRO/RencontresBundle/Resources/views/Rencontres/layout_profil.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="122" column="48" lean-forward="false" selection-start-line="122" selection-start-column="46" selection-end-line="122" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PTRO/RencontresBundle/Resources/views/Rencontres/layout_accueil.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="32" column="111" lean-forward="false" selection-start-line="32" selection-start-column="96" selection-end-line="32" selection-end-column="118" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PTRO/RencontresBundle/Resources/config/routing.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="811">
+          <caret line="76" column="63" lean-forward="false" selection-start-line="76" selection-start-column="53" selection-end-line="76" selection-end-column="63" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/PTRO/RencontresBundle/Repository/PhotoRepository.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="35" column="38" lean-forward="false" selection-start-line="35" selection-start-column="38" selection-end-line="35" selection-end-column="38" />
+        <state relative-caret-position="743">
+          <caret line="49" column="47" lean-forward="false" selection-start-line="49" selection-start-column="47" selection-end-line="49" selection-end-column="47" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/PTRO/RencontresBundle/Entity/Photo.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="641">
-          <caret line="243" column="45" lean-forward="false" selection-start-line="243" selection-start-column="45" selection-end-line="243" selection-end-column="45" />
+        <state relative-caret-position="2704">
+          <caret line="255" column="53" lean-forward="false" selection-start-line="255" selection-start-column="53" selection-end-line="255" selection-end-column="53" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PTRO/RencontresBundle/Controller/ProfileController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1190">
+          <caret line="117" column="63" lean-forward="false" selection-start-line="117" selection-start-column="63" selection-end-line="117" selection-end-column="63" />
+          <folding>
+            <element signature="e#306#355#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/js/cropper.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="827">
+          <caret line="9" column="27849" lean-forward="false" selection-start-line="9" selection-start-column="27849" selection-end-line="9" selection-end-column="27849" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="210" column="21" lean-forward="false" selection-start-line="210" selection-start-column="21" selection-end-line="210" selection-end-column="21" />
+          <folding>
+            <marker date="1490798927460" expanded="true" signature="8559:8566" ph="×" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/css/site-rencontre.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="48" column="8" lean-forward="false" selection-start-line="48" selection-start-column="8" selection-end-line="48" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/css/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="139" column="1" lean-forward="false" selection-start-line="139" selection-start-column="1" selection-end-line="139" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PTRO/RencontresBundle/Resources/views/Profile/show.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="134" column="40" lean-forward="false" selection-start-line="134" selection-start-column="40" selection-end-line="134" selection-end-column="40" />
+          <folding>
+            <element signature="e#2541#2598#0#HTML" expanded="true" />
+            <element signature="e#8461#8481#0#HTML" expanded="true" />
+            <element signature="e#10601#10633#0#HTML" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

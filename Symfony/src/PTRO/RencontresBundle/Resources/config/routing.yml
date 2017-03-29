@@ -70,3 +70,10 @@ ptro_photo_submit:
     defaults:
         _controller:    PTRORencontresBundle:Profile:photoSubmit
     methods:  [POST]
+
+ptro_rencontres_suppr_photo:
+    path:     /suppr_photo/{ordre}
+    defaults:
+        _controller: 	PTRORencontresBundle:Profile:supprPhoto
+    requirements:
+        id: \d+

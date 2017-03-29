@@ -1,382 +1,438 @@
 {% extends "PTRORencontresBundle::layout_global.html.twig" %}
 
 {% block css %}
-<link rel="stylesheet" href="{{ asset('css/main.css') }}" />
-<link rel="stylesheet" href="{{ asset('css/cropper.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/cropper.min.css') }}"/>
 {% endblock %}
 
 {% block contenu %}
     {% for key,value in profil %}
-		{{ key }}
-	{% endfor %}
-<div class="row">
-	<div class="col-md-1">
-	</div>
-	<div class="col-md-10">
-		{% if photos is empty %}
-			<div class="row conteneur_warning bottom center">
-				Afin de rendre votre profil plus attirant n'hésitez pas à ajouter des photos!
-			</div>
-		{% endif %}
-        {% if percent < 80 %}
-			<div class="row conteneur_warning bottom center">
-				Votre profil est complet à {{ percent }}%. Donnez plus d'informations sur vous si vous voulez être plus attractif!
-			</div>
-        {% endif %}
-		<div class="row conteneur_principal conteneur_principal_recherche bottom">
-			<div class="col-md-3 col-xs-12 center">
-				<!-- Large modal -->
-				<!-- <button class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-lg">Large modal</button> -->
-				<div class="row" id="crop-avatar">
-					{% for photo in photos %}
-					<div class="col-xs-6 {% if loop.index == 1%} col-md-12 {% else %} col-md-6 {% endif %}">
+        {{ key }}
+    {% endfor %}
+    <div class="row">
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-10">
+            {% if photos is empty %}
+                <div class="row conteneur_warning bottom center">
+                    Afin de rendre votre profil plus attirant n'hésitez pas à ajouter des photos!
+                </div>
+            {% endif %}
+            {% if percent < 80 %}
+                <div class="row conteneur_warning bottom center">
+                    Votre profil est complet à {{ percent }}%. Donnez plus d'informations sur vous si vous voulez être
+                    plus attractif!
+                </div>
+            {% endif %}
+            <div class="row conteneur_principal conteneur_principal_recherche bottom">
+                <div class="col-md-3 col-xs-12 center">
+                    <!-- Large modal -->
+                    <!-- <button class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-lg">Large modal</button> -->
+                    <div class="row" id="crop-avatar">
+                        {% for photo in photos %}
+                            <div class="col-xs-6 {% if loop.index == 1 %} col-md-12 {% else %} col-md-6 {% endif %}">
 						<span class="thumbnail inline-block">
-							<img src="{{ asset(photo.webPathMedium) }}" id="img{{loop.index}}">
-							{% if loop.index > 1%}
-							<a class="caption post-content3" style="width:30px;height:30px;line-height:30px;padding:0" href="#" data-toggle="tooltip" data-placement="top" title="Faire de cette photo la photo principale">
+							<img src="{{ asset(photo.webPathMedium) }}" id="img{{ loop.index }}">
+                            {% if loop.index > 1 %}
+                                <button class="caption post-content3"
+                                   style="width:30px;height:30px;line-height:30px;padding:0" href="#"
+                                   data-toggle="tooltip" data-placement="top"
+                                   title="Faire de cette photo la photo principale">
 								<span class="glyphicon glyphicon-home"></span>
-							</a>
-							{% endif %}
-							<a class="caption post-content modifier" style="width:30px;height:30px;line-height:30px;padding:0" href="#" data-toggle="tooltip" data-placement="top" title="Modifier la miniature de la photo">
+							</button>
+                            {% endif %}
+                            <button class="caption post-content modifier"
+                               style="width:30px;height:30px;line-height:30px;padding:0" href="#" data-toggle="tooltip"
+                               data-placement="top" title="Modifier la miniature de la photo">
 								<span class="glyphicon glyphicon-pencil"></span>
-							</a>
-							<a class="caption post-content2" style="width:30px;height:30px;line-height:30px;padding:0" href="#" data-toggle="tooltip" data-placement="top" title="Supprimer cette photo">
+							</button>
+							<button class="caption post-content2" style="width:30px;height:30px;line-height:30px;padding:0"
+                               href="#" data-toggle="tooltip" data-placement="top" title="Supprimer cette photo" onclick="supprPhotoConfirm('{{ path('ptro_rencontres_suppr_photo', {'ordre': photo.ordre }) }}')">
 								<span class="glyphicon glyphicon-remove"></span>
-							</a>
+							</button>
 						</span>
-					</div>
-					{% endfor %}
-                    {% if photos is not empty %}
-						<div class="col-xs-12 ">
-							<a href="#" class="thumbnail" data-toggle="modal" data-target=".bs-example-modal-lg" onclick="$('.carousel-inner > div').removeClass('active');$('#photo1').addClass('active');">
+                            </div>
+                        {% endfor %}
+                        {% if photos is not empty %}
+                            <div class="col-xs-12 ">
+                                <a href="#" class="thumbnail" data-toggle="modal" data-target=".bs-example-modal-lg"
+                                   onclick="$('.carousel-inner > div').removeClass('active');$('#photo1').addClass('active');">
 								<span class="file-input btn btn-block btn-primary btn-file">
-									<span class="glyphicon glyphicon-user" aria-hidden="true"></span> Voir votre diaporama <input type="file">
+									<span class="glyphicon glyphicon-user" aria-hidden="true"></span> Voir votre diaporama <input
+                                            type="file">
 								</span>
-							</a>
-						</div>
-					{% endif %}
-					<div class="col-xs-12 bottom3">
-						{{ render(controller('PTRORencontresBundle:Profile:photo')) }}
-					</div>
-					<div class="col-xs-12 bottom3">
-						<a href="{{ path('fos_user_profile_edit') }}" class="btn btn-primary width100"> <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editer mon profil </a>
-					</div>
-				</div>
-                {% if photos is not empty %}
-					<div id="diaporama" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-						<div class="modal-dialog modal-lg">
-							<div class="modal-content">
-								<div id="carousel-example-generic" class="carousel" data-ride="carousel">
+                                </a>
+                            </div>
+                        {% endif %}
+                        <div class="col-xs-12 bottom3">
+                            {{ render(controller('PTRORencontresBundle:Profile:photo')) }}
+                        </div>
+                        <div class="col-xs-12 bottom3">
+                            <a href="{{ path('fos_user_profile_edit') }}" class="btn btn-primary width100"> <span
+                                        class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editer mon profil
+                            </a>
+                        </div>
+                    </div>
+                    <!-- confirmation message -->
+                    <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="confirmLabel">Vous êtes sûr?</h4>
+                                </div>
+                                <div class="modal-body" id="confirmMessage">
+                                </div>
+                                <div class="modal-footer">
+                                    <input type="hidden" id="pathPhotoASuppr" value=""/>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Non</button>
+                                    <button type="button" class="btn btn-primary" onclick="confirm()">Oui</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% if photos is not empty %}
+                        <div id="diaporama" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog"
+                             aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div id="carousel-example-generic" class="carousel" data-ride="carousel">
 
 
+                                        <!-- Wrapper for slides -->
+                                        <div class="carousel-inner">
+                                            {% for photo in photos %}
+                                                <div class="item" id="photo{{ loop.index }}">
+                                                    <img class="img-responsive" src="{{ asset(photo.webPathMain) }}"
+                                                         alt="..." style="display: inline">
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                        {% if photos|length > 1 %}
+                                            <!-- Controls -->
+                                            <a class="left carousel-control" href="#carousel-example-generic"
+                                               role="button" data-slide="prev">
+                                                <span class="glyphicon glyphicon-chevron-left"></span>
+                                            </a>
+                                            <a class="right carousel-control" href="#carousel-example-generic"
+                                               role="button" data-slide="next">
+                                                <span class="glyphicon glyphicon-chevron-right"></span>
+                                            </a>
+                                        {% endif %}
+                                        <a data-toggle="modal" data-target=".bs-example-modal-lg"
+                                           class="caption post-content4"
+                                           style="width:80px;height:30px;line-height:30px;padding:0" href="#"
+                                           data-toggle="tooltip" data-placement="top">
+                                            Fermer <span class="glyphicon glyphicon-remove"></span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Cropping modal -->
+                        <div class="modal fade" id="avatar-modal" aria-hidden="true"
+                             aria-labelledby="avatar-modal-label" role="dialog" tabindex="-1">
+                            <div class="" style="margin: 15px">
+                                <div class="modal-content">
+                                    <form class="avatar-form" action="crop.php" enctype="multipart/form-data"
+                                          method="post">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title center" id="avatar-modal-label">Redimmensionner la
+                                                miniature</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="avatar-body">
 
-									<!-- Wrapper for slides -->
-									<div class="carousel-inner">
-										{% for photo in photos%}
-										<div class="item" id="photo{{ loop.index }}">
-											<img class="img-responsive" src="{{ asset(photo.webPathMain) }}" alt="..." style="display: inline">
-										</div>
-										{% endfor %}
-									</div>
-                                    {% if photos|length > 1 %}
-									<!-- Controls -->
-									<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-										<span class="glyphicon glyphicon-chevron-left"></span>
-									</a>
-									<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-										<span class="glyphicon glyphicon-chevron-right"></span>
-									</a>
-									<a data-toggle="modal" data-target=".bs-example-modal-lg" class="caption post-content4" style="width:80px;height:30px;line-height:30px;padding:0" href="#" data-toggle="tooltip" data-placement="top">
-										Fermer <span class="glyphicon glyphicon-remove"></span>
-									</a>
-									{% endif %}
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- Cropping modal -->
-					<div class="modal fade" id="avatar-modal" aria-hidden="true" aria-labelledby="avatar-modal-label" role="dialog" tabindex="-1">
-						<div class="" style="margin: 15px">
-							<div class="modal-content">
-								<form class="avatar-form" action="crop.php" enctype="multipart/form-data" method="post">
-								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal">&times;</button>
-									<h4 class="modal-title center" id="avatar-modal-label">Redimmensionner la miniature</h4>
-								</div>
-								<div class="modal-body">
-									<div class="avatar-body">
+                                                <!-- Upload image and data -->
+                                                <div class="avatar-upload">
+                                                    <input type="hidden" class="avatar-src" name="avatar_src">
+                                                    <input type="hidden" class="avatar-data" name="avatar_data">
+                                                    <!--<input type="file" class="avatar-input" id="avatarInput"
+                                                           name="avatar_file">-->
+                                                    <input type="hidden" id="id_img" value=""/>
+                                                </div>
 
-										<!-- Upload image and data -->
-										<div class="avatar-upload">
-											<input type="hidden" class="avatar-src" name="avatar_src">
-											<input type="hidden" class="avatar-data" name="avatar_data">
-											<input type="file" class="avatar-input" id="avatarInput" name="avatar_file">
-											<input type="hidden" id="id_img" value=""/>
-										</div>
+                                                <!-- Crop and preview -->
+                                                <div class="row">
+                                                    <div class="col-md-9 col-xs-12">
+                                                        <div class="avatar-wrapper"></div>
+                                                    </div>
+                                                    <div class="col-md-3 col-xs-12">
+                                                        <div class="avatar-preview preview-lg"
+                                                             style="width:182px;height:140px"></div>
+                                                    </div>
+                                                </div>
 
-										<!-- Crop and preview -->
-										<div class="row">
-											<div class="col-md-9 col-xs-12">
-												<div class="avatar-wrapper"></div>
-											</div>
-											<div class="col-md-3 col-xs-12">
-												<div class="avatar-preview preview-lg" style="width:182px;height:140px"></div>
-											</div>
-										</div>
-
-										<div class="row avatar-btns">
-											<div class="col-md-12">
-												<button class="btn btn-default" type="button" data-dismiss="modal">Annuler</button>
-												<button type="submit" class="btn btn-primary">Redimensionner</button>
-											</div>
-										</div>
-									</div>
-								</div>
-								<!-- <div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-								</div> -->
-								</form>
-							</div>
-						</div>
-					</div><!-- /.modal -->
-				{% endif %}
-				<div id="loading" class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
-			</div>
-				<div class="col-md-9 col-xs-12">
-					A propos de {{ profil.username }}:<br>
-					Mon slogan: {{ profil.titre }}<br>
-					Ma description: {{ profil.description|raw }}<br><br>
-					<div class="table-responsive">
-						<table class="table table-bordered table-condensed">
-							<tr>
-								<th colspan="2" class="center">
-									Informations générales
-								</th>
-							</tr>
-							<tr>
-								<th style="width:40%">
-									Genre
-								</th>
-								<td style="width:60%">
-									{{ profil.genre.nom }}
-								</td>
-							</tr>
-							<tr>
-								<th>
-									Âge
-								</th>
-								<td>
-									{{ profil.age }} ans
-								</td>
-							</tr>
-							<tr>
-								<th>
-									Taille
-								</th>
-								<td>
-									{{ profil.taille }}
-								</td>
-							</tr>
-							<tr>
-								<th>
-									Poids
-								</th>
-								<td>
-									{{ profil.poids }}
-								</td>
-							</tr>
-							<tr>
-								<th>
-									Silhouette
-								</th>
-								<td>
-									{{ profil.physique.nom }}
-								</td>
-							</tr>
-							<tr>
-								<th>
-									Yeux
-								</th>
-								<td>
-									{% if profil.couleurYeux.nom is defined %}
-										{{ profil.couleurYeux.nom }}
-									{% endif %}
-								</td>
-							</tr>
-							<tr>
-								<th>
-									Cheveux
-								</th>
-								<td>
+                                                <div class="row avatar-btns">
+                                                    <div class="col-md-12">
+                                                        <button class="btn btn-default" type="button"
+                                                                data-dismiss="modal">Annuler
+                                                        </button>
+                                                        <button type="submit" class="btn btn-primary">Redimensionner
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div> -->
+                                    </form>
+                                </div>
+                            </div>
+                        </div><!-- /.modal -->
+                    {% endif %}
+                    <div id="loading" class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
+                </div>
+                <div class="col-md-9 col-xs-12">
+                    A propos de {{ profil.username }}:<br>
+                    Mon slogan: {{ profil.titre }}<br>
+                    Ma description: {{ profil.description|raw }}<br><br>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-condensed">
+                            <tr>
+                                <th colspan="2" class="center">
+                                    Informations générales
+                                </th>
+                            </tr>
+                            <tr>
+                                <th style="width:40%">
+                                    Genre
+                                </th>
+                                <td style="width:60%">
+                                    {{ profil.genre.nom }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    Âge
+                                </th>
+                                <td>
+                                    {{ profil.age }} ans
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    Taille
+                                </th>
+                                <td>
+                                    {{ profil.taille }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    Poids
+                                </th>
+                                <td>
+                                    {{ profil.poids }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    Silhouette
+                                </th>
+                                <td>
+                                    {{ profil.physique.nom }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    Yeux
+                                </th>
+                                <td>
                                     {% if profil.couleurYeux.nom is defined %}
-										{{ profil.couleurYeux.nom }}
+                                        {{ profil.couleurYeux.nom }}
                                     {% endif %}
-								</td>
-							</tr>
-							<tr>
-								<th>
-									Etat civil
-								</th>
-								<td>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    Cheveux
+                                </th>
+                                <td>
+                                    {% if profil.couleurYeux.nom is defined %}
+                                        {{ profil.couleurYeux.nom }}
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    Etat civil
+                                </th>
+                                <td>
                                     {% if profil.etatCivil.nom is defined %}
-										{{ profil.etatCivil.nom }}
-									{% endif %}
-								</td>
-							</tr>
-							<tr>
-								<th>
-									Relation souhaitée
-								</th>
-								<td>
-                                    {% if profil.relation.nom is defined %}
-										{{ profil.relation.nom }}
-									{% endif %}
-								</td>
-							</tr>
-							<tr>
-								<th>
-									Orientation
-								</th>
-								<td>
-									{% if profil.orientation.nom is defined %}
-										{{ profil.orientation.nom }}
+                                        {{ profil.etatCivil.nom }}
                                     {% endif %}
-								</td>
-							</tr>
-							<tr>
-								<th>
-									Emploi
-								</th>
-								<td>
-									{{ profil.emploi }}
-								</td>
-							</tr>
-							<tr>
-								<th>
-									Région / Département
-								</th>
-								<td>
-									{{ profil.departement.region.nom }} / {{ profil.departement.nom }}
-								</td>
-							</tr>
-							<tr>
-								<th>
-									Membre depuis
-								</th>
-								<td>
-									{{ profil.dateCreation|date("m/d/Y") }}
-								</td>
-							</tr>
-							<tr>
-								<th>
-									Vues
-								</th>
-								<td>
-									{{ profil.vues }}
-								</td>
-							</tr>
-						</table>
-					</div><br>
-					<div class="table-responsive">
-						<table class="table table-bordered table-condensed">
-							<tr>
-								<th colspan="2" class="center">
-									Style de vie
-								</th>
-							</tr>
-							<tr>
-								<th style="width:40%">
-									Hobbie(s)
-								</th>
-								<td style="width:60%">
-									{% for hobbie in profil.hobbies %}
-										{% if hobbie is not empty %}
-											{{ hobbie }}{% if loop.last == false %}, {% endif %}
-										{% endif %}
-									{% endfor %}
-								</td>
-							</tr>
-							<tr>
-								<th>
-									sport(s) pratiqué(s)
-								</th>
-								<td>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    Relation souhaitée
+                                </th>
+                                <td>
+                                    {% if profil.relation.nom is defined %}
+                                        {{ profil.relation.nom }}
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    Orientation
+                                </th>
+                                <td>
+                                    {% if profil.orientation.nom is defined %}
+                                        {{ profil.orientation.nom }}
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    Emploi
+                                </th>
+                                <td>
+                                    {{ profil.emploi }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    Région / Département
+                                </th>
+                                <td>
+                                    {{ profil.departement.region.nom }} / {{ profil.departement.nom }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    Membre depuis
+                                </th>
+                                <td>
+                                    {{ profil.dateCreation|date("m/d/Y") }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    Vues
+                                </th>
+                                <td>
+                                    {{ profil.vues }}
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <br>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-condensed">
+                            <tr>
+                                <th colspan="2" class="center">
+                                    Style de vie
+                                </th>
+                            </tr>
+                            <tr>
+                                <th style="width:40%">
+                                    Hobbie(s)
+                                </th>
+                                <td style="width:60%">
+                                    {% for hobbie in profil.hobbies %}
+                                        {% if hobbie is not empty %}
+                                            {{ hobbie }}{% if loop.last == false %}, {% endif %}
+                                        {% endif %}
+                                    {% endfor %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    sport(s) pratiqué(s)
+                                </th>
+                                <td>
                                     {% for sport in profil.sports %}
                                         {% if sport is not empty %}
-                                        	{{ sport }}{% if loop.last == false %}, {% endif %}
+                                            {{ sport }}{% if loop.last == false %}, {% endif %}
                                         {% endif %}
                                     {% endfor %}
-								</td>
-							</tr>
-							<tr>
-								<th>
-									Qualité(s)
-								</th>
-								<td>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    Qualité(s)
+                                </th>
+                                <td>
                                     {% for qualite in profil.qualites %}
                                         {% if qualite is not empty %}
-                                        	{{ qualite }}{% if loop.last == false %}, {% endif %}
+                                            {{ qualite }}{% if loop.last == false %}, {% endif %}
                                         {% endif %}
                                     {% endfor %}
-								</td>
-							</tr>
-							<tr>
-								<th>
-									défaut(s)
-								</th>
-								<td>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    défaut(s)
+                                </th>
+                                <td>
                                     {% for defaut in profil.defauts %}
                                         {% if defaut is not empty %}
-                                        	{{ defaut }}{% if loop.last == false %}, {% endif %}
+                                            {{ defaut }}{% if loop.last == false %}, {% endif %}
                                         {% endif %}
                                     {% endfor %}
-								</td>
-							</tr>
-							<tr>
-								<th>
-									Cigarettes?
-								</th>
-								<td>
-									{% if profil.cigarette.nom is defined %}
-										{{ profil.cigarette.nom }}
-									{% endif %}
-								</td>
-							</tr>
-							<tr>
-								<th>
-									Alcool?
-								</th>
-								<td>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    Cigarettes?
+                                </th>
+                                <td>
+                                    {% if profil.cigarette.nom is defined %}
+                                        {{ profil.cigarette.nom }}
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    Alcool?
+                                </th>
+                                <td>
                                     {% if profil.alcool.nom is defined %}
                                         {{ profil.alcool.nom }}
                                     {% endif %}
-								</td>
-							</tr>
-						</table>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="col-md-1">
-	</div>
-</div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-1">
+        </div>
+    </div>
 {% endblock %}
 {% block javascript %}
-	<script src="{{ asset('js/cropper.min.js') }}"></script>
-	<script src="{{ asset('js/main.js') }}"></script>
-	<script>
-	var array_image = new Array();
-	array_image.push('#img1');
-	array_image.push('#img2');
-	array_image.push('#img3');
-	array_image.push('#img4');
-	array_image.push('#img5');
-	$(function () {
-		return new CropAvatar($('#crop-avatar'), array_image);
-	});
-	$(function () {
-  		$('[data-toggle="tooltip"]').tooltip({ trigger: "hover" })
-	});
-	</script>
+    <script src="{{ asset('js/cropper.min.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
+    <script>
+        var array_avatar = new Array();
+        var array_image = new Array();
+
+        {% for photo in photos %}
+            array_avatar.push('#img{{ loop.index }}');
+            array_image.push('{{ asset(photo.webPathMain) }}');
+        {% endfor %}
+
+        $(function () {
+            return new CropAvatar($('#crop-avatar'), array_avatar, array_image);
+        });
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip({trigger: "hover"})
+        });
+
+        function supprPhotoConfirm(path){
+            $('#confirmMessage').text('Voulez-vous supprimer cette photo?');
+            $('#confirmModal').modal('show');
+            $('#pathPhotoASuppr').val(path);
+        }
+
+        function confirm() {
+            //alert($("#pathPhotoASuppr").val());
+            window.location.href =$("#pathPhotoASuppr").val();
+        }
+    </script>
 {% endblock %}
