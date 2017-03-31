@@ -22,9 +22,11 @@ use FOS\UserBundle\Controller\ProfileController as BaseController;
 use PTRO\RencontresBundle\Entity\Photo;
 use PTRO\RencontresBundle\Form\PhotoType;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Tests\JsonResponseTest;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
@@ -233,5 +235,14 @@ class ProfileController extends BaseController
             'form' => $form->createView(),
             'flow' => $flow,
         ));
+    }
+
+    public function modifMiniatureAction(Request $request)
+    {
+        if($request->isXmlHttpRequest()){
+            $data = $request->get('avatar_data');
+            return new JsonResponse(array('data' => json_encode($data)));
+        }
+        return new JsonResponse();
     }
 }

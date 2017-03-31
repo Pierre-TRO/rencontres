@@ -77,3 +77,8 @@ ptro_rencontres_suppr_photo:
         _controller: 	PTRORencontresBundle:Profile:supprPhoto
     requirements:
         id: \d+
+
+ptro_rencontres_modif_miniature_ajax:
+    path:     /modif_miniature_ajax
+    defaults:
+        _controller:    PTRORencontresBundle:Profile:modifMiniature

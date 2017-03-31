@@ -87,7 +87,7 @@
       var url = id.attr('src');
 
       this.$avatarPreview.html('<img src="' + url + '">');
-      this.$avatarForm.find("#id_img").attr('value', id.attr('id'));
+      this.$avatarForm.find("#id_img").attr('value', url);
     },
 
     initIframe: function () {
@@ -169,9 +169,9 @@
     },
 
     submit: function () {
-      if (!this.$avatarSrc.val() && !this.$avatarInput.val()) {
+      /*if (!this.$avatarSrc.val() && !this.$avatarInput.val()) {
         return false;
-      }
+      }*/
 
       if (this.support.formData) {
         this.ajaxUpload();
