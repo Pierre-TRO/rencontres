@@ -240,8 +240,26 @@ class ProfileController extends BaseController
     public function modifMiniatureAction(Request $request)
     {
         if($request->isXmlHttpRequest()){
-            $data = $request->get('avatar_data');
-            return new JsonResponse(array('data' => json_encode($data)));
+            //On récupère les variables ajax
+            $data = json_decode(stripslashes($request->get('avatar_data')), true);
+            $id_photo = $request->get('id_photo');
+            $id_img = $request->get('id_img');
+
+            //On va chercher la photo concernée
+            $em = $this->getDoctrine()->getManager();
+            $repositoryPhoto = $em->getRepository('PTRORencontresBundle:Photo');
+            $photo = $repositoryPhoto->find($id_photo);
+
+            //On modifie la miniature
+            $photo->modifyMiniature($data);
+
+            $response = array(
+                'state'  => 200,
+                'message' => $photo->msg,
+                'result' => $id_img
+            );
+
+            return new JsonResponse($response);
         }
         return new JsonResponse();
     }

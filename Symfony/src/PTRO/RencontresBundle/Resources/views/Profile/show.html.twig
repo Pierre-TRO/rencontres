@@ -32,7 +32,7 @@
                         {% for photo in photos %}
                             <div class="col-xs-6 {% if loop.index == 1 %} col-md-12 {% else %} col-md-6 {% endif %}">
 						<span class="thumbnail inline-block">
-							<img src="{{ asset(photo.webPathMedium) }}" id="img{{ loop.index }}">
+							<img src="{{ asset(photo.webPathMedium) }}?{{ date().timestamp }}" id="img{{ loop.index }}">
                             {% if loop.index > 1 %}
                                 <button class="caption post-content3"
                                    style="width:30px;height:30px;line-height:30px;padding:0" href="#"
@@ -150,7 +150,7 @@
                                                     <input type="hidden" class="avatar-data" name="avatar_data">
                                                     <!--<input type="file" class="avatar-input" id="avatarInput"
                                                            name="avatar_file">-->
-                                                    <input type="hidden" id="id_img" value=""/>
+                                                    <input type="hidden" id="id_img" name="id_img" value=""/>
                                                     <input type="hidden" id="id_photo" name="id_photo" value=""/>
                                                 </div>
 

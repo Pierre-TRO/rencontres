@@ -87,7 +87,7 @@
       var url = id.attr('src');
 
       this.$avatarPreview.html('<img src="' + url + '">');
-      this.$avatarForm.find("#id_img").attr('value', url);
+      this.$avatarForm.find("#id_img").attr('value', id.attr('id'));
     },
 
     initIframe: function () {
@@ -322,10 +322,12 @@
 
     cropDone: function () {
       var id = this.$avatarForm.find('#id_img').attr('value');
+      alert(id+ "  " +this.url);
       this.$avatarForm.get(0).reset();
       for(var i= 0; i < this.array_avatar.length; i++){
-        if(id == this.array_avatar[i].attr('id'))
-          this.array_avatar[i].attr('src', this.url);
+        if(id == this.array_avatar[i].attr('id')){
+            this.array_avatar[i].attr('src', this.url+"1");
+        }
       }
       this.stopCropper();
       this.$avatarModal.modal('hide');

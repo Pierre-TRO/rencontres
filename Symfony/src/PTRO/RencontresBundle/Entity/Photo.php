@@ -56,6 +56,8 @@ class Photo
 
     private $tempFilenameMedium;
 
+    public $msg;
+
     /**
      * Get id
      *
@@ -298,6 +300,15 @@ class Photo
     public function getWebPathMain()
     {
         return 'uploads/img/'.$this->utilisateur->getId().'/'.$this->getOrdre().'_main.'.$this->getExtension();
+    }
+
+    public function modifyMiniature($data){
+
+        $src = $this->getUploadDir().'/'.$this->ordre.'_main.'.$this->extension;
+
+        $dst_medium = $this->getUploadDir().'/'.$this->ordre.'_medium.'.$this->extension;
+
+        $this->crop($src, $dst_medium, $data);
     }
 
     public function crop($src, $dst, $data) {
