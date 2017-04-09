@@ -302,6 +302,16 @@ class Photo
         return 'uploads/img/'.$this->utilisateur->getId().'/'.$this->getOrdre().'_main.'.$this->getExtension();
     }
 
+    public function getDirPathMedium()
+    {
+        return __DIR__.'/../../../../web/uploads/img/'.$this->utilisateur->getId().'/'.$this->getOrdre().'_medium.'.$this->getExtension();
+    }
+
+    public function getDirPathMain()
+    {
+        return __DIR__.'/../../../../web/uploads/img/'.$this->utilisateur->getId().'/'.$this->getOrdre().'_main.'.$this->getExtension();
+    }
+
     public function modifyMiniature($data){
 
         $src = $this->getUploadDir().'/'.$this->ordre.'_main.'.$this->extension;
@@ -340,10 +350,10 @@ class Photo
             $src_img_w = $size_w;
             $src_img_h = $size_h;
 
-            $degrees = $data['rotate'];
+            //$degrees = $data['rotate'];
 
             // Rotate the source image
-            if (is_numeric($degrees) && $degrees != 0) {
+            /*if (is_numeric($degrees) && $degrees != 0) {
                 // PHP's degrees is opposite to CSS's degrees
                 $new_img = imagerotate( $src_img, -$degrees, imagecolorallocatealpha($src_img, 0, 0, 0, 127) );
 
@@ -359,7 +369,7 @@ class Photo
                 // Fix rotated image miss 1px issue when degrees < 0
                 $src_img_w -= 1;
                 $src_img_h -= 1;
-            }
+            }*/
 
             $tmp_img_w = $data['width'];
             $tmp_img_h = $data['height'] ;

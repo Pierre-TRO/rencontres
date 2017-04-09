@@ -17,21 +17,21 @@
 
   var console = window.console || { log: function () {} };
 
-  function CropAvatar($element, array_avatar, array_image) {
+  function CropAvatar($element, array_id_miniature, array_image) {
     this.$container = $element;
-    this.array_avatar = new Array();
+    this.array_id_miniature = new Array();
     this.array_image = array_image;
-    for(var i= 0; i < array_avatar.length; i++){
-      this.array_avatar.push(this.$container.find(array_avatar[i]));
+    for(var i= 0; i < array_id_miniature.length; i++){
+      this.array_id_miniature.push(this.$container.find(array_id_miniature[i]));
     }
     this.$avatarModal = $('#avatar-modal');
     this.$loading = $('#loading');
 
     this.$avatarForm = this.$avatarModal.find('.avatar-form');
     this.$avatarUpload = this.$avatarForm.find('.avatar-upload');
-    this.$avatarSrc = this.$avatarForm.find('.avatar-src');
+    //this.$avatarSrc = this.$avatarForm.find('.avatar-src');
     this.$avatarData = this.$avatarForm.find('.avatar-data');
-    this.$avatarInput = this.$avatarForm.find('.avatar-input');
+    //this.$avatarInput = this.$avatarForm.find('.avatar-input');
     this.$avatarSave = this.$avatarForm.find('.avatar-save');
     this.$avatarBtns = this.$avatarForm.find('.avatar-btns');
 
@@ -54,7 +54,7 @@
       this.support.datauri = this.support.fileList && this.support.blobURLs;
 
       if (!this.support.formData) {
-        this.initIframe();
+        //this.initIframe();
       }
 
       //this.initTooltip();
@@ -63,10 +63,10 @@
     },
 
     addListener: function () {
-      for(var i= 0; i < this.array_avatar.length; i++){
-        this.array_avatar[i].nextAll(".modifier").on('click', $.proxy(this.click, this, this.array_avatar[i], this.array_image[i]));
+      for(var i= 0; i < this.array_id_miniature.length; i++){
+        this.array_id_miniature[i].nextAll(".modifier").on('click', $.proxy(this.click, this, this.array_id_miniature[i], this.array_image[i]));
       }
-      this.$avatarInput.on('change', $.proxy(this.change, this));
+      //this.$avatarInput.on('change', $.proxy(this.change, this));
       this.$avatarForm.on('submit', $.proxy(this.submit, this));
       this.$avatarBtns.on('click', $.proxy(this.rotate, this));
     },
@@ -87,10 +87,11 @@
       var url = id.attr('src');
 
       this.$avatarPreview.html('<img src="' + url + '">');
-      this.$avatarForm.find("#id_img").attr('value', id.attr('id'));
+        this.$avatarForm.find("#id_img").attr('value', id.attr('id'));
+        this.$avatarForm.find("#url_img").attr('value', url);
     },
 
-    initIframe: function () {
+    /*initIframe: function () {
       var target = 'upload-iframe-' + (new Date()).getTime();
       var $iframe = $('<iframe>').attr({
             name: target,
@@ -130,7 +131,7 @@
 
       this.$iframe = $iframe;
       this.$avatarForm.attr('target', target).after($iframe.hide());
-    },
+    },*/
 
     click: function (id, image_path) {
       this.initPreview(id);
@@ -140,7 +141,7 @@
       this.$avatarModal.modal('show');
     },
 
-    change: function () {
+    /*change: function () {
       var files;
       var file;
 
@@ -166,7 +167,7 @@
           this.syncUpload();
         }
       }
-    },
+    },*/
 
     submit: function () {
       /*if (!this.$avatarSrc.val() && !this.$avatarInput.val()) {
@@ -179,7 +180,7 @@
       }
     },
 
-    rotate: function (e) {
+    /*rotate: function (e) {
       var data;
 
       if (this.active) {
@@ -189,15 +190,15 @@
           this.$img.cropper(data.method, data.option);
         }
       }
-    },
+    },*/
 
-    isImageFile: function (file) {
+    /*isImageFile: function (file) {
       if (file.type) {
         return /^image\/\w+$/.test(file.type);
       } else {
         return /\.(jpg|jpeg|png|gif)$/.test(file);
       }
-    },
+    },*/
 
     startCropper: function () {
       var _this = this;
@@ -224,8 +225,8 @@
                   '{"x":' + e.x,
                   '"y":' + e.y,
                   '"height":' + e.height,
-                  '"width":' + e.width,
-                  '"rotate":' + e.rotate + '}'
+                  '"width":' + e.width/*,
+                  '"rotate":' + e.rotate */+ '}'
                 ].join();
 
             _this.$avatarData.val(json);
@@ -291,19 +292,19 @@
       console.log(data);
 
       if ($.isPlainObject(data) && data.state === 200) {
-        if (data.result) {
-          this.url = data.result;
+        if (data.state) {
+          //this.url = data.result;
 
           if (this.support.datauri || this.uploaded) {
             this.uploaded = false;
             this.cropDone();
           } else {
             this.uploaded = true;
-            this.$avatarSrc.val(this.url);
+            //this.$avatarSrc.val(this.url);
             this.startCropper();
           }
 
-          this.$avatarInput.val('');
+          //this.$avatarInput.val('');
         } else if (data.message) {
           this.alert(data.message);
         }
@@ -321,14 +322,10 @@
     },
 
     cropDone: function () {
-      var id = this.$avatarForm.find('#id_img').attr('value');
-      alert(id+ "  " +this.url);
+      var id_img = this.$avatarForm.find('#id_img').attr('value');
+      var url_img = this.$avatarForm.find('#url_img').attr('value');
+      $("#"+id_img).attr('src', url_img+"1");
       this.$avatarForm.get(0).reset();
-      for(var i= 0; i < this.array_avatar.length; i++){
-        if(id == this.array_avatar[i].attr('id')){
-            this.array_avatar[i].attr('src', this.url+"1");
-        }
-      }
       this.stopCropper();
       this.$avatarModal.modal('hide');
     },

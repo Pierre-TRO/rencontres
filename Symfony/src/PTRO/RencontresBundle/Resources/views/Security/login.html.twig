@@ -29,6 +29,6 @@
             <input type="hidden" name="_failure_path" value="{{ app.session.get('current_route') }}" />
             <input class="btn btn-primary" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
         </form>
-        <li><a href="#" class="center gris">Vous avez oublié votre password?</a></li>
+        <li><a href="{{ path('fos_user_resetting_request') }}" class="center gris">Vous avez oublié votre password?</a></li>
     </ul>
 </li>

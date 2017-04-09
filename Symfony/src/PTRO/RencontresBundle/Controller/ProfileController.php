@@ -36,6 +36,30 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
  */
 class ProfileController extends BaseController
 {
+    public function changePhotoPrincipaleAction(Request $request, $ordre){
+        $em = $this->getDoctrine()->getManager();
+        $user = $this->getUser();
+        $repositoryPhoto = $em->getRepository('PTRORencontresBundle:Photo');
+
+        //On récupère les photos à switcher
+        $newPhotoPrincipale = $repositoryPhoto->getPhotoByOrdreAndUser($user, $ordre);
+        $oldhotoPrincipale = $repositoryPhoto->getPhotoByOrdreAndUser($user, 1);
+
+        //On switcth le nom et l'extension des photos main et medium
+        rename($newPhotoPrincipale->getDirPathMain(), $oldhotoPrincipale->getDirPathMain().'.tmp');
+        rename($oldhotoPrincipale->getDirPathMain(), $newPhotoPrincipale->getDirPathMain());
+        rename($oldhotoPrincipale->getDirPathMain().'.tmp', $oldhotoPrincipale->getDirPathMain());
+
+        rename($newPhotoPrincipale->getDirPathMedium(), $oldhotoPrincipale->getDirPathMedium().'.tmp');
+        rename($oldhotoPrincipale->getDirPathMedium(), $newPhotoPrincipale->getDirPathMedium());
+        rename($oldhotoPrincipale->getDirPathMedium().'.tmp', $oldhotoPrincipale->getDirPathMedium());
+
+        //On enregistre en base
+        $em->flush();
+
+        return $this->redirectToRoute('fos_user_profile_show');
+    }
+
     public function supprPhotoAction(Request $request, $ordre){
         $em = $this->getDoctrine()->getManager();
         $user = $this->getUser();
@@ -243,7 +267,6 @@ class ProfileController extends BaseController
             //On récupère les variables ajax
             $data = json_decode(stripslashes($request->get('avatar_data')), true);
             $id_photo = $request->get('id_photo');
-            $id_img = $request->get('id_img');
 
             //On va chercher la photo concernée
             $em = $this->getDoctrine()->getManager();
@@ -255,8 +278,7 @@ class ProfileController extends BaseController
 
             $response = array(
                 'state'  => 200,
-                'message' => $photo->msg,
-                'result' => $id_img
+                'message' => $photo->msg
             );
 
             return new JsonResponse($response);

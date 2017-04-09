@@ -951,5 +951,19 @@ class MainController extends Controller
 
         return new Response('mail envoyé');
     }
+
+    public function menuAction(){
+        $user = $this->getUser();
+        $photoMiniature = null;
+        if($user != null){
+            $em = $this->getDoctrine()->getManager();
+            $photoRepository = $em->getRepository('PTRORencontresBundle:Photo');
+            $photoPrincipale = $photoRepository->getPhotoByOrdreAndUser($user,1);
+            if($photoPrincipale != null){
+                $photoMiniature = $photoPrincipale->getWebPathMedium();
+            }
+        }
+        return $this->render('PTRORencontresBundle:Rencontres:layout_menu.html.twig', array("photo_miniature_path" => $photoMiniature));
+    }
 	
 }

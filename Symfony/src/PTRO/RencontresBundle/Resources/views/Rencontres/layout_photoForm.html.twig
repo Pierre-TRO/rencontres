@@ -1,6 +1,6 @@
 {{ form_start(formPhoto, {'action': path('ptro_photo_submit')}) }}
 <span class="file-input btn btn-block btn-primary btn-file">
-    <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Ajouter une photo&hellip; {{ form_widget(formPhoto.file, {'attr': {'onchange': 'form.submit()'}}) }}
+    <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Ajouter une photo&hellip; {{ form_widget(formPhoto.file, {'attr': {'onchange': '$("#loading").fadeIn();form.submit()'}}) }}
 </span>
 {{ form_rest(formPhoto) }}
 {{ form_end(formPhoto) }}

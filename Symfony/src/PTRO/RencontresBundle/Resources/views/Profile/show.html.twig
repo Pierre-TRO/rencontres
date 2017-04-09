@@ -37,7 +37,8 @@
                                 <button class="caption post-content3"
                                    style="width:30px;height:30px;line-height:30px;padding:0" href="#"
                                    data-toggle="tooltip" data-placement="top"
-                                   title="Faire de cette photo la photo principale">
+                                   title="Faire de cette photo la photo principale"
+                                    onclick="$('#loading').fadeIn();window.location.href ='{{ path('ptro_rencontres_change_photo_principale', {'ordre': photo.ordre}) }}'">
 								<span class="glyphicon glyphicon-home"></span>
 							</button>
                             {% endif %}
@@ -103,7 +104,7 @@
                                         <div class="carousel-inner">
                                             {% for photo in photos %}
                                                 <div class="item" id="photo{{ loop.index }}">
-                                                    <img class="img-responsive" src="{{ asset(photo.webPathMain) }}"
+                                                    <img class="img-responsive" src="{{ asset(photo.webPathMain) }}?{{ date().timestamp }}"
                                                          alt="..." style="display: inline">
                                                 </div>
                                             {% endfor %}
@@ -151,6 +152,7 @@
                                                     <!--<input type="file" class="avatar-input" id="avatarInput"
                                                            name="avatar_file">-->
                                                     <input type="hidden" id="id_img" name="id_img" value=""/>
+                                                    <input type="hidden" id="url_img" name="url_img" value=""/>
                                                     <input type="hidden" id="id_photo" name="id_photo" value=""/>
                                                 </div>
 
@@ -184,7 +186,6 @@
                             </div>
                         </div><!-- /.modal -->
                     {% endif %}
-                    <div id="loading" class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
                 </div>
                 <div class="col-md-9 col-xs-12">
                     A propos de {{ profil.username }}:<br>
@@ -410,16 +411,16 @@
     <script src="{{ asset('js/cropper.min.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
     <script>
-        var array_avatar = new Array();
+        var array_id_miniature = new Array();
         var array_image = new Array();
 
         {% for photo in photos %}
-            array_avatar.push('#img{{ loop.index }}');
+            array_id_miniature.push('#img{{ loop.index }}');
             array_image.push('{{ asset(photo.webPathMain) }}');
         {% endfor %}
 
         $(function () {
-            return new CropAvatar($('#crop-avatar'), array_avatar, array_image);
+            return new CropAvatar($('#crop-avatar'), array_id_miniature, array_image);
         });
         $(function () {
             $('[data-toggle="tooltip"]').tooltip({trigger: "hover"})
@@ -432,6 +433,7 @@
         }
 
         function confirm() {
+            $('#loading').fadeIn();
             //alert($("#pathPhotoASuppr").val());
             window.location.href =$("#pathPhotoASuppr").val();
         }

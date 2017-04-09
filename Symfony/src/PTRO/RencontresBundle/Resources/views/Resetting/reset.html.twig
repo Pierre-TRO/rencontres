@@ -1,0 +1,14 @@
+{% extends "PTRORencontresBundle::layout_global.html.twig" %}
+{% trans_default_domain 'FOSUserBundle' %}
+{% block contenu %}
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2 conteneur_principal3 bottom center">
+            {{ form_start(form, { 'action': path('fos_user_resetting_reset', {'token': token}), 'attr': { 'class': 'fos_user_resetting_reset' } }) }}
+            {{ form_widget(form) }}
+            <div>
+                <input type="submit" value="{{ 'resetting.reset.submit'|trans }}" class="btn btn-primary"/>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

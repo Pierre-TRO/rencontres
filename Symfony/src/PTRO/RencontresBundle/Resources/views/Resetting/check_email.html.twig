@@ -1,0 +1,11 @@
+{% extends "PTRORencontresBundle::layout_global.html.twig" %}
+{% trans_default_domain 'FOSUserBundle' %}
+{% block contenu %}
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2 conteneur_principal3 bottom center">
+            <p>
+                {{ 'resetting.check_email'|trans({'%tokenLifetime%': tokenLifetime})|nl2br }}
+            </p>
+        </div>
+    </div>
+{% endblock %}

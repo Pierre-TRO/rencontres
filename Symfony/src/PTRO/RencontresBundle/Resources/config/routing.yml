@@ -82,3 +82,10 @@ ptro_rencontres_modif_miniature_ajax:
     path:     /modif_miniature_ajax
     defaults:
         _controller:    PTRORencontresBundle:Profile:modifMiniature
+
+ptro_rencontres_change_photo_principale:
+    path: /change_photo_principale/{ordre}
+    defaults:
+        _controller: 	PTRORencontresBundle:Profile:changePhotoPrincipale
+    requirements:
+        id: \d+
