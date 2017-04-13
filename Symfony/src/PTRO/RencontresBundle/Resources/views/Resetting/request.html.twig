@@ -2,14 +2,18 @@
 {% trans_default_domain 'FOSUserBundle' %}
 {% block contenu %}
 <div class="row">
-    <div class="col-md-8 col-md-offset-2 conteneur_principal3 bottom center">
-        <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
-            <div>
-                <label for="username">{{ 'resetting.request.username'|trans }}</label>
-                <input type="text" id="username" name="username" required="required" />
+    <div class="col-md-8 col-md-offset-2 conteneur_principal3 bottom ">
+        <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request form-horizontal">
+            <div class="form-group">
+                <label for="username" class="col-sm-3 control-label">{{ 'resetting.request.username'|trans }}</label>
+                <div class="col-sm-9">
+                    <input type="text" id="username" name="username" required="required" class="form-control"/>
+                </div>
             </div>
-            <div>
-                <input type="submit" value="{{ 'resetting.request.submit'|trans }}" class="btn btn-primary"/>
+            <div class="form-group">
+                <div class="col-sm-offset-3 col-sm-9">
+                    <input type="submit" value="{{ 'resetting.request.submit'|trans }}" class="btn btn-primary"/>
+                </div>
             </div>
         </form>
     </div>

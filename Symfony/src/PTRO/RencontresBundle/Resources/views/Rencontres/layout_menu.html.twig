@@ -52,6 +52,7 @@
                             <div  class="image" style="background-image:{% if photo_miniature_path is null %}url('{{ asset('images/anon.jpg') }}'){% else %}url('{{ asset(photo_miniature_path) }}{% endif %}" alt=""></div><span class="login-user">{{ app.user.username }} <span class="caret"></span></span>
                         </a>
                         <ul class="dropdown-menu" style="width:100%">
+                            <li><a href="{{ path('fos_user_change_password') }}" class="">Changer le mot de passe</a></li>
                             <li><a href="{{ path('fos_user_security_logout') }}" class="red">Deconnexion</a></li>
                         </ul>
                     </li>
