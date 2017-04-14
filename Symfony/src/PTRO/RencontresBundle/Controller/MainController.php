@@ -416,7 +416,23 @@ class MainController extends Controller
 	}
 
     public function profilAction($id){
-		$profil = array(
+
+        if($this->getUser()->getId() == $id){
+            return $this->redirectToRoute("fos_user_profile_show");
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        $repoProfil = $em->getRepository("PTRORencontresBundle:Utilisateur");
+        $profil = $repoProfil->findOneById($id);
+
+        if($profil == null){
+            throw $this->createNotFoundException("Ce profil n'existe pas.");
+        }
+
+        $repoPhotos = $em->getRepository("PTRORencontresBundle:Photo");
+        $photos = $repoPhotos->getPhotosProfile($profil->getId());
+
+		/*$profil = array(
 			"pseudo" => "Charlotte",
 			"titre" => "Je cherche à me faire des amis....................",
 			"description" => "Respect et hônnèteté , deux valeurs indispensables pour faire une belle rencontre , faire connaissance et laisser le destin décider........je suis une personne calme et réservée, j'aime la marche , la nature, les animaux, ne suis pas sportive, je suis ici comme beaucoup de personne , rompre la solitude , partager des moments à deux , apprendre à se connaitre , je n'aime pas la foule d..",
@@ -448,9 +464,9 @@ class MainController extends Controller
 			"images" => array("http://placehold.it/300x230/555/000&text=One", "http://placehold.it/300x230/fffccc/000&text=Two","http://placehold.it/300x230/fffccc/000&text=Three","http://placehold.it/300x230/fffccc/000&text=Four","http://placehold.it/300x230/fffccc/000&text=Five"),
 			"images_lg" => array("http://placehold.it/1200x920/555/000&text=One","http://placehold.it/1200x920/fffccc/000&text=Two","http://placehold.it/1200x920/fffccc/000&text=Three","http://placehold.it/1200x920/fffccc/000&text=Four","http://placehold.it/1200x920/fffccc/000&text=Five"),
 			
-		);
+		);*/
 		
-		return $this->render('PTRORencontresBundle:Rencontres:layout_profil.html.twig', array("profil" => $profil));
+		return $this->render('PTRORencontresBundle:Rencontres:layout_profil.html.twig', array("profil" => $profil, "photos" => $photos));
 	}
 
 	public function rechercheAction(){

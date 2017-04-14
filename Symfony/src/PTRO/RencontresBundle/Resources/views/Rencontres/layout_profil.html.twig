@@ -14,10 +14,10 @@
 						<!-- Large modal -->
 						<!-- <button class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-lg">Large modal</button> -->
 						<div class="row">
-							{% for image in profil.images%}
+                            {% for photo in photos %}
 							<div class="col-xs-4 {% if loop.index == 1%} col-md-12 {% else %} col-md-6 {% endif %}">
 								<a href="#" class="thumbnail inline-block" data-toggle="modal" data-target=".bs-example-modal-lg" onclick="$('.carousel-inner > div').removeClass('active');$('#photo{{ loop.index }}').addClass('active');">
-									<img src="{{image}}" alt="...">
+									<img src="{{ asset(photo.webPathMedium )}}" alt="...">
 								</a>
 							</div>
 							{% endfor %}
@@ -111,9 +111,9 @@
 										
 										<!-- Wrapper for slides -->
 										<div class="carousel-inner">
-											{% for image in profil.images_lg%}
+                                            {% for photo in photos %}
 											<div class="item" id="photo{{ loop.index }}">
-												<img class="img-responsive" src="{{image}}" alt="...">
+												<img class="img-responsive" src="{{ asset(photo.webPathMain )}}" alt="...">
 											</div>
 											{% endfor %}
 										</div>
@@ -131,7 +131,7 @@
 						</div>
 					</div>
 					<div class="col-md-9 col-xs-12">
-						A propos de {{ profil.pseudo }}:<br>
+						A propos de {{ profil.username }}:<br>
 						Mon slogan: {{ profil.titre }}<br>
 						Ma description: {{ profil.description }}<br><br>
 						<div class="table-responsive">
@@ -146,7 +146,7 @@
 										Genre
 									</th>
 									<td style="width:60%">
-										{{ profil.genre }}
+										{{ profil.genre.nom }}
 									</td>
 								</tr>
 								<tr>
@@ -178,7 +178,7 @@
 										Silhouette
 									</th>
 									<td>
-										{{ profil.silhouette }}
+										{{ profil.physique.nom }}
 									</td>
 								</tr>
 								<tr>
@@ -186,7 +186,7 @@
 										Yeux
 									</th>
 									<td>
-										{{ profil.yeux }}
+										{{ profil.couleurYeux.nom }}
 									</td>
 								</tr>
 								<tr>
@@ -194,7 +194,7 @@
 										Cheveux
 									</th>
 									<td>
-										{{ profil.cheveux }}
+										{{ profil.couleurCheveux.nom }}
 									</td>
 								</tr>
 								<tr>
@@ -202,7 +202,7 @@
 										Etat civil
 									</th>
 									<td>
-										{{ profil.etat_civil }}
+										{{ profil.etatCivil.nom }}
 									</td>
 								</tr>
 								<tr>
@@ -210,7 +210,7 @@
 										Relation souhaitée
 									</th>
 									<td>
-										{{ profil.relation }}
+										{{ profil.relation.nom }}
 									</td>
 								</tr>
 								<tr>
@@ -218,7 +218,7 @@
 										Orientation
 									</th>
 									<td>
-										{{ profil.orientation }}
+										{{ profil.orientation.nom }}
 									</td>
 								</tr>
 								<tr>
@@ -231,18 +231,10 @@
 								</tr>
 								<tr>
 									<th>
-										Nationalité
-									</th>
-									<td>
-										{{ profil.nationalite }}
-									</td>
-								</tr>
-								<tr>
-									<th>
 										Région / Département / Ville
 									</th>
 									<td>
-										{{ profil.region }} / {{ profil.departement }} / {{ profil.ville }}
+										{{ profil.departement.region.nom }} / {{ profil.departement.nom }}
 									</td>
 								</tr>
 								<tr>
@@ -250,7 +242,7 @@
 										Membre depuis
 									</th>
 									<td>
-										{{ profil.date_inscription }}
+										{{ profil.dateCreation|date("m/d/Y") }}
 									</td>
 								</tr>
 								<tr>
@@ -263,18 +255,10 @@
 								</tr>
 								<tr>
 									<th>
-										Ethnicité
-									</th>
-									<td>
-										{{ profil.ethnie }}
-									</td>
-								</tr>
-								<tr>
-									<th>
 										Dernière visite
 									</th>
 									<td>
-										{{ profil.date_derniere_visite }}
+										{{ profil.lastLogin|date("m/d/Y") }}
 									</td>
 								</tr>
 							</table>
@@ -291,7 +275,11 @@
 										Hobbie(s)
 									</th>
 									<td style="width:60%">
-										{{ profil.hobbies }}
+                                        {% for hobbie in profil.hobbies %}
+                                            {% if hobbie is not empty %}
+                                                {{ hobbie }}{% if loop.last == false %}, {% endif %}
+                                            {% endif %}
+                                        {% endfor %}
 									</td>
 								</tr>
 								<tr>
@@ -299,7 +287,11 @@
 										sport(s) pratiqué(s)
 									</th>
 									<td>
-										{{ profil.sports }}
+                                        {% for sport in profil.sports %}
+                                            {% if sport is not empty %}
+                                                {{ sport }}{% if loop.last == false %}, {% endif %}
+                                            {% endif %}
+                                        {% endfor %}
 									</td>
 								</tr>
 								<tr>
@@ -307,7 +299,11 @@
 										Qualité(s)
 									</th>
 									<td>
-										{{ profil.qualites }}
+                                        {% for qualite in profil.qualites %}
+                                            {% if qualite is not empty %}
+                                                {{ qualite }}{% if loop.last == false %}, {% endif %}
+                                            {% endif %}
+                                        {% endfor %}
 									</td>
 								</tr>
 								<tr>
@@ -315,7 +311,11 @@
 										défaut(s)
 									</th>
 									<td>
-										{{ profil.defauts }}
+                                        {% for defaut in profil.defauts %}
+                                            {% if defaut is not empty %}
+                                                {{ defaut }}{% if loop.last == false %}, {% endif %}
+                                            {% endif %}
+                                        {% endfor %}
 									</td>
 								</tr>
 								<tr>
@@ -323,7 +323,9 @@
 										Cigarettes?
 									</th>
 									<td>
-										{{ profil.cigarette }}
+                                        {% if profil.cigarette.nom is defined %}
+                                            {{ profil.cigarette.nom }}
+                                        {% endif %}
 									</td>
 								</tr>
 								<tr>
@@ -331,7 +333,9 @@
 										Alcool?
 									</th>
 									<td>
-										{{ profil.alcool }}
+                                        {% if profil.alcool.nom is defined %}
+                                            {{ profil.alcool.nom }}
+                                        {% endif %}
 									</td>
 								</tr>
 							</table>
@@ -358,18 +362,18 @@
 			$('#objet_form_group').addClass('has-error');
 		}
 		if($('#Objet').val().trim() != "" && $('#Message').val().trim() != "" ){
-			$('#confirmMessage').text('Voulez-vous envoyer ce message à {{profil.pseudo}}?');
+			$('#confirmMessage').text('Voulez-vous envoyer ce message à {{profil.username}}?');
 			$('#confirmModal').modal('show');
 			form = "message";
 		}
 	}
 	function pokeConfirm(){
-		$('#confirmMessage').text('Voulez-vous envoyer un poke à {{profil.pseudo}}?');
+		$('#confirmMessage').text('Voulez-vous envoyer un poke à {{profil.username}}?');
 		$('#confirmModal').modal('show');
 		form = "poke";
 	}
 	function favoriConfirm(){
-		$('#confirmMessage').text('Voulez-vous ajouter {{profil.pseudo}} dans vos favoris?');
+		$('#confirmMessage').text('Voulez-vous ajouter {{profil.username}} dans vos favoris?');
 		$('#confirmModal').modal('show');
 		form = "favori";
 	}
