@@ -27,51 +27,101 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ResettingController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Controller/ResettingController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="714">
-              <caret line="163" column="55" lean-forward="false" selection-start-line="163" selection-start-column="55" selection-end-line="163" selection-end-column="55" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ResettingFormType.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Form/Type/ResettingFormType.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="38" column="114" lean-forward="false" selection-start-line="38" selection-start-column="114" selection-end-line="38" selection-end-column="114" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="reset.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/PTRO/RencontresBundle/Resources/views/Resetting/reset.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="156" lean-forward="false" selection-start-line="5" selection-start-column="141" selection-end-line="5" selection-end-column="156" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ChangePasswordFormType.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Form/Type/ChangePasswordFormType.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="47" column="39" lean-forward="false" selection-start-line="47" selection-start-column="23" selection-end-line="47" selection-end-column="39" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="change_password.html.twig" pinned="false" current-in-tab="true">
+      <file leaf-file-name="change_password.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/PTRO/RencontresBundle/Resources/views/ChangePassword/change_password.html.twig">
           <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="425">
+              <caret line="25" column="44" lean-forward="false" selection-start-line="25" selection-start-column="44" selection-end-line="25" selection-end-column="44" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="security.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/config/security.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="10" column="53" lean-forward="false" selection-start-line="10" selection-start-column="53" selection-end-line="10" selection-end-column="53" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ProfileController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/PTRO/RencontresBundle/Controller/ProfileController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="65" column="67" lean-forward="false" selection-start-line="65" selection-start-column="47" selection-end-line="65" selection-end-column="67" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SecurityController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/PTRO/RencontresBundle/Controller/SecurityController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="20">
+              <caret line="50" column="14" lean-forward="false" selection-start-line="50" selection-start-column="14" selection-end-line="50" selection-end-column="14" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="login.html.twig" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/PTRO/RencontresBundle/Resources/views/Security/login.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="10" column="31" lean-forward="false" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FOSUserBundle.fr.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.fr.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="19" column="38" lean-forward="false" selection-start-line="19" selection-start-column="38" selection-end-line="19" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="security.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/PTRO/RencontresBundle/Resources/config/routing/security.xml">
+          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="102">
-              <caret line="6" column="138" lean-forward="false" selection-start-line="6" selection-start-column="138" selection-end-line="6" selection-end-column="138" />
+              <caret line="6" column="77" lean-forward="false" selection-start-line="6" selection-start-column="77" selection-end-line="6" selection-end-column="77" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="routing.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/config/routing.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="routing_dev.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/config/routing_dev.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="routing.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/PTRO/RencontresBundle/Resources/config/routing.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="24" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -81,8 +131,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>result</find>
-      <find>cropDone</find>
       <find>img</find>
       <find>initPreview</find>
       <find>alert</find>
@@ -111,6 +159,8 @@
       <find>.image</find>
       <find>cont</find>
       <find>top</find>
+      <find>login</find>
+      <find>mail</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -155,7 +205,6 @@
         <option value="$PROJECT_DIR$/src/PTRO/RencontresBundle/Resources/views/Profile/show.html.twig" />
         <option value="$PROJECT_DIR$/src/PTRO/RencontresBundle/Controller/MainController.php" />
         <option value="$PROJECT_DIR$/src/PTRO/RencontresBundle/Resources/views/layout_global.html.twig" />
-        <option value="$PROJECT_DIR$/app/config/security.yml" />
         <option value="$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Resources/views/Resetting/request_content.html.twig" />
         <option value="$PROJECT_DIR$/web/css/site-rencontre.css" />
         <option value="$PROJECT_DIR$/src/PTRO/RencontresBundle/Resources/views/Resetting/check_email.html.twig" />
@@ -164,9 +213,10 @@
         <option value="$PROJECT_DIR$/src/PTRO/RencontresBundle/Resources/views/Registration/register.html.twig" />
         <option value="$PROJECT_DIR$/src/PTRO/RencontresBundle/Resources/views/Resetting/request.html.twig" />
         <option value="$PROJECT_DIR$/src/PTRO/RencontresBundle/Resources/views/Resetting/reset.html.twig" />
-        <option value="$PROJECT_DIR$/src/PTRO/RencontresBundle/Resources/views/Security/login.html.twig" />
         <option value="$PROJECT_DIR$/src/PTRO/RencontresBundle/Resources/views/Rencontres/layout_menu.html.twig" />
         <option value="$PROJECT_DIR$/src/PTRO/RencontresBundle/Resources/views/ChangePassword/change_password.html.twig" />
+        <option value="$PROJECT_DIR$/app/config/security.yml" />
+        <option value="$PROJECT_DIR$/src/PTRO/RencontresBundle/Resources/views/Security/login.html.twig" />
       </list>
     </option>
   </component>
@@ -353,6 +403,36 @@
               <option name="myItemId" value="Resources" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="translations" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Symfony" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Symfony" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vendor" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="friendsofsymfony" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="user-bundle" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Resources" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -433,6 +513,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Controller" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Symfony" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Symfony" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="var" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -946,7 +1040,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../wamp64/www/vae" />
     <property name="js.eslint.eslintPackage" value="" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
   </component>
@@ -1074,12 +1168,12 @@
       <workItem from="1491572140533" duration="7726000" />
       <workItem from="1491723452538" duration="12213000" />
       <workItem from="1491831513490" duration="2573000" />
-      <workItem from="1492076421224" duration="1887000" />
+      <workItem from="1492076421224" duration="7488000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="201038000" />
+    <option name="totallyTimeSpent" value="206639000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1092,9 +1186,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26510417" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26510417" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25504783" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1131,22 +1224,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/web/uploads/img/1/1_mini.jpeg" />
-    <entry file="file://$PROJECT_DIR$/web/uploads/img/1/1_main.jpeg" />
-    <entry file="file://$PROJECT_DIR$/src/PTRO/RencontresBundle/Resources/views/Rencontres/layout_profil.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="122" column="48" lean-forward="false" selection-start-line="122" selection-start-column="46" selection-end-line="122" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/PTRO/RencontresBundle/Resources/views/Rencontres/layout_accueil.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="32" column="111" lean-forward="false" selection-start-line="32" selection-start-column="96" selection-end-line="32" selection-end-column="118" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/js/cropper.min.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="827">
@@ -1172,14 +1249,6 @@
     <entry file="file://$PROJECT_DIR$/web/uploads/img/1/1_main.png" />
     <entry file="file://$PROJECT_DIR$/web/uploads/img/1/2_medium.jpeg" />
     <entry file="file://$PROJECT_DIR$/web/uploads/img/1/2_main.jpeg" />
-    <entry file="file://$PROJECT_DIR$/src/PTRO/RencontresBundle/Controller/SecurityController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-46">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/PTRO/RencontresBundle/Repository/PhotoRepository.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="550">
@@ -1209,21 +1278,6 @@
         <state relative-caret-position="537">
           <caret line="964" column="9" lean-forward="false" selection-start-line="964" selection-start-column="9" selection-end-line="964" selection-end-column="9" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/PTRO/RencontresBundle/Resources/config/routing/security.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/PTRO/RencontresBundle/Resources/config/routing.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="775">
-          <caret line="88" column="74" lean-forward="false" selection-start-line="88" selection-start-column="53" selection-end-line="88" selection-end-column="74" />
         </state>
       </provider>
     </entry>
@@ -1284,13 +1338,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/security.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="28" column="16" lean-forward="false" selection-start-line="28" selection-start-column="16" selection-end-line="28" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/config/services.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1323,16 +1370,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-164">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/PTRO/RencontresBundle/Controller/ProfileController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2417">
-          <caret line="65" column="67" lean-forward="false" selection-start-line="65" selection-start-column="47" selection-end-line="65" selection-end-column="67" />
-          <folding>
-            <element signature="e#306#355#0#PHP" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1407,22 +1444,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/PTRO/RencontresBundle/Resources/views/Security/login.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="52" lean-forward="false" selection-start-line="2" selection-start-column="52" selection-end-line="2" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/PTRO/RencontresBundle/Resources/views/Rencontres/layout_menu.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="618">
-          <caret line="54" column="88" lean-forward="false" selection-start-line="54" selection-start-column="88" selection-end-line="54" selection-end-column="88" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/PTRO/RencontresBundle/Resources/views/Resetting/reset_content.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1463,10 +1484,95 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/web/images/loading.gif">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/PTRO/RencontresBundle/Resources/views/ChangePassword/change_password.html.twig">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="44" lean-forward="false" selection-start-line="25" selection-start-column="44" selection-end-line="25" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PTRO/RencontresBundle/Controller/ProfileController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="65" column="67" lean-forward="false" selection-start-line="65" selection-start-column="47" selection-end-line="65" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PTRO/RencontresBundle/Resources/views/Rencontres/layout_menu.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="54" column="88" lean-forward="false" selection-start-line="54" selection-start-column="88" selection-end-line="54" selection-end-column="88" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PTRO/RencontresBundle/Controller/SecurityController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="20">
+          <caret line="50" column="14" lean-forward="false" selection-start-line="50" selection-start-column="14" selection-end-line="50" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PTRO/RencontresBundle/Resources/config/routing/security.xml">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
-          <caret line="6" column="138" lean-forward="false" selection-start-line="6" selection-start-column="138" selection-end-line="6" selection-end-column="138" />
+          <caret line="6" column="77" lean-forward="false" selection-start-line="6" selection-start-column="77" selection-end-line="6" selection-end-column="77" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PTRO/RencontresBundle/Resources/config/routing.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="24" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/routing_dev.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/routing.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/security.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="53" lean-forward="false" selection-start-line="10" selection-start-column="53" selection-end-line="10" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.fr.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="38" lean-forward="false" selection-start-line="19" selection-start-column="38" selection-end-line="19" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PTRO/RencontresBundle/Resources/views/Security/login.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="10" column="31" lean-forward="false" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
           <folding />
         </state>
       </provider>
