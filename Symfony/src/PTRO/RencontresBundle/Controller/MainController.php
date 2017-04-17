@@ -2,7 +2,10 @@
 
 namespace PTRO\RencontresBundle\Controller;
 
+use PTRO\RencontresBundle\Entity\Message;
+use PTRO\RencontresBundle\Form\MessageType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Request;
@@ -416,11 +419,22 @@ class MainController extends Controller
 	}
 
     public function profilAction($id){
+        $formMessage = null;
 
-        if($this->getUser()->getId() == $id){
-            return $this->redirectToRoute("fos_user_profile_show");
+        //Si l'utilisateur est connecté
+        if($this->getUser() != null){
+
+            //Si le user consulte son propre profil, on le redirige vers la page "mon profil"
+            if($this->getUser()->getId() == $id){
+                return $this->redirectToRoute("fos_user_profile_show");
+            }
+
+            //On crée les formulaires d'interaction avec l'utilisateur
+            $message = new Message();
+            $formMessage = $this->get('form.factory')->create(MessageType::class, $message);
         }
 
+        //On va chercher les infos du profil à afficher
         $em = $this->getDoctrine()->getManager();
         $repoProfil = $em->getRepository("PTRORencontresBundle:Utilisateur");
         $profil = $repoProfil->findOneById($id);
@@ -429,45 +443,59 @@ class MainController extends Controller
             throw $this->createNotFoundException("Ce profil n'existe pas.");
         }
 
+        //On va chercher les photos
         $repoPhotos = $em->getRepository("PTRORencontresBundle:Photo");
         $photos = $repoPhotos->getPhotosProfile($profil->getId());
-
-		/*$profil = array(
-			"pseudo" => "Charlotte",
-			"titre" => "Je cherche à me faire des amis....................",
-			"description" => "Respect et hônnèteté , deux valeurs indispensables pour faire une belle rencontre , faire connaissance et laisser le destin décider........je suis une personne calme et réservée, j'aime la marche , la nature, les animaux, ne suis pas sportive, je suis ici comme beaucoup de personne , rompre la solitude , partager des moments à deux , apprendre à se connaitre , je n'aime pas la foule d..",
-			"genre" => "femme",
-			"age" => "35",
-			"taille" => "1m77",
-			"poids" => "70",
-			"silhouette" => "mince",
-			"yeux" => "vert",
-			"cheveux" => "châtain",
-			"etat_civil" => "célibataire",
-			"relation" => "amicale",
-			"orientation" => "hétérosexuelle",
-			"emploi" => "coiffeuse",
-			"nationalite" => "française",
-			"region" => "Ile de France",
-			"ville" => "Melun",
-			"departement" => "Seine et Marne",
-			"date_inscription" => "10/2015",
-			"vues" => 102,
-			"ethnie" => "blanc",
-			"date_derniere_visite" => "En ligne",
-			"hobbies" => "Jeux vidéos, informatique, cinéma",
-			"sports" => "natation, vtt, course à pied",
-			"qualites" => "calme, généreux",
-			"defauts" => "indécis",
-			"cigarette" => "Oui",
-			"alcool" => "occasionnelement",
-			"images" => array("http://placehold.it/300x230/555/000&text=One", "http://placehold.it/300x230/fffccc/000&text=Two","http://placehold.it/300x230/fffccc/000&text=Three","http://placehold.it/300x230/fffccc/000&text=Four","http://placehold.it/300x230/fffccc/000&text=Five"),
-			"images_lg" => array("http://placehold.it/1200x920/555/000&text=One","http://placehold.it/1200x920/fffccc/000&text=Two","http://placehold.it/1200x920/fffccc/000&text=Three","http://placehold.it/1200x920/fffccc/000&text=Four","http://placehold.it/1200x920/fffccc/000&text=Five"),
-			
-		);*/
 		
-		return $this->render('PTRORencontresBundle:Rencontres:layout_profil.html.twig', array("profil" => $profil, "photos" => $photos));
+		return $this->render('PTRORencontresBundle:Rencontres:layout_profil.html.twig', array("profil" => $profil, "photos" => $photos, "formMessage" => $formMessage->createView()));
 	}
+
+	public function messageAction(Request $request){
+        //This is optional. Do not do this check if you want to call the same action using a regular request.
+        if (!$request->isXmlHttpRequest()) {
+            return new JsonResponse(array('message' => 'Seul Ajax est autorisé!'), 400);
+        }
+
+        $message = new Message();
+        $form = $this->get('form.factory')->create(MessageType::class, $message);
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            /*$id_receveur = $request->get('id_receveur');
+            $em = $this->getDoctrine()->getManager();
+
+            $em->persist($message);
+            $em->flush();*/
+
+            return new JsonResponse(array('message' => 'Success!', 'data' => ''), 200);
+        }
+
+        $response = new JsonResponse(
+            array(
+                'message' => 'Error',
+                'data' => $this->getErrorMessages($form)),
+                400);
+
+        return $response;
+    }
+
+    // Generate an array contains a key -> value with the errors where the key is the name of the form field
+    protected function getErrorMessages(Form $form)
+    {
+        $errors = array();
+
+        foreach ($form->getErrors() as $key => $error) {
+            $errors[] = $error->getMessage();
+        }
+
+        foreach ($form->all() as $child) {
+            if (!$child->isValid()) {
+                $errors[$child->getName()] = $this->getErrorMessages($child);
+            }
+        }
+
+        return $errors;
+    }
 
 	public function rechercheAction(){
 

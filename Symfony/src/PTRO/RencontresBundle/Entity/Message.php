@@ -3,6 +3,7 @@
 namespace PTRO\RencontresBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Message
@@ -25,6 +26,8 @@ class Message
      * @var string
      *
      * @ORM\Column(name="objet", type="text", nullable=true)
+     *
+     * @Assert\NotBlank(message="Ce champ ne doit pas être vide.", groups={"Message"})
      */
     private $objet;
 
@@ -32,6 +35,8 @@ class Message
      * @var string
      *
      * @ORM\Column(name="contenu", type="text", nullable=true)
+     *
+     * @Assert\NotBlank(message="Ce champ ne doit pas être vide.", groups={"Message"})
      */
     private $contenu;
 

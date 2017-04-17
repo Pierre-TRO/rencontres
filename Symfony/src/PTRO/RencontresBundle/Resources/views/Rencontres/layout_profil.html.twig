@@ -6,9 +6,11 @@
 			<div class="col-md-1">
 			</div>
 			<div class="col-md-10">
+                {% if not is_granted("IS_AUTHENTICATED_REMEMBERED") %}
 				<div class="row conteneur_erreur bottom center">
-					Pour envoyer des messages vous devez être inscrit et connecté!
+					Pour envoyer des messages, des pokes, etc. vous devez être inscrit et connecté!
 				</div>
+				{% endif %}
 				<div class="row conteneur_principal conteneur_principal_recherche bottom">
 					<div class="col-md-3 col-xs-12 center">
 						<!-- Large modal -->
@@ -21,33 +23,51 @@
 								</a>
 							</div>
 							{% endfor %}
-							<div class="col-xs-12 bottom3">
-								<button class="btn btn-primary width100" onclick="favoriConfirm()">  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>Ajouter aux favoris </button>
-								<form id="form_favori" action="favori.php">
-									<input type="hidden" name="favori" value="favori">
-								</form>
-							</div>
-							<div class="col-xs-12 bottom3">
-								<button class="btn btn-primary width100"  data-toggle="modal" data-target="#myModal"> <span class="glyphicon glyphicon-envelope" aria-hidden="true" ></span> Envoyer un message </button>
-							</div>
-							<div class="col-xs-12 bottom3">
-								<button class="btn btn-primary width100" onclick="pokeConfirm()"> <span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span> Envoyer un poke </button>
-								<form id="form_poke" action="poke.php">
-									<input type="hidden" name="poke" value="poke">
-								</form>
-							</div>
-							<div class="col-xs-12 bottom3">
-								<button class="btn btn-danger width100" onclick="bloquerConfirm()"> <span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span> Bloquer </button>
-								<form id="form_bloquer" action="bloquer.php">
-									<input type="hidden" name="bloquer" value="bloquer">
-								</form>
-							</div>
-							<div class="col-xs-12 bottom3">
-								<button class="btn btn-danger width100" onclick="signalerConfirm()"> <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> Signaler </button>
-								<form id="form_signaler" action="signaler.php">
-									<input type="hidden" name="signaler" value="signaler">
-								</form>
-							</div>
+                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+								<div class="col-xs-12 bottom3">
+									<button class="btn btn-primary width100" onclick="favoriConfirm()">  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>Ajouter aux favoris </button>
+									<form id="form_favori" action="favori.php">
+										<input type="hidden" name="favori" value="favori">
+									</form>
+								</div>
+								<div class="col-xs-12 bottom3">
+									<button class="btn btn-primary width100"  data-toggle="modal" data-target="#myModal" onclick="$('#objet_error').html('');$('#contenu_error').html('')"> <span class="glyphicon glyphicon-envelope" aria-hidden="true" ></span> Envoyer un message </button>
+								</div>
+								<div class="col-xs-12 bottom3">
+									<button class="btn btn-primary width100" onclick="pokeConfirm()"> <span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span> Envoyer un poke </button>
+									<form id="form_poke" action="poke.php">
+										<input type="hidden" name="poke" value="poke">
+									</form>
+								</div>
+								<div class="col-xs-12 bottom3">
+									<button class="btn btn-danger width100" onclick="bloquerConfirm()"> <span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span> Bloquer </button>
+									<form id="form_bloquer" action="bloquer.php">
+										<input type="hidden" name="bloquer" value="bloquer">
+									</form>
+								</div>
+								<div class="col-xs-12 bottom3">
+									<button class="btn btn-danger width100" onclick="signalerConfirm()"> <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> Signaler </button>
+									<form id="form_signaler" action="signaler.php">
+										<input type="hidden" name="signaler" value="signaler">
+									</form>
+								</div>
+							{% else %}
+								<div class="col-xs-12 bottom3">
+									<button class="btn btn-primary width100" onclick="$('#nopModal').modal('show');">  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>Ajouter aux favoris </button>
+								</div>
+								<div class="col-xs-12 bottom3">
+									<button class="btn btn-primary width100"  onclick="$('#nopModal').modal('show');"> <span class="glyphicon glyphicon-envelope" aria-hidden="true" ></span> Envoyer un message </button>
+								</div>
+								<div class="col-xs-12 bottom3">
+									<button class="btn btn-primary width100" onclick="$('#nopModal').modal('show');"> <span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span> Envoyer un poke </button>
+								</div>
+								<div class="col-xs-12 bottom3">
+									<button class="btn btn-danger width100" onclick="$('#nopModal').modal('show');"> <span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span> Bloquer </button>
+								</div>
+								<div class="col-xs-12 bottom3">
+									<button class="btn btn-danger width100" onclick="$('#nopModal').modal('show');"> <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> Signaler </button>
+								</div>
+							{% endif %}
 						</div><!-- Button trigger modal -->
 
 						<!-- Modal Message-->
@@ -58,30 +78,31 @@
 										<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 										<h4 class="modal-title" id="myModalLabel">Envoyer un message</h4>
 									</div>
+									{{ form_start(formMessage, {'attr': {'class': 'form-horizontal'}, 'action': path('ptro_rencontres_message_ajax')}) }}
 									<div class="modal-body left10">
-										<form class="form-horizontal" id="form_message" action="test.php">
-											<div class="form-group" id="objet_form_group">
-												<label for="Objet" class="col-sm-2 control-label">Objet *</label>
-												<div class="col-sm-9">
-													<input type="text" class="form-control" id="Objet" onkeypress="$('#objet_form_group').removeClass('has-error')" >
-												</div>
-												<div class="col-sm-1">
-												</div>
+										<div class="form-group">
+											<div class="col-sm-3"></div>
+											<div class="col-sm-9 red height bold" id="objet_error"></div>
+											{{ form_label(formMessage.objet, "Objet", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+											<div class="col-sm-9">
+												{{ form_widget(formMessage.objet, {'attr': {'class': 'form-control'}}) }}
 											</div>
-											<div class="form-group" id="message_form_group">
-												<label for="Message" class="col-sm-2 control-label">Message *</label>
-												<div class="col-sm-9">
-													<textarea class="form-control" id="Message" rows="3" onkeypress="$('#message_form_group').removeClass('has-error')"></textarea>
-												</div>
-												<div class="col-sm-1">
-												</div>
+										</div>
+										<div class="form-group">
+											<div class="col-sm-3"></div>
+											<div class="col-sm-9 red height bold" id="contenu_error"></div>
+											{{ form_label(formMessage.contenu, "Contenu", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+											<div class="col-sm-9">
+												{{ form_widget(formMessage.contenu, {'attr': {'class': 'form-control'}}) }}
 											</div>
-										</form>
+										</div>
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
-										<button type="button" class="btn btn-primary" onclick="messageConfirm()" >Envoyer le message</button>
+										<button type="button" class="btn btn-primary" id="submitMessage" data-loading-text="Attendez svp..." autocomplete="off">Envoyer le message</button>
 									</div>
+                                    {{ form_rest(formMessage) }}
+                                    {{ form_end(formMessage) }}
 								</div>
 							</div>
 						</div>
@@ -98,6 +119,31 @@
 									<div class="modal-footer">
 										<button type="button" class="btn btn-default" data-dismiss="modal">Non</button>
 										<button type="button" class="btn btn-primary" onclick="confirm()">Oui</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- nop message -->
+						<div class="modal fade" id="nopModal" tabindex="-1" role="dialog" aria-labelledby="confirmLabel">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									</div>
+									<div class="modal-body">
+										Pour interagir avec {{profil.username}} vous devez être inscrit et connecté.
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- success message -->
+						<div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="confirmLabel">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-body" id="success_contenu">
 									</div>
 								</div>
 							</div>
@@ -141,6 +187,7 @@
 										Informations générales
 									</th>
 								</tr>
+								{% if profil.genre.nom is not empty %}
 								<tr>
 									<th style="width:40%">
 										Genre
@@ -149,6 +196,8 @@
 										{{ profil.genre.nom }}
 									</td>
 								</tr>
+								{% endif %}
+                                {% if profil.age is not empty %}
 								<tr>
 									<th>
 										Âge
@@ -157,6 +206,8 @@
 										{{ profil.age }}
 									</td>
 								</tr>
+                                {% endif %}
+                                {% if profil.taille is not empty %}
 								<tr>
 									<th>
 										Taille
@@ -165,6 +216,8 @@
 										{{ profil.taille }}
 									</td>
 								</tr>
+                                {% endif %}
+                                {% if profil.poids is not empty %}
 								<tr>
 									<th>
 										Poids
@@ -173,6 +226,8 @@
 										{{ profil.poids }}
 									</td>
 								</tr>
+                                {% endif %}
+                                {% if profil.physique.nom is not empty %}
 								<tr>
 									<th>
 										Silhouette
@@ -181,6 +236,8 @@
 										{{ profil.physique.nom }}
 									</td>
 								</tr>
+                                {% endif %}
+                                {% if profil.couleurYeux.nom is not empty %}
 								<tr>
 									<th>
 										Yeux
@@ -189,6 +246,8 @@
 										{{ profil.couleurYeux.nom }}
 									</td>
 								</tr>
+                                {% endif %}
+                                {% if profil.couleurCheveux.nom is not empty %}
 								<tr>
 									<th>
 										Cheveux
@@ -197,6 +256,8 @@
 										{{ profil.couleurCheveux.nom }}
 									</td>
 								</tr>
+                                {% endif %}
+                                {% if profil.etatCivil.nom is not empty %}
 								<tr>
 									<th>
 										Etat civil
@@ -205,6 +266,8 @@
 										{{ profil.etatCivil.nom }}
 									</td>
 								</tr>
+                                {% endif %}
+                                {% if profil.relation.nom is not empty %}
 								<tr>
 									<th>
 										Relation souhaitée
@@ -213,6 +276,8 @@
 										{{ profil.relation.nom }}
 									</td>
 								</tr>
+                                {% endif %}
+                                {% if profil.orientation.nom is not empty %}
 								<tr>
 									<th>
 										Orientation
@@ -221,6 +286,8 @@
 										{{ profil.orientation.nom }}
 									</td>
 								</tr>
+                                {% endif %}
+                                {% if profil.emploi is not empty %}
 								<tr>
 									<th>
 										Emploi
@@ -229,6 +296,8 @@
 										{{ profil.emploi }}
 									</td>
 								</tr>
+                                {% endif %}
+                                {% if profil.departement.nom is not empty %}
 								<tr>
 									<th>
 										Région / Département / Ville
@@ -237,14 +306,18 @@
 										{{ profil.departement.region.nom }} / {{ profil.departement.nom }}
 									</td>
 								</tr>
+                                {% endif %}
+                                {% if profil.dateCreation is not empty %}
 								<tr>
 									<th>
 										Membre depuis
 									</th>
 									<td>
-										{{ profil.dateCreation|date("m/d/Y") }}
+										{{ profil.dateCreation|date("d/m/Y") }}
 									</td>
 								</tr>
+                                {% endif %}
+                                {% if profil.vues is not empty %}
 								<tr>
 									<th>
 										Vues
@@ -253,14 +326,17 @@
 										{{ profil.vues }}
 									</td>
 								</tr>
+                                {% endif %}
+                                {% if profil.lastLogin is not empty %}
 								<tr>
 									<th>
 										Dernière visite
 									</th>
 									<td>
-										{{ profil.lastLogin|date("m/d/Y") }}
+										{{ profil.lastLogin|date("d/m/Y") }}
 									</td>
 								</tr>
+                                {% endif %}
 							</table>
 						</div><br>
 						<div class="table-responsive">
@@ -270,6 +346,7 @@
 										Style de vie
 									</th>
 								</tr>
+                                {% if profil.hobbies is not empty %}
 								<tr>
 									<th style="width:40%">
 										Hobbie(s)
@@ -282,6 +359,8 @@
                                         {% endfor %}
 									</td>
 								</tr>
+                                {% endif %}
+                                {% if profil.sports is not empty %}
 								<tr>
 									<th>
 										sport(s) pratiqué(s)
@@ -294,6 +373,8 @@
                                         {% endfor %}
 									</td>
 								</tr>
+                                {% endif %}
+                                {% if profil.qualites is not empty %}
 								<tr>
 									<th>
 										Qualité(s)
@@ -306,6 +387,8 @@
                                         {% endfor %}
 									</td>
 								</tr>
+                                {% endif %}
+                                {% if profil.defauts is not empty %}
 								<tr>
 									<th>
 										défaut(s)
@@ -318,6 +401,8 @@
                                         {% endfor %}
 									</td>
 								</tr>
+                                {% endif %}
+                                {% if profil.cigarette.nom is not empty %}
 								<tr>
 									<th>
 										Cigarettes?
@@ -328,6 +413,8 @@
                                         {% endif %}
 									</td>
 								</tr>
+                                {% endif %}
+                                {% if profil.alcool.nom is not empty %}
 								<tr>
 									<th>
 										Alcool?
@@ -338,6 +425,7 @@
                                         {% endif %}
 									</td>
 								</tr>
+                                {% endif %}
 							</table>
 						</div>
 					</div>
@@ -351,7 +439,44 @@
 {% block javascript%}
 <script > 
 
-	$(document).ready(function() {  
+	$(document).ready(function() {
+
+        $( "#submitMessage" ).click(function(e) {
+
+
+        e.preventDefault();
+
+            var $btn = $( "#submitMessage" ).button('loading');
+        $.ajax({
+            type: $("[name='ptro_rencontresbundle_message']").attr('method'),
+            url: $("[name='ptro_rencontresbundle_message']").attr('action'),
+            data: { id_receveur: {{ profil.id }}
+        })
+            .done(function (data) {
+                if (typeof data.message !== 'undefined') {
+                    $('#myModal').modal('hide');
+                    $('#success_contenu').html('Votre message a été envoyé à {{ profil.username }}!');
+                    $('#successModal').modal('show');
+                    setTimeout(function() {
+                        $('#successModal').modal('hide');
+                        $('#success_contenu').html('');
+                    }, 5000);
+                    //alert(data.message);
+                }
+                $btn.button('reset');
+            })
+            .fail(function (jqXHR, textStatus, errorThrown) {
+                if (typeof jqXHR.responseJSON !== 'undefined') {
+                    for (var key in jqXHR.responseJSON.data) {
+                        $('#'+key+'_error').html(jqXHR.responseJSON.data[key]);
+                    }
+                    //alert(jqXHR.responseJSON.message);
+                } else {
+                    alert(errorThrown);
+                }
+                $btn.button('reset');
+            });
+    });
 		var form = "";
 	}); 
 	function messageConfirm(){

@@ -309,7 +309,7 @@
                                     Membre depuis
                                 </th>
                                 <td>
-                                    {{ profil.dateCreation|date("m/d/Y") }}
+                                    {{ profil.dateCreation|date("d/m/Y") }}
                                 </td>
                             </tr>
                             <tr>
@@ -318,6 +318,14 @@
                                 </th>
                                 <td>
                                     {{ profil.vues }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    Dernière visite
+                                </th>
+                                <td>
+                                    {{ profil.lastLogin|date("d/m/Y") }}
                                 </td>
                             </tr>
                         </table>

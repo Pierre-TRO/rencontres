@@ -89,3 +89,8 @@ ptro_rencontres_change_photo_principale:
         _controller: 	PTRORencontresBundle:Profile:changePhotoPrincipale
     requirements:
         id: \d+
+
+ptro_rencontres_message_ajax:
+    path:     /message_ajax
+    defaults:
+        _controller:    PTRORencontresBundle:Main:message
