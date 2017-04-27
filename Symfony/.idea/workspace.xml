@@ -79,11 +79,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="layout_profil.html.twig" pinned="false" current-in-tab="true">
+      <file leaf-file-name="layout_profil.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/PTRO/RencontresBundle/Resources/views/Rencontres/layout_profil.html.twig">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="562">
               <caret line="549" column="47" lean-forward="false" selection-start-line="549" selection-start-column="47" selection-end-line="549" selection-end-column="47" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="site-rencontre.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/web/css/site-rencontre.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="36" lean-forward="false" selection-start-line="0" selection-start-column="36" selection-end-line="0" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -186,7 +196,6 @@
         <option value="$PROJECT_DIR$/app/config/security.yml" />
         <option value="$PROJECT_DIR$/src/PTRO/RencontresBundle/Resources/views/Security/login.html.twig" />
         <option value="$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Resources/views/Resetting/request_content.html.twig" />
-        <option value="$PROJECT_DIR$/web/css/site-rencontre.css" />
         <option value="$PROJECT_DIR$/app/config/parameters.yml" />
         <option value="$PROJECT_DIR$/src/PTRO/RencontresBundle/Resources/views/Resetting/check_email.html.twig" />
         <option value="$PROJECT_DIR$/src/PTRO/RencontresBundle/Resources/views/Resetting/reset.html.twig" />
@@ -201,6 +210,7 @@
         <option value="$PROJECT_DIR$/src/PTRO/RencontresBundle/Repository/FavoriRepository.php" />
         <option value="$PROJECT_DIR$/src/PTRO/RencontresBundle/Controller/MainController.php" />
         <option value="$PROJECT_DIR$/src/PTRO/RencontresBundle/Resources/views/Rencontres/layout_profil.html.twig" />
+        <option value="$PROJECT_DIR$/web/css/site-rencontre.css" />
       </list>
     </option>
   </component>
@@ -292,7 +302,7 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
+              <option name="myItemId" value="css" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -1027,12 +1037,12 @@
       <workItem from="1491572140533" duration="7726000" />
       <workItem from="1491723452538" duration="12313000" />
       <workItem from="1492270455149" duration="19761000" />
-      <workItem from="1493036344097" duration="14723000" />
+      <workItem from="1493036344097" duration="14751000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="231162000" />
+    <option name="totallyTimeSpent" value="231190000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1143,13 +1153,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/css/site-rencontre.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="155" column="21" lean-forward="false" selection-start-line="155" selection-start-column="21" selection-end-line="155" selection-end-column="21" />
         </state>
       </provider>
     </entry>
@@ -1451,6 +1454,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="562">
           <caret line="549" column="47" lean-forward="false" selection-start-line="549" selection-start-column="47" selection-end-line="549" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/css/site-rencontre.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="36" lean-forward="false" selection-start-line="0" selection-start-column="36" selection-end-line="0" selection-end-column="36" />
           <folding />
         </state>
       </provider>
