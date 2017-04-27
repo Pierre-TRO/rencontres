@@ -25,31 +25,31 @@
 							{% endfor %}
                             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
 								<div class="col-xs-12 bottom3">
-									<button class="btn btn-primary width100" onclick="favoriConfirm()">  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>Ajouter aux favoris </button>
-									<form id="form_favori" action="favori.php">
+									<button class="btn btn-primary width100" onclick="favoriConfirm()">  <span class="glyphicon glyphicon-star" aria-hidden="true"></span><span id="favori_texte"> {% if favori == 0 %}Ajouter à vos favoris{% else %}Enlever de vos favoris{% endif %} </span></button>
+									<!--<form id="form_favori" action="favori.php">
 										<input type="hidden" name="favori" value="favori">
-									</form>
+									</form>-->
 								</div>
 								<div class="col-xs-12 bottom3">
 									<button class="btn btn-primary width100"  data-toggle="modal" data-target="#myModal" onclick="$('#objet_error').html('');$('#contenu_error').html('')"> <span class="glyphicon glyphicon-envelope" aria-hidden="true" ></span> Envoyer un message </button>
 								</div>
 								<div class="col-xs-12 bottom3">
 									<button class="btn btn-primary width100" onclick="pokeConfirm()"> <span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span> Envoyer un poke </button>
-									<form id="form_poke" action="poke.php">
+									<!--<form id="form_poke" action="poke.php">
 										<input type="hidden" name="poke" value="poke">
-									</form>
+									</form>-->
 								</div>
 								<div class="col-xs-12 bottom3">
 									<button class="btn btn-danger width100" onclick="bloquerConfirm()"> <span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span> Bloquer </button>
-									<form id="form_bloquer" action="bloquer.php">
+									<!--<form id="form_bloquer" action="bloquer.php">
 										<input type="hidden" name="bloquer" value="bloquer">
-									</form>
+									</form>-->
 								</div>
 								<div class="col-xs-12 bottom3">
 									<button class="btn btn-danger width100" onclick="signalerConfirm()"> <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> Signaler </button>
-									<form id="form_signaler" action="signaler.php">
+									<!--<form id="form_signaler" action="signaler.php">
 										<input type="hidden" name="signaler" value="signaler">
-									</form>
+									</form>-->
 								</div>
 							{% else %}
 								<div class="col-xs-12 bottom3">
@@ -70,6 +70,7 @@
 							{% endif %}
 						</div><!-- Button trigger modal -->
 
+                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
 						<!-- Modal Message-->
 						<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 							<div class="modal-dialog" role="document">
@@ -106,6 +107,7 @@
 								</div>
 							</div>
 						</div>
+                        {% endif %}
 						<!-- confirmation message -->
 						<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmLabel">
 							<div class="modal-dialog" role="document">
@@ -118,7 +120,7 @@
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-default" data-dismiss="modal">Non</button>
-										<button type="button" class="btn btn-primary" onclick="confirm()">Oui</button>
+										<button type="button" class="btn btn-primary" onclick="confirm()" id="submitAutreActions" data-loading-text="Attendez svp..." >Oui</button>
 									</div>
 								</div>
 							</div>
@@ -437,10 +439,18 @@
 	<!-- /.container -->
 {% endblock %}	
 {% block javascript%}
-<script > 
+<script >
 
+    var favori;
+    {% if favori == 0 %}
+    favori = 0;
+    {% else %}
+    favori = 1;
+    {% endif %}
 	$(document).ready(function() {
 
+
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
         $( "#submitMessage" ).click(function(e) {
 
 
@@ -450,7 +460,7 @@
         $.ajax({
             type: $("[name='ptro_rencontresbundle_message']").attr('method'),
             url: $("[name='ptro_rencontresbundle_message']").attr('action'),
-            data: { id_receveur: {{ profil.id }}
+            data:  $("[name='ptro_rencontresbundle_message']").serialize()
         })
             .done(function (data) {
                 if (typeof data.message !== 'undefined') {
@@ -477,28 +487,20 @@
                 $btn.button('reset');
             });
     });
+		{% endif %}
 		var form = "";
-	}); 
-	function messageConfirm(){
-		if($('#Message').val().trim() == ""){
-			$('#message_form_group').addClass('has-error');
-		}
-		if($('#Objet').val().trim() == ""){
-			$('#objet_form_group').addClass('has-error');
-		}
-		if($('#Objet').val().trim() != "" && $('#Message').val().trim() != "" ){
-			$('#confirmMessage').text('Voulez-vous envoyer ce message à {{profil.username}}?');
-			$('#confirmModal').modal('show');
-			form = "message";
-		}
-	}
+	});
 	function pokeConfirm(){
 		$('#confirmMessage').text('Voulez-vous envoyer un poke à {{profil.username}}?');
 		$('#confirmModal').modal('show');
 		form = "poke";
 	}
 	function favoriConfirm(){
-		$('#confirmMessage').text('Voulez-vous ajouter {{profil.username}} dans vos favoris?');
+	    if(favori == 0){
+            $('#confirmMessage').text('Voulez-vous ajouter {{profil.username}} dans vos favoris?');
+		}else{
+            $('#confirmMessage').text('Voulez-vous enlever {{profil.username}} de vos favoris?');
+		}
 		$('#confirmModal').modal('show');
 		form = "favori";
 	}
@@ -513,21 +515,69 @@
 		form = "bloquer";
 	}
 	function confirm(){
-		if (form == "message") {
-			$('#form_message').submit();
-		}
-		if (form == "poke") {
-			$('#form_poke').submit();
-		}
-		if (form == "favori") {
-			$('#form_favori').submit();
-		}
-		if (form == "signaler") {
-			$('#form_signaler').submit();
-		}
-		if (form == "bloquer") {
-			$('#form_bloquer').submit();
-		}
+        var $btn = $( "#submitAutreActions" ).button('loading');
+        if (form == "poke") {
+            url_action = "{{ path('ptro_rencontres_poke_ajax') }}";
+        }
+        if (form == "favori") {
+            url_action = "{{ path('ptro_rencontres_favori_ajax') }}";
+            message_succes_ajout = '{{ profil.username }} est désormais dans vos favoris!';
+            message_succes_enleve = '{{ profil.username }} n\'est plus dans vos favoris.';
+            $.ajax({
+                type: "POST",
+                url: url_action,
+                data:  {'id_receveur': {{ profil.id }} }
+            })
+                .done(function (data) {
+                    if (data.data == 'Ajout') {
+                        $('#confirmModal').modal('hide');
+                        $('#success_contenu').html( message_succes_ajout );
+                        $('#successModal').modal('show');
+                        $('#favori_texte').html('Enlever de vos favoris');
+                        favori = 1;
+                        setTimeout(function() {
+                            $('#successModal').modal('hide');
+                            $('#success_contenu').html('');
+                        }, 5000);
+                        //alert(data.message);
+                    }
+                    if (data.data == 'Enleve') {
+                        $('#confirmModal').modal('hide');
+                        $('#success_contenu').html( message_succes_enleve );
+                        $('#successModal').modal('show');
+                        $('#favori_texte').html('Ajouter à vos favoris');
+                        favori = 0;
+                        setTimeout(function() {
+                            $('#successModal').modal('hide');
+                            $('#success_contenu').html('');
+                        }, 5000);
+                        //alert(data.message);
+                    }
+                    $btn.button('reset');
+                })
+                .fail(function (jqXHR, textStatus, errorThrown) {
+                    if (typeof jqXHR.responseJSON !== 'undefined') {
+                        message = jqXHR.responseJSON.message;
+                    } else {
+                        message = errorThrown;
+                    }
+                    $('#confirmModal').modal('hide');
+                    $('#success_contenu').html( message );
+                    $('#successModal').modal('show');
+                    setTimeout(function() {
+                        $('#successModal').modal('hide');
+                        $('#success_contenu').html('');
+                    }, 5000);
+
+                    $btn.button('reset');
+                });
+        }
+        if (form == "signaler") {
+            url_action = "{{ path('ptro_rencontres_signaler_ajax') }}";
+        }
+        if (form == "bloquer") {
+            url_action = "{{ path('ptro_rencontres_bloquer_ajax') }}";
+        }
 	}
 </script>
 {% endblock %}	

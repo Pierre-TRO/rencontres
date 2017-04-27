@@ -2,6 +2,8 @@
 
 namespace PTRO\RencontresBundle\Controller;
 
+use PTRO\RencontresBundle\Entity\Conversation;
+use PTRO\RencontresBundle\Entity\Favori;
 use PTRO\RencontresBundle\Entity\Message;
 use PTRO\RencontresBundle\Form\MessageType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -432,6 +434,7 @@ class MainController extends Controller
             //On crée les formulaires d'interaction avec l'utilisateur
             $message = new Message();
             $formMessage = $this->get('form.factory')->create(MessageType::class, $message);
+            $formMessage->get('id_receveur')->setData($id);
         }
 
         //On va chercher les infos du profil à afficher
@@ -446,8 +449,16 @@ class MainController extends Controller
         //On va chercher les photos
         $repoPhotos = $em->getRepository("PTRORencontresBundle:Photo");
         $photos = $repoPhotos->getPhotosProfile($profil->getId());
+
+        //On regarde si ce profil est dans ses favoris
+        $repoFavori = $em->getRepository("PTRORencontresBundle:Favori");
+        if($repoFavori->getFavoriByUsers($id, $this->getUser()) != null){
+            $favori = 1;
+        }else{
+            $favori = 0;
+        }
 		
-		return $this->render('PTRORencontresBundle:Rencontres:layout_profil.html.twig', array("profil" => $profil, "photos" => $photos, "formMessage" => $formMessage->createView()));
+		return $this->render('PTRORencontresBundle:Rencontres:layout_profil.html.twig', array("profil" => $profil, "photos" => $photos, "formMessage" => ($formMessage == null)? null: $formMessage->createView(), 'favori'=> $favori));
 	}
 
 	public function messageAction(Request $request){
@@ -461,11 +472,32 @@ class MainController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            /*$id_receveur = $request->get('id_receveur');
-            $em = $this->getDoctrine()->getManager();
 
+            //On vérifie si une conversation existe déjà entre les deux personnes
+            $em = $this->getDoctrine()->getManager();
+            $receveur = $em->getRepository('PTRORencontresBundle:Utilisateur')->find($form->get('id_receveur')->getData());
+            $envoyeur = $this->getUser();
+
+            $repoConversation = $em->getRepository('PTRORencontresBundle:Conversation');
+            $conversation = $repoConversation->getConversationByUsers($envoyeur,$receveur);
+            if ($conversation == null){
+                $conversation = $repoConversation->getConversationByUsers($receveur,$envoyeur);
+            }
+
+            //Si il n'y a pas de conversation on la crée
+            if($conversation == null){
+                $conversation = new Conversation();
+                $conversation->setCreateur($envoyeur);
+                $conversation->setReceveur($receveur);
+                $em->persist($conversation);
+                $em->flush();
+            }
+
+            //On sauvegarde le message avec la conversation précédente et l'auteur
+            $message->setConversation($conversation);
+            $message->setAuteur($this->getUser());
             $em->persist($message);
-            $em->flush();*/
+            $em->flush();
 
             return new JsonResponse(array('message' => 'Success!', 'data' => ''), 200);
         }
@@ -495,6 +527,68 @@ class MainController extends Controller
         }
 
         return $errors;
+    }
+
+    public function favoriAction(Request $request)
+    {
+        //This is optional. Do not do this check if you want to call the same action using a regular request.
+        if (!$request->isXmlHttpRequest()) {
+            return new JsonResponse(array('message' => 'Seul Ajax est autorisé!'), 400);
+        }
+        try{
+            $em = $this->getDoctrine()->getManager();
+
+            $id_receveur = $request->get('id_receveur');
+            $createur = $this->getUser();
+            $receveur = $em->getRepository('PTRORencontresBundle:Utilisateur')->find($id_receveur);
+
+            $favori = $em->getRepository('PTRORencontresBundle:Favori')->findOneBy(array("createur" => $createur, "receveur" => $receveur));
+            if(!$favori){
+                $favori = new Favori();
+                $favori->setCreateur($createur);
+                $favori->setReceveur($receveur);
+                $em->persist($favori);
+                $em->flush();
+                return new JsonResponse(array('message' => 'Success!', 'data' => 'Ajout'), 200);
+            }else{
+                $em->remove($favori);
+                $em->flush();
+                return new JsonResponse(array('message' => 'Success!', 'data' => 'Enleve'), 200);
+            }
+
+        }catch (Exception $e){
+            $response = new JsonResponse(
+                array(
+                    'message' => 'Erreur pendant l\'ajout dans vos favoris.',
+                    'data' => ''),
+                400);
+            return $response;
+        }
+
+    }
+
+    public function pokeAction(Request $request)
+    {
+        //This is optional. Do not do this check if you want to call the same action using a regular request.
+        if (!$request->isXmlHttpRequest()) {
+            return new JsonResponse(array('message' => 'Seul Ajax est autorisé!'), 400);
+        }
+    }
+
+    public function bloquerAction(Request $request)
+    {
+        //This is optional. Do not do this check if you want to call the same action using a regular request.
+        if (!$request->isXmlHttpRequest()) {
+            return new JsonResponse(array('message' => 'Seul Ajax est autorisé!'), 400);
+        }
+    }
+
+    public function signalerAction(Request $request)
+    {
+        //This is optional. Do not do this check if you want to call the same action using a regular request.
+        if (!$request->isXmlHttpRequest()) {
+            return new JsonResponse(array('message' => 'Seul Ajax est autorisé!'), 400);
+        }
     }
 
 	public function rechercheAction(){

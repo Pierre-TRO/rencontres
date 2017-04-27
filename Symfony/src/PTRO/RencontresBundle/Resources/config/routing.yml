@@ -94,3 +94,23 @@ ptro_rencontres_message_ajax:
     path:     /message_ajax
     defaults:
         _controller:    PTRORencontresBundle:Main:message
+
+ptro_rencontres_favori_ajax:
+    path:     /favori_ajax
+    defaults:
+        _controller:    PTRORencontresBundle:Main:favori
+
+ptro_rencontres_poke_ajax:
+    path:     /favori_ajax
+    defaults:
+        _controller:    PTRORencontresBundle:Main:poke
+
+ptro_rencontres_bloquer_ajax:
+    path:     /favori_ajax
+    defaults:
+        _controller:    PTRORencontresBundle:Main:bloquer
+
+ptro_rencontres_signaler_ajax:
+    path:     /favori_ajax
+    defaults:
+        _controller:    PTRORencontresBundle:Main:signaler

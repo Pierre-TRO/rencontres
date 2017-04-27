@@ -3,6 +3,7 @@
 namespace PTRO\RencontresBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -17,7 +18,10 @@ class MessageType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('objet', TextType::class,array('required' => false))
-            ->add('contenu', TextareaType::class,array('required' => false));
+            ->add('contenu', TextareaType::class,array('required' => false))
+            ->add('id_receveur', HiddenType::class, array(
+                'mapped' => false,
+            ));
     }
     
     /**
@@ -28,6 +32,7 @@ class MessageType extends AbstractType
         $resolver->setDefaults(array(
             'data_class' => 'PTRO\RencontresBundle\Entity\Message',
             'validation_groups' => array('Message'),
+            'allow_extra_fields' => true,
         ));
     }
 

@@ -10,4 +10,13 @@ namespace PTRO\RencontresBundle\Repository;
  */
 class FavoriRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getFavoriByUsers($receveur, $createur){
+        $queryBuilder = $this->createQueryBuilder('c');
+        $queryBuilder->where('c.receveur=:receveur')
+            ->andWhere('c.createur=:createur')
+            ->setParameters(array('receveur' => $receveur, 'createur' => $createur));
+        $query = $queryBuilder->getQuery();
+        $result = $query->getOneOrNullResult();
+        return $result;
+    }
 }
