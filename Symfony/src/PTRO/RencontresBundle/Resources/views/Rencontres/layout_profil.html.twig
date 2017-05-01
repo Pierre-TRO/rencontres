@@ -24,20 +24,22 @@
 							</div>
 							{% endfor %}
                             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-								<div class="col-xs-12 bottom3">
-									<button class="btn btn-primary width100" onclick="favoriConfirm()">  <span class="glyphicon glyphicon-star" aria-hidden="true"></span><span id="favori_texte"> {% if favori == 0 %}Ajouter à vos favoris{% else %}Enlever de vos favoris{% endif %} </span></button>
-									<!--<form id="form_favori" action="favori.php">
-										<input type="hidden" name="favori" value="favori">
-									</form>-->
-								</div>
-								<div class="col-xs-12 bottom3">
-									<button class="btn btn-primary width100"  data-toggle="modal" data-target="#myModal" onclick="$('#objet_error').html('');$('#contenu_error').html('')"> <span class="glyphicon glyphicon-envelope" aria-hidden="true" ></span> Envoyer un message </button>
-								</div>
-								<div class="col-xs-12 bottom3">
-									<button class="btn btn-primary width100" onclick="pokeConfirm()"> <span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span> Envoyer un poke </button>
-									<!--<form id="form_poke" action="poke.php">
-										<input type="hidden" name="poke" value="poke">
-									</form>-->
+								<div id="boutons_a_bloquer" style="{% if bloquer == 1 %}display:none;{% endif %}" >
+									<div class="col-xs-12 bottom3">
+										<button class="btn btn-primary width100" onclick="favoriConfirm()">  <span class="glyphicon glyphicon-star" aria-hidden="true"></span><span id="favori_texte"> {% if favori == 0 %}Ajouter à vos favoris{% else %}Enlever de vos favoris{% endif %} </span></button>
+										<!--<form id="form_favori" action="favori.php">
+											<input type="hidden" name="favori" value="favori">
+										</form>-->
+									</div>
+									<div class="col-xs-12 bottom3">
+										<button class="btn btn-primary width100"  data-toggle="modal" data-target="#myModal" onclick="$('#objet_error').html('');$('#contenu_error').html('')"> <span class="glyphicon glyphicon-envelope" aria-hidden="true" ></span> Envoyer un message </button>
+									</div>
+									<div class="col-xs-12 bottom3">
+										<button class="btn btn-primary width100" onclick="pokeConfirm()"> <span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span> Envoyer un poke </button>
+										<!--<form id="form_poke" action="poke.php">
+											<input type="hidden" name="poke" value="poke">
+										</form>-->
+									</div>
 								</div>
 								<div class="col-xs-12 bottom3">
 									<button class="btn btn-danger width100" onclick="bloquerConfirm()"> <span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span><span id="blocage_texte"> {% if bloquer == 0 %}Bloquer ce profil{% else %}Débloquer ce profil{% endif %} </span></button>
@@ -717,6 +719,7 @@
             })
                 .done(function (data) {
                     if (data.data == 'Ajout') {
+                        $('#boutons_a_bloquer').css('display', 'none');
                         $('#confirmModal').modal('hide');
                         $('#success_contenu').html( message_succes_blocage );
                         $('#successModal').modal('show');
@@ -729,6 +732,7 @@
                         //alert(data.message);
                     }
                     if (data.data == 'Enleve') {
+                        $('#boutons_a_bloquer').css('display', 'block');
                         $('#confirmModal').modal('hide');
                         $('#success_contenu').html( message_succes_deblocage );
                         $('#successModal').modal('show');
