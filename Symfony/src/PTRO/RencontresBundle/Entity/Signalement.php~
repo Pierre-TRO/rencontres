@@ -3,6 +3,7 @@
 namespace PTRO\RencontresBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Signalement
@@ -24,7 +25,7 @@ class Signalement
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateSignalement", type="datetime")
+     * @ORM\Column(name="date_signalement", type="datetime")
      */
     private $dateSignalement;
 
@@ -39,6 +40,15 @@ class Signalement
     * @ORM\JoinColumn(nullable=false)
     */
     private $receveur;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="message", type="text", nullable=true)
+     *
+     * @Assert\NotBlank(message="Ce champ ne doit pas être vide.", groups={"Message"})
+     */
+    private $message;
 
 
     public function __construct()
@@ -80,5 +90,52 @@ class Signalement
     {
         return $this->dateSignalement;
     }
-}
 
+    /**
+     * Set createur
+     *
+     * @param \PTRO\RencontresBundle\Entity\Utilisateur $createur
+     *
+     * @return Signalement
+     */
+    public function setCreateur(\PTRO\RencontresBundle\Entity\Utilisateur $createur)
+    {
+        $this->createur = $createur;
+
+        return $this;
+    }
+
+    /**
+     * Get createur
+     *
+     * @return \PTRO\RencontresBundle\Entity\Utilisateur
+     */
+    public function getCreateur()
+    {
+        return $this->createur;
+    }
+
+    /**
+     * Set receveur
+     *
+     * @param \PTRO\RencontresBundle\Entity\Utilisateur $receveur
+     *
+     * @return Signalement
+     */
+    public function setReceveur(\PTRO\RencontresBundle\Entity\Utilisateur $receveur)
+    {
+        $this->receveur = $receveur;
+
+        return $this;
+    }
+
+    /**
+     * Get receveur
+     *
+     * @return \PTRO\RencontresBundle\Entity\Utilisateur
+     */
+    public function getReceveur()
+    {
+        return $this->receveur;
+    }
+}

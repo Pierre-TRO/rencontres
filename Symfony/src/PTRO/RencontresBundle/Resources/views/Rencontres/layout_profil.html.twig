@@ -40,13 +40,13 @@
 									</form>-->
 								</div>
 								<div class="col-xs-12 bottom3">
-									<button class="btn btn-danger width100" onclick="bloquerConfirm()"> <span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span> Bloquer </button>
+									<button class="btn btn-danger width100" onclick="bloquerConfirm()"> <span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span><span id="blocage_texte"> {% if bloquer == 0 %}Bloquer ce profil{% else %}Débloquer ce profil{% endif %} </span></button>
 									<!--<form id="form_bloquer" action="bloquer.php">
 										<input type="hidden" name="bloquer" value="bloquer">
 									</form>-->
 								</div>
 								<div class="col-xs-12 bottom3">
-									<button class="btn btn-danger width100" onclick="signalerConfirm()"> <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> Signaler </button>
+									<button class="btn btn-danger width100"  data-toggle="modal" data-target="#myModalSignalement" onclick="$('#message_error').html('');"> <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true" ></span> Signaler ce profil </button>
 									<!--<form id="form_signaler" action="signaler.php">
 										<input type="hidden" name="signaler" value="signaler">
 									</form>-->
@@ -107,6 +107,34 @@
 								</div>
 							</div>
 						</div>
+							<!-- Modal Signalement-->
+							<div class="modal fade" id="myModalSignalement" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+											<h4 class="modal-title" id="myModalLabel">Signaler ce profil au webmaster</h4>
+										</div>
+                                        {{ form_start(formSignalement, {'attr': {'class': 'form-horizontal'}, 'action': path('ptro_rencontres_signaler_ajax')}) }}
+										<div class="modal-body left10">
+											<div class="form-group">
+												<div class="col-sm-3"></div>
+												<div class="col-sm-9 red height bold" id="message_error"></div>
+                                                {{ form_label(formSignalement.message, "Message", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+												<div class="col-sm-9">
+                                                    {{ form_widget(formSignalement.message, {'attr': {'class': 'form-control'}}) }}
+												</div>
+											</div>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+											<button type="button" class="btn btn-danger" id="submitSignalement" data-loading-text="Attendez svp..." autocomplete="off">Envoyer le signalement</button>
+										</div>
+                                        {{ form_rest(formSignalement) }}
+                                        {{ form_end(formSignalement) }}
+									</div>
+								</div>
+							</div>
                         {% endif %}
 						<!-- confirmation message -->
 						<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmLabel">
@@ -441,16 +469,24 @@
 {% block javascript%}
 <script >
 
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+
     var favori;
     {% if favori == 0 %}
     favori = 0;
     {% else %}
     favori = 1;
     {% endif %}
+
+    var bloquer;
+    {% if bloquer == 0 %}
+    bloquer = 0;
+    {% else %}
+    bloquer = 1;
+    {% endif %}
 	$(document).ready(function() {
 
 
-        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
         $( "#submitMessage" ).click(function(e) {
 
 
@@ -487,7 +523,50 @@
                 $btn.button('reset');
             });
     });
-		{% endif %}
+        $( "#submitSignalement" ).click(function(e) {
+
+
+            e.preventDefault();
+
+            var $btn = $( "#submitSignalement" ).button('loading');
+            $.ajax({
+                type: $("[name='ptro_rencontresbundle_signalement']").attr('method'),
+                url: $("[name='ptro_rencontresbundle_signalement']").attr('action'),
+                data:  $("[name='ptro_rencontresbundle_signalement']").serialize()
+            })
+                .done(function (data) {
+                    if (typeof data.message !== 'undefined') {
+                        $('#myModalSignalement').modal('hide');
+                        $('#success_contenu').html('Votre signalement a été envoyé au webmaster.');
+                        $('#successModal').modal('show');
+                        setTimeout(function() {
+                            $('#successModal').modal('hide');
+                            $('#success_contenu').html('');
+                        }, 5000);
+                        //alert(data.message);
+                    }
+                    $btn.button('reset');
+                })
+                .fail(function (jqXHR, textStatus, errorThrown) {
+                    if (typeof jqXHR.responseJSON.data['message'] !== 'undefined') {
+						$('#message_error').html(jqXHR.responseJSON.data['message']);
+                    } else {
+                        if (typeof jqXHR.responseJSON.message !== 'undefined') {
+                            message = jqXHR.responseJSON.message;
+                        }else{
+                            message = errorThrown;
+						}
+                        $('#myModalSignalement').modal('hide');
+                        $('#success_contenu').html( message );
+                        $('#successModal').modal('show');
+                        setTimeout(function() {
+                            $('#successModal').modal('hide');
+                            $('#success_contenu').html('');
+                        }, 5000);
+                    }
+                    $btn.button('reset');
+                });
+        });
 		var form = "";
 	});
 	function pokeConfirm(){
@@ -510,7 +589,11 @@
 		form = "signaler";
 	}
 	function bloquerConfirm(){
-		$('#confirmMessage').text('Voulez-vous bloquer ce profil? Il ne pourra plus vous voir.');
+        if(bloquer == 0) {
+            $('#confirmMessage').text('Voulez-vous bloquer ce profil? Il ne pourra plus vous voir et vous ne pourrez plus communiquer.');
+        }else{
+            $('#confirmMessage').text('Voulez-vous débloquer ce profil? Vous pourrez à nouveau vous voir et communiquer.');
+		}
 		$('#confirmModal').modal('show');
 		form = "bloquer";
 	}
@@ -518,6 +601,54 @@
         var $btn = $( "#submitAutreActions" ).button('loading');
         if (form == "poke") {
             url_action = "{{ path('ptro_rencontres_poke_ajax') }}";
+            message_succes_poke = 'Votre poke a été envoyé à {{ profil.username }}!';
+            message_error_poke = 'Vous avez déjà envoyé un poke à {{ profil.username }} aujourd\'hui. Un poke par jour et par personne maximum.';
+            $.ajax({
+                type: "POST",
+                url: url_action,
+                data:  {'id_receveur': {{ profil.id }} }
+            })
+                .done(function (data) {
+                    if (data.data == 'Envoye') {
+                        $('#confirmModal').modal('hide');
+                        $('#success_contenu').html( message_succes_poke );
+                        $('#successModal').modal('show');
+                        favori = 1;
+                        setTimeout(function() {
+                            $('#successModal').modal('hide');
+                            $('#success_contenu').html('');
+                        }, 5000);
+                        //alert(data.message);
+                    }
+                    $btn.button('reset');
+                    if (data.data == 'DejaEnvoyeAujourdhui') {
+                        $('#confirmModal').modal('hide');
+                        $('#success_contenu').html( message_error_poke );
+                        $('#successModal').modal('show');
+                        favori = 1;
+                        setTimeout(function() {
+                            $('#successModal').modal('hide');
+                            $('#success_contenu').html('');
+                        }, 5000);
+                        //alert(data.message);
+                    }
+                })
+                .fail(function (jqXHR, textStatus, errorThrown) {
+                    if (typeof jqXHR.responseJSON !== 'undefined') {
+                        message = jqXHR.responseJSON.message;
+                    } else {
+                        message = errorThrown;
+                    }
+                    $('#confirmModal').modal('hide');
+                    $('#success_contenu').html( message );
+                    $('#successModal').modal('show');
+                    setTimeout(function() {
+                        $('#successModal').modal('hide');
+                        $('#success_contenu').html('');
+                    }, 5000);
+
+                    $btn.button('reset');
+                });
         }
         if (form == "favori") {
             url_action = "{{ path('ptro_rencontres_favori_ajax') }}";
@@ -533,7 +664,7 @@
                         $('#confirmModal').modal('hide');
                         $('#success_contenu').html( message_succes_ajout );
                         $('#successModal').modal('show');
-                        $('#favori_texte').html('Enlever de vos favoris');
+                        $('#favori_texte').html(' Enlever de vos favoris ');
                         favori = 1;
                         setTimeout(function() {
                             $('#successModal').modal('hide');
@@ -545,7 +676,7 @@
                         $('#confirmModal').modal('hide');
                         $('#success_contenu').html( message_succes_enleve );
                         $('#successModal').modal('show');
-                        $('#favori_texte').html('Ajouter à vos favoris');
+                        $('#favori_texte').html(' Ajouter à vos favoris ');
                         favori = 0;
                         setTimeout(function() {
                             $('#successModal').modal('hide');
@@ -577,7 +708,58 @@
         }
         if (form == "bloquer") {
             url_action = "{{ path('ptro_rencontres_bloquer_ajax') }}";
+            message_succes_blocage = 'Vous avez bloqué {{ profil.username }}.';
+            message_succes_deblocage = '{{ profil.username }} n\'est plus bloquée. Ce profil peut vous voir et vous pouvez communiquer';
+            $.ajax({
+                type: "POST",
+                url: url_action,
+                data:  {'id_receveur': {{ profil.id }} }
+            })
+                .done(function (data) {
+                    if (data.data == 'Ajout') {
+                        $('#confirmModal').modal('hide');
+                        $('#success_contenu').html( message_succes_blocage );
+                        $('#successModal').modal('show');
+                        $('#blocage_texte').html(' Débloquer ce profil ');
+                        bloquer = 1;
+                        setTimeout(function() {
+                            $('#successModal').modal('hide');
+                            $('#success_contenu').html('');
+                        }, 5000);
+                        //alert(data.message);
+                    }
+                    if (data.data == 'Enleve') {
+                        $('#confirmModal').modal('hide');
+                        $('#success_contenu').html( message_succes_deblocage );
+                        $('#successModal').modal('show');
+                        $('#blocage_texte').html(' Bloquer ce profil ');
+                        bloquer = 0;
+                        setTimeout(function() {
+                            $('#successModal').modal('hide');
+                            $('#success_contenu').html('');
+                        }, 5000);
+                        //alert(data.message);
+                    }
+                    $btn.button('reset');
+                })
+                .fail(function (jqXHR, textStatus, errorThrown) {
+                    if (typeof jqXHR.responseJSON !== 'undefined') {
+                        message = jqXHR.responseJSON.message;
+                    } else {
+                        message = errorThrown;
+                    }
+                    $('#confirmModal').modal('hide');
+                    $('#success_contenu').html( message );
+                    $('#successModal').modal('show');
+                    setTimeout(function() {
+                        $('#successModal').modal('hide');
+                        $('#success_contenu').html('');
+                    }, 5000);
+
+                    $btn.button('reset');
+                });
         }
 	}
+    {% endif %}
 </script>
 {% endblock %}	

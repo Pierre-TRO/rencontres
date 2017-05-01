@@ -10,4 +10,13 @@ namespace PTRO\RencontresBundle\Repository;
  */
 class SignalementRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getSignalementByUsers($user1, $user2){
+        $queryBuilder = $this->createQueryBuilder('c');
+        $queryBuilder->where('c.receveur=:user1')
+            ->andWhere('c.createur=:user2')
+            ->setParameters(array('user1' => $user1, 'user2' => $user2));
+        $query = $queryBuilder->getQuery();
+        $result = $query->getOneOrNullResult();
+        return $result;
+    }
 }

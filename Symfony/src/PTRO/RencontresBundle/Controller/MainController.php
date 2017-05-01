@@ -2,10 +2,14 @@
 
 namespace PTRO\RencontresBundle\Controller;
 
+use PTRO\RencontresBundle\Entity\Blocage;
 use PTRO\RencontresBundle\Entity\Conversation;
 use PTRO\RencontresBundle\Entity\Favori;
 use PTRO\RencontresBundle\Entity\Message;
+use PTRO\RencontresBundle\Entity\Poke;
+use PTRO\RencontresBundle\Entity\Signalement;
 use PTRO\RencontresBundle\Form\MessageType;
+use PTRO\RencontresBundle\Form\SignalementType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Response;
@@ -422,6 +426,7 @@ class MainController extends Controller
 
     public function profilAction($id){
         $formMessage = null;
+        $formSignalement = null;
 
         //Si l'utilisateur est connecté
         if($this->getUser() != null){
@@ -435,6 +440,11 @@ class MainController extends Controller
             $message = new Message();
             $formMessage = $this->get('form.factory')->create(MessageType::class, $message);
             $formMessage->get('id_receveur')->setData($id);
+
+            //On crée le formulaire de signalement
+            $signalement = new Signalement();
+            $formSignalement = $this->get('form.factory')->create(SignalementType::class, $signalement);
+            $formSignalement->get('id_receveur')->setData($id);
         }
 
         //On va chercher les infos du profil à afficher
@@ -457,8 +467,16 @@ class MainController extends Controller
         }else{
             $favori = 0;
         }
+
+        //On regarde si ce profil est bloqué par l'utilisateur
+        $repoBlocage = $em->getRepository("PTRORencontresBundle:Blocage");
+        if($repoBlocage->findOneBy(array("createur" => $this->getUser(), "receveur" => $id)) != null){
+            $bloquer = 1;
+        }else{
+            $bloquer = 0;
+        }
 		
-		return $this->render('PTRORencontresBundle:Rencontres:layout_profil.html.twig', array("profil" => $profil, "photos" => $photos, "formMessage" => ($formMessage == null)? null: $formMessage->createView(), 'favori'=> $favori));
+		return $this->render('PTRORencontresBundle:Rencontres:layout_profil.html.twig', array("profil" => $profil, "photos" => $photos, "formMessage" => ($formMessage == null)? null: $formMessage->createView(), 'favori'=> $favori, 'bloquer' => $bloquer, "formSignalement" => ($formSignalement == null)? null: $formSignalement->createView(),));
 	}
 
 	public function messageAction(Request $request){
@@ -573,6 +591,34 @@ class MainController extends Controller
         if (!$request->isXmlHttpRequest()) {
             return new JsonResponse(array('message' => 'Seul Ajax est autorisé!'), 400);
         }
+        try{
+            $em = $this->getDoctrine()->getManager();
+
+            $id_receveur = $request->get('id_receveur');
+            $createur = $this->getUser();
+            $receveur = $em->getRepository('PTRORencontresBundle:Utilisateur')->find($id_receveur);
+
+            //Un seul poke par jour pour un profil
+            $poke_today = $em->getRepository('PTRORencontresBundle:Poke')->findOneBy(array("createur" => $createur, "receveur" => $receveur));
+            if(!$poke_today){
+                $poke = new Poke();
+                $poke->setCreateur($createur);
+                $poke->setReceveur($receveur);
+                $em->persist($poke);
+                $em->flush();
+                return new JsonResponse(array('message' => 'Success!', 'data' => 'Envoye'), 200);
+            }else{
+                return new JsonResponse(array('message' => 'Error!', 'data' => 'DejaEnvoyeAujourdhui'), 200);
+            }
+
+        }catch (Exception $e) {
+            $response = new JsonResponse(
+                array(
+                    'message' => 'Erreur pendant l\'envoi du poke.',
+                    'data' => ''),
+                400);
+            return $response;
+        }
     }
 
     public function bloquerAction(Request $request)
@@ -581,6 +627,35 @@ class MainController extends Controller
         if (!$request->isXmlHttpRequest()) {
             return new JsonResponse(array('message' => 'Seul Ajax est autorisé!'), 400);
         }
+        try{
+            $em = $this->getDoctrine()->getManager();
+
+            $id_receveur = $request->get('id_receveur');
+            $createur = $this->getUser();
+            $receveur = $em->getRepository('PTRORencontresBundle:Utilisateur')->find($id_receveur);
+
+            $blocage = $em->getRepository('PTRORencontresBundle:Blocage')->findOneBy(array("createur" => $createur, "receveur" => $receveur));
+            if(!$blocage){
+                $blocage = new Blocage();
+                $blocage->setCreateur($createur);
+                $blocage->setReceveur($receveur);
+                $em->persist($blocage);
+                $em->flush();
+                return new JsonResponse(array('message' => 'Success!', 'data' => 'Ajout'), 200);
+            }else{
+                $em->remove($blocage);
+                $em->flush();
+                return new JsonResponse(array('message' => 'Success!', 'data' => 'Enleve'), 200);
+            }
+
+        }catch (\Exception $e){
+            $response = new JsonResponse(
+                array(
+                    'message' => 'Erreur pendant l\'ajout dans vos favoris.',
+                    'data' => ''),
+                400);
+            return $response;
+        }
     }
 
     public function signalerAction(Request $request)
@@ -588,6 +663,52 @@ class MainController extends Controller
         //This is optional. Do not do this check if you want to call the same action using a regular request.
         if (!$request->isXmlHttpRequest()) {
             return new JsonResponse(array('message' => 'Seul Ajax est autorisé!'), 400);
+        }
+
+        try {
+
+            $signalement = new Signalement();
+            $form = $this->get('form.factory')->create(SignalementType::class, $signalement);
+            $form->handleRequest($request);
+
+            if ($form->isValid()) {
+
+                //On vérifie si un signalement existe déjà
+                $em = $this->getDoctrine()->getManager();
+                $receveur = $em->getRepository('PTRORencontresBundle:Utilisateur')->find($form->get('id_receveur')->getData());
+                $envoyeur = $this->getUser();
+
+                $repoSignalement = $em->getRepository('PTRORencontresBundle:Signalement');
+                $signalement_existant = $repoSignalement->getSignalementByUsers($receveur, $envoyeur);
+
+                //Si il n'y a pas de signalement on le crée
+                if ($signalement_existant == null) {
+                    $signalement->setCreateur($envoyeur);
+                    $signalement->setReceveur($receveur);
+                    $em->persist($signalement);
+                    $em->flush();
+                    return new JsonResponse(array('message' => 'Success!', 'data' => ''), 200);
+                }else{
+                    return new JsonResponse(array('message' => 'Vous avez déjà signalé ce profil au webmaster.', 'data' => ''), 400);
+                }
+
+            }
+
+            $response = new JsonResponse(
+                array(
+                    'message' => 'Error',
+                    'data' => $this->getErrorMessages($form)),
+                400);
+
+            return $response;
+        }
+        catch (\Exception $e){
+            $response = new JsonResponse(
+                array(
+                    'message' => 'Erreur pendant le signalement.',
+                    'data' => ''),
+                400);
+            return $response;
         }
     }
 

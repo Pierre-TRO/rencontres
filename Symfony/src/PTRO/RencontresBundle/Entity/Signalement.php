@@ -3,6 +3,7 @@
 namespace PTRO\RencontresBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Signalement
@@ -39,6 +40,15 @@ class Signalement
     * @ORM\JoinColumn(nullable=false)
     */
     private $receveur;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="message", type="text", nullable=true)
+     *
+     * @Assert\NotBlank(message="Ce champ ne doit pas être vide.")
+     */
+    private $message;
 
 
     public function __construct()
@@ -127,5 +137,29 @@ class Signalement
     public function getReceveur()
     {
         return $this->receveur;
+    }
+
+    /**
+     * Set message
+     *
+     * @param string $message
+     *
+     * @return Signalement
+     */
+    public function setMessage($message)
+    {
+        $this->message = $message;
+
+        return $this;
+    }
+
+    /**
+     * Get message
+     *
+     * @return string
+     */
+    public function getMessage()
+    {
+        return $this->message;
     }
 }
