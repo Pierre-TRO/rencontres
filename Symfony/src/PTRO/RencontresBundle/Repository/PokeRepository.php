@@ -11,11 +11,12 @@ namespace PTRO\RencontresBundle\Repository;
 class PokeRepository extends \Doctrine\ORM\EntityRepository
 {
     public function getPokeTodayByUsers($receveur, $createur){
+        $today = new \DateTime();
         $queryBuilder = $this->createQueryBuilder('p');
         $queryBuilder->where('p.receveur=:receveur')
             ->andWhere('p.createur=:createur')
             ->andWhere('p.datePoke LIKE :dateToday')
-            ->setParameters(array('receveur' => $receveur, 'createur' => $createur, 'dateToday' => new \DateTime('Y-m-d')."%"));
+            ->setParameters(array('receveur' => $receveur, 'createur' => $createur, 'dateToday' => $today->format('Y-m-d')."%"));
         $query = $queryBuilder->getQuery();
         $result = $query->getOneOrNullResult();
         return $result;

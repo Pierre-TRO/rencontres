@@ -599,7 +599,7 @@ class MainController extends Controller
             $receveur = $em->getRepository('PTRORencontresBundle:Utilisateur')->find($id_receveur);
 
             //Un seul poke par jour pour un profil
-            $poke_today = $em->getRepository('PTRORencontresBundle:Poke')->findOneBy(array("createur" => $createur, "receveur" => $receveur));
+            $poke_today = $em->getRepository('PTRORencontresBundle:Poke')->getPokeTodayByUsers($receveur, $createur);
             if(!$poke_today){
                 $poke = new Poke();
                 $poke->setCreateur($createur);
