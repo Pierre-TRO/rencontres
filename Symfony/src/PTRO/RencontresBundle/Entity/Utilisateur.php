@@ -182,10 +182,10 @@ class Utilisateur extends BaseUser
     private $relation;
 
     /**
-    * @ORM\ManyToOne(targetEntity="PTRO\RencontresBundle\Entity\Departement")
+    * @ORM\ManyToOne(targetEntity="PTRO\RencontresBundle\Entity\Ville")
     * @Assert\NotNull(message="Ce champ est obligatoire", groups={"Registration2"})
     */
-    private $departement;
+    private $ville;
 
     /**
     * @ORM\ManyToOne(targetEntity="PTRO\RencontresBundle\Entity\Orientation")
@@ -672,30 +672,6 @@ class Utilisateur extends BaseUser
     }
 
     /**
-     * Set departement
-     *
-     * @param \PTRO\RencontresBundle\Entity\Departement $departement
-     *
-     * @return Utilisateur
-     */
-    public function setDepartement(\PTRO\RencontresBundle\Entity\Departement $departement = null)
-    {
-        $this->departement = $departement;
-
-        return $this;
-    }
-
-    /**
-     * Get departement
-     *
-     * @return \PTRO\RencontresBundle\Entity\Departement
-     */
-    public function getDepartement()
-    {
-        return $this->departement;
-    }
-
-    /**
      * Set orientation
      *
      * @param \PTRO\RencontresBundle\Entity\Orientation $orientation
@@ -896,5 +872,29 @@ class Utilisateur extends BaseUser
 
     public function getProprietes() {
         return get_object_vars($this);
+    }
+
+    /**
+     * Set ville
+     *
+     * @param \PTRO\RencontresBundle\Entity\Ville $ville
+     *
+     * @return Utilisateur
+     */
+    public function setVille(\PTRO\RencontresBundle\Entity\Ville $ville = null)
+    {
+        $this->ville = $ville;
+
+        return $this;
+    }
+
+    /**
+     * Get ville
+     *
+     * @return \PTRO\RencontresBundle\Entity\Ville
+     */
+    public function getVille()
+    {
+        return $this->ville;
     }
 }

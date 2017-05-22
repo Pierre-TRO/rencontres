@@ -5,12 +5,12 @@ namespace PTRO\RencontresBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Region
+ * Ville
  *
- * @ORM\Table(name="region")
- * @ORM\Entity(repositoryClass="PTRO\RencontresBundle\Repository\RegionRepository")
+ * @ORM\Table(name="ville")
+ * @ORM\Entity(repositoryClass="PTRO\RencontresBundle\Repository\VilleRepository")
  */
-class Region
+class Ville
 {
     /**
      * @var int
@@ -24,9 +24,21 @@ class Region
     /**
      * @var string
      *
+     * @ORM\Column(name="numeroDep", type="string", length=255)
+     */
+    private $numeroDep;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="nom", type="string", length=255)
      */
     private $nom;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="PTRO\RencontresBundle\Entity\Departement")
+     */
+    private $departement;
 
 
     /**
@@ -40,11 +52,35 @@ class Region
     }
 
     /**
+     * Set numeroDep
+     *
+     * @param string $numeroDep
+     *
+     * @return Ville
+     */
+    public function setNumeroDep($numeroDep)
+    {
+        $this->numeroDep = $numeroDep;
+
+        return $this;
+    }
+
+    /**
+     * Get numeroDep
+     *
+     * @return string
+     */
+    public function getNumeroDep()
+    {
+        return $this->numeroDep;
+    }
+
+    /**
      * Set nom
      *
      * @param string $nom
      *
-     * @return Region
+     * @return Ville
      */
     public function setNom($nom)
     {

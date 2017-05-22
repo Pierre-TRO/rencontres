@@ -85,7 +85,7 @@ class LoadInfos implements FixtureInterface
     $etatcivil3->setNom($etatcivils[2]);
     $manager->persist($etatcivil3);
 
-
+/*
     $name = 'Ile-De-France';
     $region = new Region();
     $region->setNom($name);
@@ -141,7 +141,7 @@ class LoadInfos implements FixtureInterface
     $departement8 = new Departement();
     $departement8->setNom($departements[7]);
     $departement8->setRegion($region);
-    $manager->persist($departement8);
+    $manager->persist($departement8);*/
 
     $orientations = array(
       'Hétérosexuelle',

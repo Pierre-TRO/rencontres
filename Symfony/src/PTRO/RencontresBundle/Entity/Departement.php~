@@ -29,10 +29,11 @@ class Departement
     private $nom;
 
     /**
-    * @ORM\ManyToOne(targetEntity="PTRO\RencontresBundle\Entity\Region")
-    * @ORM\JoinColumn(nullable=false)
-    */
-    private $region;
+     * @var string
+     *
+     * @ORM\Column(name="numeroDep", type="string", length=255)
+     */
+    private $numeroDep;
 
 
     /**
@@ -68,5 +69,28 @@ class Departement
     {
         return $this->nom;
     }
-}
 
+    /**
+     * Set region
+     *
+     * @param \PTRO\RencontresBundle\Entity\Region $region
+     *
+     * @return Departement
+     */
+    public function setRegion(\PTRO\RencontresBundle\Entity\Region $region)
+    {
+        $this->region = $region;
+
+        return $this;
+    }
+
+    /**
+     * Get region
+     *
+     * @return \PTRO\RencontresBundle\Entity\Region
+     */
+    public function getRegion()
+    {
+        return $this->region;
+    }
+}

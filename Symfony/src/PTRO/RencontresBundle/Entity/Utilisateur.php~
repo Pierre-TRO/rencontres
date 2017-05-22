@@ -182,10 +182,10 @@ class Utilisateur extends BaseUser
     private $relation;
 
     /**
-    * @ORM\ManyToOne(targetEntity="PTRO\RencontresBundle\Entity\Departement")
+    * @ORM\ManyToOne(targetEntity="PTRO\RencontresBundle\Entity\Ville")
     * @Assert\NotNull(message="Ce champ est obligatoire", groups={"Registration2"})
     */
-    private $departement;
+    private $ville;
 
     /**
     * @ORM\ManyToOne(targetEntity="PTRO\RencontresBundle\Entity\Orientation")
@@ -224,13 +224,6 @@ class Utilisateur extends BaseUser
      * @ORM\Column(name="desactive", type="boolean")
      */
     private $desactive;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="date_derniere_visite", type="datetime")
-     */
-    private $dateDerniereVisite;
 
 
     public function __construct()
@@ -679,30 +672,6 @@ class Utilisateur extends BaseUser
     }
 
     /**
-     * Set departement
-     *
-     * @param \PTRO\RencontresBundle\Entity\Departement $departement
-     *
-     * @return Utilisateur
-     */
-    public function setDepartement(\PTRO\RencontresBundle\Entity\Departement $departement = null)
-    {
-        $this->departement = $departement;
-
-        return $this;
-    }
-
-    /**
-     * Get departement
-     *
-     * @return \PTRO\RencontresBundle\Entity\Departement
-     */
-    public function getDepartement()
-    {
-        return $this->departement;
-    }
-
-    /**
      * Set orientation
      *
      * @param \PTRO\RencontresBundle\Entity\Orientation $orientation
@@ -892,5 +861,16 @@ class Utilisateur extends BaseUser
     public function getDesactive()
     {
         return $this->desactive;
+    }    
+	
+	public function getAge()
+    {
+        $dateInterval = $this->dateNaissance->diff(new \DateTime());
+ 
+        return $dateInterval->y;
+    }
+
+    public function getProprietes() {
+        return get_object_vars($this);
     }
 }
